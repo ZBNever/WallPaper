@@ -16,6 +16,7 @@
 
 #import "WallPaper.h"
 
+#import "WallpaperViewController.h"
 
 static NSString * const reuseIdentifier = @"Cell";
 
@@ -94,14 +95,25 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor lightGrayColor];
+//    cell.backgroundColor = [UIColor lightGrayColor];
     // Configure the cell
     WallPaper *wallpaper = _wallpapers[indexPath.item];
     [cell setWallpaper:wallpaper];
     return cell;
 }
 
+
+
 #pragma mark <UICollectionViewDelegate>
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+
+    WallPaper *wallpaper = _wallpapers[indexPath.item];
+    
+    WallpaperViewController *wallpaperVC = [[WallpaperViewController alloc] initWithWallpaper:wallpaper];
+    
+    [self.navigationController pushViewController:wallpaperVC animated:YES];
+}
 
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking

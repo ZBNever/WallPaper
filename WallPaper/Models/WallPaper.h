@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSURL *detail;
 @property (nonatomic, strong) NSURL *thumbnail;
+@property (nonatomic, strong) NSURL *fullSize;
 
 @end

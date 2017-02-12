@@ -13,45 +13,17 @@
 @implementation WallPaperService
 
 +(void)requestWallpapersFromURL:(NSURL *)url completion:(WallpapersCompletion)completion{
-//
-//    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-//    [session GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-//        
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//         NSLog(@"成功%@",responseObject);
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"失败%@",error);
-//    }];
-
-    
-    
-    /*
-    // 快捷方式获得session对象
-    NSURLSession *session = [NSURLSession sharedSession];
-//    url = [NSURL URLWithString:@"http://www.daka.com/login?username=daka&pwd=123"];
-    // 通过URL初始化task,在block内部可以直接对返回的数据进行处理
-    NSURLSessionTask *task = [session dataTaskWithURL:url
-                                    completionHandler:^(NSData *data, NSURLResponse *response, NSError* error) {
-                                        NSLog(@"*****%@", [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil]);
-                                    }];
-    
-    // 启动任务
-    [task resume];
-    
-   */
-    
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (data.length && !connectionError) {
-
             NSArray *wallpapers = [self parse:data];
             completion(wallpapers,YES);
         }else{
-        
-            NSLog(@"Error %@",connectionError);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"获取缩略图失败" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+//            NSLog(@"Error %@",connectionError);
             completion(nil,NO);
         }
     }];
@@ -67,9 +39,17 @@
         NSString *thumbnail = [self stringByExtractingFrom:@"data-src=\"" to:@"\"" in:thumbString];
         NSString *detail = [self stringByExtractingFrom:@"href=\"" to:@"\"" in:thumbString];
         if (thumbnail && detail) {
+            //https://alpha.wallhaven.cc/wallpaper/69739
+            //
+            NSString *fullUrl = nil;
+            if ([detail hasPrefix:@"https://alpha.wallhaven.cc/wallpaper/"]) {
+                fullUrl = [NSString stringWithFormat:@"https://alpha.wallhaven.cc/wallpapers/full/wallhaven-%@.jpg",[detail substringFromIndex:37]];
+            }
+            
             WallPaper *wallpaper = [[WallPaper alloc] init];
             wallpaper.thumbnail = [NSURL URLWithString:thumbnail];
             wallpaper.detail = [NSURL URLWithString:detail];
+            wallpaper.fullSize = [NSURL URLWithString:fullUrl];
             [wallpapers addObject:wallpaper];
         }
     }

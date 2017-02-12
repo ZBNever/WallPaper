@@ -18,6 +18,8 @@
 		CA56701C1E4C727800ADE9EA /* CategoriesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA56701B1E4C727800ADE9EA /* CategoriesManager.m */; };
 		CA5670201E4C776800ADE9EA /* ImageCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA56701F1E4C776800ADE9EA /* ImageCategory.m */; };
 		CA5670241E4D535700ADE9EA /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5670231E4D535700ADE9EA /* CategoryCell.m */; };
+		CA59A5381E500D6D0072FCB9 /* LaunchScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */; };
+		CA59A53B1E5015620072FCB9 /* WallpaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA59A53A1E5015620072FCB9 /* WallpaperViewController.m */; };
 		CAFB8F741E4DA26C001185F0 /* WallpapersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8F731E4DA26C001185F0 /* WallpapersViewController.m */; };
 		CAFB8F771E4DA87F001185F0 /* WallpaperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8F761E4DA87F001185F0 /* WallpaperCell.m */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,9 @@
 		CA56701F1E4C776800ADE9EA /* ImageCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCategory.m; sourceTree = "<group>"; };
 		CA5670221E4D535700ADE9EA /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		CA5670231E4D535700ADE9EA /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
+		CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LaunchScreen.jpg; sourceTree = "<group>"; };
+		CA59A5391E5015620072FCB9 /* WallpaperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallpaperViewController.h; sourceTree = "<group>"; };
+		CA59A53A1E5015620072FCB9 /* WallpaperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallpaperViewController.m; sourceTree = "<group>"; };
 		CAFB8F721E4DA26C001185F0 /* WallpapersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallpapersViewController.h; sourceTree = "<group>"; };
 		CAFB8F731E4DA26C001185F0 /* WallpapersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallpapersViewController.m; sourceTree = "<group>"; };
 		CAFB8F751E4DA87F001185F0 /* WallpaperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallpaperCell.h; sourceTree = "<group>"; };
@@ -109,6 +114,7 @@
 				CA5670011E4C6FB900ADE9EA /* AppDelegate.h */,
 				CA5670021E4C6FB900ADE9EA /* AppDelegate.m */,
 				CA56700A1E4C6FB900ADE9EA /* Assets.xcassets */,
+				CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */,
 				CA56700C1E4C6FB900ADE9EA /* LaunchScreen.storyboard */,
 				CA56700F1E4C6FB900ADE9EA /* Info.plist */,
 				CA566FFE1E4C6FB900ADE9EA /* Supporting Files */,
@@ -131,6 +137,8 @@
 				CA5670171E4C707300ADE9EA /* CategoriesViewController.m */,
 				CAFB8F721E4DA26C001185F0 /* WallpapersViewController.h */,
 				CAFB8F731E4DA26C001185F0 /* WallpapersViewController.m */,
+				CA59A5391E5015620072FCB9 /* WallpaperViewController.h */,
+				CA59A53A1E5015620072FCB9 /* WallpaperViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 			files = (
 				CA56700E1E4C6FB900ADE9EA /* LaunchScreen.storyboard in Resources */,
 				CA56700B1E4C6FB900ADE9EA /* Assets.xcassets in Resources */,
+				CA59A5381E500D6D0072FCB9 /* LaunchScreen.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +310,7 @@
 				CA5670031E4C6FB900ADE9EA /* AppDelegate.m in Sources */,
 				CA1AFF311E4D66C1006B8CA7 /* WallPaper.m in Sources */,
 				CAFB8F741E4DA26C001185F0 /* WallpapersViewController.m in Sources */,
+				CA59A53B1E5015620072FCB9 /* WallpaperViewController.m in Sources */,
 				CA5670241E4D535700ADE9EA /* CategoryCell.m in Sources */,
 				CA5670201E4C776800ADE9EA /* ImageCategory.m in Sources */,
 				CA5670181E4C707300ADE9EA /* CategoriesViewController.m in Sources */,
@@ -419,6 +429,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7H5TD8QGJP;
 				INFOPLIST_FILE = WallPaper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.never.WallPaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -432,6 +443,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7H5TD8QGJP;
 				INFOPLIST_FILE = WallPaper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.never.WallPaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
