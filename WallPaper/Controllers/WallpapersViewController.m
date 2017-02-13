@@ -89,14 +89,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
+
     return _wallpapers.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-//    cell.backgroundColor = [UIColor lightGrayColor];
-    // Configure the cell
+
     WallPaper *wallpaper = _wallpapers[indexPath.item];
     [cell setWallpaper:wallpaper];
     return cell;
@@ -109,7 +108,8 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
     WallPaper *wallpaper = _wallpapers[indexPath.item];
-    
+    NSURL *fullUrl = wallpaper.fullSize;
+    NSLog(@"fullUrl:%@",fullUrl);
     WallpaperViewController *wallpaperVC = [[WallpaperViewController alloc] initWithWallpaper:wallpaper];
     
     [self.navigationController pushViewController:wallpaperVC animated:YES];
