@@ -17,6 +17,7 @@
 @implementation WallpaperViewController
 {
     UIImageView *_imageView;
+    UIScrollView *_scrollView;
     WallPaper *_wallpaper;
 }
 
@@ -24,8 +25,9 @@
 
     if (self = [super init]) {
         self.title = @"Wallpaper";
-        self.view.backgroundColor = [UIColor whiteColor];
+        self.view.backgroundColor = [UIColor blackColor];
         _wallpaper = wallpaper;
+        
         [_imageView sd_setImageWithURL:_wallpaper.fullSize];
     }
     return self;
@@ -43,11 +45,6 @@
     [super viewDidLoad];
     
     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

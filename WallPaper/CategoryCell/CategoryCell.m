@@ -26,7 +26,7 @@
         _name = [[UILabel alloc] init];
         _name.backgroundColor = [UIColor clearColor];
         _name.textColor = [UIColor whiteColor];
-        _name.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+        _name.font = [UIFont preferredFontForTextStyle:UIFontTextStyleTitle1];
         _name.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:_name];
     }
@@ -49,7 +49,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated{
     [super setSelected:selected animated:animated];
     
-    _thumbnail.alpha = selected ? 0.5 : 1;
+//    _thumbnail.alpha = selected ? 0.5 : 1;
     
 }
 - (void)awakeFromNib {
