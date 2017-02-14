@@ -10,11 +10,11 @@
 
 @implementation ImageCategory
 
-+(instancetype)categoryWithName:(NSString *)name data:(NSURL *)data thumbnail:(NSURL *)thumbnail{
++(instancetype)categoryWithName:(NSString *)name thumbnail:(NSURL *)thumbnail{
     
     ImageCategory *category = [[self alloc] init];
     category.name = name;
-    category.data = data;
+//    category.data = data;
     category.thumbnail = thumbnail;
     return category;
     

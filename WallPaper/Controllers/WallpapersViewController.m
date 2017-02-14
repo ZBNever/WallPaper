@@ -18,6 +18,8 @@
 
 #import "WallpaperViewController.h"
 
+#import <MBProgressHUD+JDragon.h>
+
 static NSString * const reuseIdentifier = @"Cell";
 
 @interface WallpapersViewController ()
@@ -28,11 +30,11 @@ static NSString * const reuseIdentifier = @"Cell";
     
     ImageCategory *_category;
     NSArray *_wallpapers;
+    int i;
 }
 
 - (instancetype)initWithImageCategory:(ImageCategory *)category{
 
-    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 1;
     layout.minimumInteritemSpacing = 1;
@@ -40,7 +42,7 @@ static NSString * const reuseIdentifier = @"Cell";
     int portraitWith = MIN(screenSize.width, screenSize.height);
     int itemSize = floor((portraitWith-1)/2);
     layout.itemSize = CGSizeMake(itemSize, itemSize);
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(requestData)];
     if (self = [super initWithCollectionViewLayout:layout]) {
         _category = category;
         self.title = category.name;
@@ -48,45 +50,43 @@ static NSString * const reuseIdentifier = @"Cell";
     return self;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.collectionView.backgroundColor = [UIColor blackColor];
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    [WallPaperService requestWallpapersFromURL:_category.data completion:^(NSArray *wallpapers, BOOL success) {
-        if (success) {
-            _wallpapers = wallpapers;
-            [self.collectionView reloadData];
-        }else{
+    
+    [self.collectionView registerClass:[WallpaperCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    i = 1;
+    [self requestData];
+}
+
+-(void)requestData{
+    [MBProgressHUD showActivityMessageInWindow:@"正在加载……"];
+    NSURL *url;
+    
+    if (_category.name == nil) {
         
-            NSLog(@"找不到缩略图");
+        url = [NSURL URLWithString:[NSString stringWithFormat:WallLatesURL,i]];
+        
+    }else{
+        url = [NSURL URLWithString:[NSString stringWithFormat:WallPaperSearchURL,_category.name]];
+    }
+    [WallPaperService requestWallpapersFromURL:url completion:^(NSArray *wallpapers, BOOL success) {
+        [MBProgressHUD hideHUD];
+        if (success && wallpapers.count != 0) {
+            i++;
+            _wallpapers = wallpapers;
+            
+            [self.collectionView reloadData];
+            
+        }else{
+            [MBProgressHUD showErrorMessage:@"找不到缩略图"];
+            
         }
     }];
-    // Register cell classes
-    [self.collectionView registerClass:[WallpaperCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    // Do any additional setup after loading the view.
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
-
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
@@ -102,46 +102,16 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 
-
 #pragma mark <UICollectionViewDelegate>
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
     WallPaper *wallpaper = _wallpapers[indexPath.item];
-    NSURL *fullUrl = wallpaper.fullSize;
-    NSLog(@"fullUrl:%@",fullUrl);
+    
     WallpaperViewController *wallpaperVC = [[WallpaperViewController alloc] initWithWallpaper:wallpaper];
     
     [self.navigationController pushViewController:wallpaperVC animated:YES];
 }
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end

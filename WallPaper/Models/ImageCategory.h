@@ -14,6 +14,6 @@
 @property(nonatomic,strong) NSURL *data;
 @property(nonatomic,strong) NSURL *thumbnail;
 
-+ (instancetype)categoryWithName:(NSString *)name data:(NSURL *)data thumbnail:(NSURL *)thumbnail;
++ (instancetype)categoryWithName:(NSString *)name thumbnail:(NSURL *)thumbnail;
 
 @end

@@ -12,6 +12,8 @@
 
 @interface WallpaperCell : UICollectionViewCell
 
+
+
 -(void)setWallpaper:(WallPaper *)wallpaper;
 
 @end

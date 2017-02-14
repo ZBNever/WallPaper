@@ -12,6 +12,7 @@
 
 @interface WallpaperViewController : UIViewController
 
+
 - (instancetype)initWithWallpaper:(WallPaper *)wallpaper;
 
 @end

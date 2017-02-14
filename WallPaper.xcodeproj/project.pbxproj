@@ -34,6 +34,8 @@
 		CA1AFF321E4D66E3006B8CA7 /* WallPaperService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallPaperService.h; sourceTree = "<group>"; };
 		CA1AFF331E4D66E3006B8CA7 /* WallPaperService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallPaperService.m; sourceTree = "<group>"; };
 		CA27D69D1E514BF400FB07EF /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
+		CA27D69F1E51EE5900FB07EF /* URLServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLServices.h; sourceTree = "<group>"; };
+		CA27D6A11E51EEEC00FB07EF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		CA566FFB1E4C6FB900ADE9EA /* WallPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA566FFF1E4C6FB900ADE9EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CA5670011E4C6FB900ADE9EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -87,6 +89,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CA27D6A01E51EED900FB07EF /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				CA27D6A11E51EEEC00FB07EF /* PrefixHeader.pch */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 		CA566FF21E4C6FB900ADE9EA = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +118,7 @@
 		CA566FFD1E4C6FB900ADE9EA /* WallPaper */ = {
 			isa = PBXGroup;
 			children = (
+				CA27D6A01E51EED900FB07EF /* Global */,
 				CA5670251E4D658A00ADE9EA /* Services */,
 				CA5670211E4D533400ADE9EA /* CategoryCell */,
 				CA56701D1E4C774300ADE9EA /* Models */,
@@ -182,6 +193,7 @@
 			children = (
 				CA1AFF321E4D66E3006B8CA7 /* WallPaperService.h */,
 				CA1AFF331E4D66E3006B8CA7 /* WallPaperService.m */,
+				CA27D69F1E51EE5900FB07EF /* URLServices.h */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -432,8 +444,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7H5TD8QGJP;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/WallPaper/Global/PrefixHeader.pch";
 				INFOPLIST_FILE = WallPaper/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.never.WallPaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -446,8 +459,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7H5TD8QGJP;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/WallPaper/Global/PrefixHeader.pch";
 				INFOPLIST_FILE = WallPaper/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.never.WallPaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";

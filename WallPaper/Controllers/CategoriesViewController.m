@@ -25,26 +25,32 @@ static NSString *kCellID = @"cell";
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         
         self.title = @"WallPaper";
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"最新" style:UIBarButtonItemStylePlain target:self action:@selector(latest)];
     }
     return self;
     
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.view.backgroundColor = [UIColor blackColor];
     [self.tableView registerClass:[CategoryCell class] forCellReuseIdentifier:kCellID];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.rowHeight = 150;
+    self.tableView.rowHeight = 180;
 }
 
+#pragma mark - 最新
+- (void)latest{
+    //https://alpha.wallhaven.cc/latest
+    ImageCategory *category;
+    WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageCategory:category];
+    [self.navigationController pushViewController:wallpapers animated:YES];
+    
+}
 
 #pragma mark - Table view data source
 
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return [CategoriesManager shareManager].categories.count;
 }
 
@@ -55,18 +61,18 @@ static NSString *kCellID = @"cell";
     ImageCategory *category = [CategoriesManager shareManager].categories[indexPath.row];
     
     [cell setImageCategory:category];
-    
+
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 //    NSString *url = @"https://alpha.wallhaven.cc/search?q=snow&page=3";
+    
     ImageCategory *category = [CategoriesManager shareManager].categories[indexPath.row];
     WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageCategory:category];
     [self.navigationController pushViewController:wallpapers animated:YES];
 
 }
-
-
 
 @end

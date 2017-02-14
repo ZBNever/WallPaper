@@ -23,7 +23,7 @@
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"获取缩略图失败" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
-//            NSLog(@"Error %@",connectionError);
+
             completion(nil,NO);
         }
     }];
@@ -35,6 +35,7 @@
     NSString *thumbSection = [self stringByExtractingFrom:@"<section class=\"thumb-listing-page\">" to:@"</section>" in:html];
     NSArray *thumbStrings = [thumbSection componentsSeparatedByString:@"<li><figure"];
     NSMutableArray *wallpapers = [NSMutableArray array];
+    
     for (NSString *thumbString in thumbStrings) {
         NSString *thumbnail = [self stringByExtractingFrom:@"data-src=\"" to:@"\"" in:thumbString];
         NSString *detail = [self stringByExtractingFrom:@"href=\"" to:@"\"" in:thumbString];
@@ -45,7 +46,6 @@
             if ([detail hasPrefix:@"https://alpha.wallhaven.cc/wallpaper/"]) {
                 fullUrl = [NSString stringWithFormat:@"https://alpha.wallhaven.cc/wallpapers/full/wallhaven-%@.jpg",[detail substringFromIndex:37]];
             }
-            
             WallPaper *wallpaper = [[WallPaper alloc] init];
             wallpaper.thumbnail = [NSURL URLWithString:thumbnail];
             wallpaper.detail = [NSURL URLWithString:detail];
