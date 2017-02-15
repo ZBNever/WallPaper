@@ -10,5 +10,6 @@
 #define PrefixHeader_pch
 
 #import "URLServices.h"
+#import "Tools.h"
 
 #endif /* PrefixHeader_pch */

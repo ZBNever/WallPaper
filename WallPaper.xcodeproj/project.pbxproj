@@ -21,6 +21,7 @@
 		CA5670241E4D535700ADE9EA /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5670231E4D535700ADE9EA /* CategoryCell.m */; };
 		CA59A5381E500D6D0072FCB9 /* LaunchScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */; };
 		CA59A53B1E5015620072FCB9 /* WallpaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA59A53A1E5015620072FCB9 /* WallpaperViewController.m */; };
+		CA8870041E53ED51009E9333 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8870031E53ED51009E9333 /* Tools.m */; };
 		CAFB8F741E4DA26C001185F0 /* WallpapersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8F731E4DA26C001185F0 /* WallpapersViewController.m */; };
 		CAFB8F771E4DA87F001185F0 /* WallpaperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8F761E4DA87F001185F0 /* WallpaperCell.m */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,8 @@
 		CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LaunchScreen.jpg; sourceTree = "<group>"; };
 		CA59A5391E5015620072FCB9 /* WallpaperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallpaperViewController.h; sourceTree = "<group>"; };
 		CA59A53A1E5015620072FCB9 /* WallpaperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallpaperViewController.m; sourceTree = "<group>"; };
+		CA8870021E53ED51009E9333 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
+		CA8870031E53ED51009E9333 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		CAFB8F721E4DA26C001185F0 /* WallpapersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallpapersViewController.h; sourceTree = "<group>"; };
 		CAFB8F731E4DA26C001185F0 /* WallpapersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallpapersViewController.m; sourceTree = "<group>"; };
 		CAFB8F751E4DA87F001185F0 /* WallpaperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallpaperCell.h; sourceTree = "<group>"; };
@@ -118,6 +121,7 @@
 		CA566FFD1E4C6FB900ADE9EA /* WallPaper */ = {
 			isa = PBXGroup;
 			children = (
+				CA8870011E53ED34009E9333 /* Tools */,
 				CA27D6A01E51EED900FB07EF /* Global */,
 				CA5670251E4D658A00ADE9EA /* Services */,
 				CA5670211E4D533400ADE9EA /* CategoryCell */,
@@ -196,6 +200,15 @@
 				CA27D69F1E51EE5900FB07EF /* URLServices.h */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		CA8870011E53ED34009E9333 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				CA8870021E53ED51009E9333 /* Tools.h */,
+				CA8870031E53ED51009E9333 /* Tools.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +338,7 @@
 				CAFB8F771E4DA87F001185F0 /* WallpaperCell.m in Sources */,
 				CA5670031E4C6FB900ADE9EA /* AppDelegate.m in Sources */,
 				CA1AFF311E4D66C1006B8CA7 /* WallPaper.m in Sources */,
+				CA8870041E53ED51009E9333 /* Tools.m in Sources */,
 				CAFB8F741E4DA26C001185F0 /* WallpapersViewController.m in Sources */,
 				CA59A53B1E5015620072FCB9 /* WallpaperViewController.m in Sources */,
 				CA5670241E4D535700ADE9EA /* CategoryCell.m in Sources */,

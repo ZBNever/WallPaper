@@ -5,6 +5,6 @@ target ‘WallPaper’ do
   pod 'MJRefresh'
   pod 'SDWebImage'
   pod 'YYKit'
-  pod 'MBProgressHUD+JDragon','~> 0.0.1'
-  
+  # pod 'MBProgressHUD+JDragon','~> 0.0.1'
+  pod 'MBProgressHUD'
 end

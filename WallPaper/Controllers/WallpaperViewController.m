@@ -9,9 +9,9 @@
 #import "WallpaperViewController.h"
 #import "WallPaper.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import <MBProgressHUD+JDragon.h>
+#import <MBProgressHUD.h>
 
-@interface WallpaperViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate>
+@interface WallpaperViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,MBProgressHUDDelegate>
 
 @end
 
@@ -20,7 +20,7 @@
     UIImageView *_imageView;
     WallPaper *_wallpaper;
     BOOL _isFull;
-//    MBProgressHUD *_HUD;
+    MBProgressHUD *_HUD;
 }
 
 
@@ -29,20 +29,31 @@
     if (self = [super init]) {
         self.title = @"Wallpaper";
         self.view.backgroundColor = [UIColor blackColor];
-        _wallpaper = wallpaper;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"save"] style:UIBarButtonItemStyleDone target:self action:@selector(saveImage)];
-        [MBProgressHUD showActivityMessageInView:@"正在加载图片"];
-
-        [_imageView sd_setImageWithURL:_wallpaper.fullSize completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            [MBProgressHUD hideHUD];
-            
-        }];
+        [self requestImge:wallpaper];
+        
     }
     return self;
 }
 
+- (void)requestImge:(WallPaper *)wallpaper{
+
+    [_imageView sd_setImageWithURL:wallpaper.fullSize  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        [_HUD hideAnimated:YES];
+        if (error) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"没找到高清图" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            [alertView show];
+        }else{
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
+        
+       
+    }];
+    
+}
+
 -(void)loadView{
-   
+    
+    //图片视图
     _imageView = [[UIImageView alloc] init];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     _imageView.clipsToBounds = YES;
@@ -51,9 +62,7 @@
     //单击
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     singleTap.delegate = self;
-    
     [_imageView addGestureRecognizer:singleTap];
-    
     //双击
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     doubleTap.numberOfTapsRequired = 2;
@@ -64,24 +73,33 @@
     self.view = _imageView;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"save"] style:UIBarButtonItemStyleDone target:self action:@selector(saveImage)];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    _HUD = [Tools MBProgressHUD:@"正在加载"];
+    
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [_HUD hideAnimated:YES];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - 图片点击事件
 - (void)tapAction:(UITapGestureRecognizer *)tap{
     if (tap.numberOfTapsRequired == 2) {
         _imageView.contentMode = _isFull ? UIViewContentModeScaleAspectFill :UIViewContentModeScaleAspectFit;
         _isFull = !_isFull;
     }else{
-        NSLog(@"00000");
+        
     }
     
+}
 
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-}
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [MBProgressHUD hideHUD];
-}
 #pragma mark - 保存图片到本地
 - (void)saveImage{
     
@@ -106,14 +124,16 @@
     NSString *message = @"";
     if (!error) {
 
-        [MBProgressHUD showInfoMessage:@"保存成功"];
+       _HUD = [Tools MBProgressHUDCustomView:@"保存成功"];
+        
     }else
     {
         message = [error description];
-        [MBProgressHUD showErrorMessage:@"保存失败"];
+       _HUD = [Tools MBProgressHUDCustomView:@"保存失败"];
 
     }
 
+    [_HUD hideAnimated:YES afterDelay:2.0];
 }
 
 @end

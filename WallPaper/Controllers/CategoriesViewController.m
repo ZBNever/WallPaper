@@ -42,7 +42,8 @@ static NSString *kCellID = @"cell";
 #pragma mark - 最新
 - (void)latest{
     //https://alpha.wallhaven.cc/latest
-    ImageCategory *category;
+    ImageCategory *category = [CategoriesManager shareManager].categories[0];
+    category.name = @"Latest";
     WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageCategory:category];
     [self.navigationController pushViewController:wallpapers animated:YES];
     

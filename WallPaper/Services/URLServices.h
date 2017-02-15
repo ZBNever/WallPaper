@@ -13,7 +13,7 @@
 //最新
 #define WallLatesURL WallHavenURL@"latest?page=%d"
 //搜索
-#define WallPaperSearchURL WallHavenURL@"search?q=%@&categories=100&purity=110&sorting=random&order=desc"
+#define WallPaperSearchURL WallHavenURL@"search?q=%@&categories=101&purity=110&sorting=random&order=desc"
 //缩略图
 #define ThumbURL WallHavenURL@"wallpapers/thumb/small/th-%d.jpg"
 

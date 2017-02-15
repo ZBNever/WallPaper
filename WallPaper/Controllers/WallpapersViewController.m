@@ -18,7 +18,6 @@
 
 #import "WallpaperViewController.h"
 
-#import <MBProgressHUD+JDragon.h>
 
 static NSString * const reuseIdentifier = @"Cell";
 
@@ -30,6 +29,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     ImageCategory *_category;
     NSArray *_wallpapers;
+    MBProgressHUD *_HUD;
     int i;
 }
 
@@ -42,11 +42,15 @@ static NSString * const reuseIdentifier = @"Cell";
     int portraitWith = MIN(screenSize.width, screenSize.height);
     int itemSize = floor((portraitWith-1)/2);
     layout.itemSize = CGSizeMake(itemSize, itemSize);
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(requestData)];
     if (self = [super initWithCollectionViewLayout:layout]) {
         _category = category;
         self.title = category.name;
+//        [MBProgressHUD showActivityMessageInView:@"正在加载"];
     }
+
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(requestData)];
+    
     return self;
 }
 
@@ -56,14 +60,21 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self.collectionView registerClass:[WallpaperCell class] forCellWithReuseIdentifier:reuseIdentifier];
     i = 1;
-    [self requestData];
-}
+    _HUD = [Tools MBProgressHUD:@"正在加载"];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(requestData) object:nil];
+    [queue addOperation:op];
 
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [_HUD hideAnimated:YES];
+}
 -(void)requestData{
-    [MBProgressHUD showActivityMessageInWindow:@"正在加载……"];
+    
     NSURL *url;
     
-    if (_category.name == nil) {
+    if ([_category.name isEqualToString:@"Latest"]) {
         
         url = [NSURL URLWithString:[NSString stringWithFormat:WallLatesURL,i]];
         
@@ -71,7 +82,7 @@ static NSString * const reuseIdentifier = @"Cell";
         url = [NSURL URLWithString:[NSString stringWithFormat:WallPaperSearchURL,_category.name]];
     }
     [WallPaperService requestWallpapersFromURL:url completion:^(NSArray *wallpapers, BOOL success) {
-        [MBProgressHUD hideHUD];
+        [_HUD hideAnimated:YES];
         if (success && wallpapers.count != 0) {
             i++;
             _wallpapers = wallpapers;
@@ -79,8 +90,10 @@ static NSString * const reuseIdentifier = @"Cell";
             [self.collectionView reloadData];
             
         }else{
-            [MBProgressHUD showErrorMessage:@"找不到缩略图"];
             
+            _HUD = [Tools MBProgressHUDOnlyText:@"加载失败"];
+            
+            [_HUD hideAnimated:YES afterDelay:2.0f];
         }
     }];
     
@@ -95,7 +108,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-
     WallPaper *wallpaper = _wallpapers[indexPath.item];
     [cell setWallpaper:wallpaper];
     return cell;

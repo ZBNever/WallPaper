@@ -47,6 +47,23 @@
                 
                 [ImageCategory categoryWithName:@"Cities" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,228304]]],
                 
+                [ImageCategory categoryWithName:@"Animals" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,196775]]],
+                
+                [ImageCategory categoryWithName:@"Architecture" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,423312]]],
+                
+                [ImageCategory categoryWithName:@"Food" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,276316]]],
+                
+                [ImageCategory categoryWithName:@"Nature" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,265254]]],
+                
+                [ImageCategory categoryWithName:@"Landscapes" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,155541]]],
+                
+                [ImageCategory categoryWithName:@"Sky" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,26646]]],
+        
+                [ImageCategory categoryWithName:@"Plants" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,307700]]],
+                
+                [ImageCategory categoryWithName:@"Ocean" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,381367]]],
+                
+                
                 ];
                  
     }

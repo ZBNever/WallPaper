@@ -48,6 +48,6 @@
 
 - (void)setSelected:(BOOL)selected{
     [super setSelected:selected];
-    _image.alpha = selected ? 0.5 : 1;
+//    _image.alpha = selected ? 0.5 : 1;
 }
 @end
