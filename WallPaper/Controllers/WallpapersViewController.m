@@ -45,11 +45,11 @@ static NSString * const reuseIdentifier = @"Cell";
     if (self = [super initWithCollectionViewLayout:layout]) {
         _category = category;
         self.title = category.name;
-//        [MBProgressHUD showActivityMessageInView:@"正在加载"];
+
     }
 
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(requestData)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(requestData)];
     
     return self;
 }

@@ -28,26 +28,27 @@
     if (self = [super init]) {
         
         _categories = @[
-                                        
+                [ImageCategory categoryWithName:@"Latest" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,188271]]],
+                
                 [ImageCategory categoryWithName:@"Snow" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,122217]]],
                 
-                [ImageCategory categoryWithName:@"Motorbikes" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,140009]]],
+                [ImageCategory categoryWithName:@"Motorbike" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,140009]]],
                 
-                [ImageCategory categoryWithName:@"Cars" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,136550]]],
+                [ImageCategory categoryWithName:@"Car" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,136550]]],
                 
-                [ImageCategory categoryWithName:@"Beaches" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,70477]]],
+                [ImageCategory categoryWithName:@"Beach" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,70477]]],
                 
-                [ImageCategory categoryWithName:@"Sunsets" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,131104]]],
+                [ImageCategory categoryWithName:@"Sunset" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,131104]]],
                  
                 [ImageCategory categoryWithName:@"Wine" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,377213]]],
                  
-                [ImageCategory categoryWithName:@"Girls" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,484197]]],
+                [ImageCategory categoryWithName:@"Girl" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,484197]]],
                 
-                [ImageCategory categoryWithName:@"Trains" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,424393]]],
+                [ImageCategory categoryWithName:@"Train" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,424393]]],
                 
-                [ImageCategory categoryWithName:@"Cities" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,228304]]],
+                [ImageCategory categoryWithName:@"City" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,228304]]],
                 
-                [ImageCategory categoryWithName:@"Animals" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,196775]]],
+                [ImageCategory categoryWithName:@"Animal" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,196775]]],
                 
                 [ImageCategory categoryWithName:@"Architecture" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,423312]]],
                 
@@ -55,11 +56,11 @@
                 
                 [ImageCategory categoryWithName:@"Nature" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,265254]]],
                 
-                [ImageCategory categoryWithName:@"Landscapes" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,155541]]],
+                [ImageCategory categoryWithName:@"Landscape" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,155541]]],
                 
                 [ImageCategory categoryWithName:@"Sky" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,26646]]],
         
-                [ImageCategory categoryWithName:@"Plants" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,307700]]],
+                [ImageCategory categoryWithName:@"Plant" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,307700]]],
                 
                 [ImageCategory categoryWithName:@"Ocean" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,381367]]],
                 

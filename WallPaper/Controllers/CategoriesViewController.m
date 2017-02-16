@@ -25,7 +25,7 @@ static NSString *kCellID = @"cell";
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         
         self.title = @"WallPaper";
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"最新" style:UIBarButtonItemStylePlain target:self action:@selector(latest)];
+
     }
     return self;
     
@@ -39,15 +39,6 @@ static NSString *kCellID = @"cell";
     self.tableView.rowHeight = 180;
 }
 
-#pragma mark - 最新
-- (void)latest{
-    //https://alpha.wallhaven.cc/latest
-    ImageCategory *category = [CategoriesManager shareManager].categories[0];
-    category.name = @"Latest";
-    WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageCategory:category];
-    [self.navigationController pushViewController:wallpapers animated:YES];
-    
-}
 
 #pragma mark - Table view data source
 
