@@ -21,6 +21,7 @@
     WallPaper *_wallpaper;
     BOOL _isFull;
     MBProgressHUD *_HUD;
+    UIActivityIndicatorView *_activity;
 }
 
 
@@ -30,29 +31,34 @@
         self.title = @"Wallpaper";
         self.view.backgroundColor = [UIColor blackColor];
         [self requestImge:wallpaper];
-        
     }
     return self;
 }
 
 - (void)requestImge:(WallPaper *)wallpaper{
 
-    [_imageView sd_setImageWithURL:wallpaper.fullSize  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [_imageView sd_setImageWithURL:wallpaper.fullSize placeholderImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:wallpaper.thumbnail]] options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        float progress = (float)receivedSize/expectedSize;
+        NSLog(@"下载进度：%f",progress);
+        dispatch_sync(dispatch_get_main_queue() , ^{
+            _HUD.progress = progress;
+        });
+    
+    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        
         [_HUD hideAnimated:YES];
+//        [_activity stopAnimating];
         if (error) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"没找到高清图" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
             [alertView show];
         }else{
             self.navigationItem.rightBarButtonItem.enabled = YES;
         }
-        
-       
     }];
     
 }
 
 -(void)loadView{
-    
     //图片视图
     _imageView = [[UIImageView alloc] init];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -71,23 +77,35 @@
     [singleTap requireGestureRecognizerToFail:doubleTap];
     
     self.view = _imageView;
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    //缓冲进度
+//    _activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(375/2.0-20, 667/2.0-20, 40, 40)];
+//    
+//    _activity.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+//
+//    _activity.color = [UIColor darkGrayColor];
+//    [self.view addSubview:_activity];
+//    [_activity startAnimating];
+    
+    _HUD = [Tools MBProgressHUDProgress:@"Loading"];
+    _HUD.progress = 0;
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"save"] style:UIBarButtonItemStyleDone target:self action:@selector(saveImage)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    _HUD = [Tools MBProgressHUD:@"正在加载"];
     
 }
+
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_HUD hideAnimated:YES];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 
-    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - 图片点击事件
 - (void)tapAction:(UITapGestureRecognizer *)tap{

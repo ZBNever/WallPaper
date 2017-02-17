@@ -18,12 +18,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [NSThread sleepForTimeInterval:2.0];//设置启动页面时间
     CategoriesViewController *categoryVC = [[CategoriesViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:categoryVC];
     nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
     nav.navigationBar.tintColor = [UIColor purpleColor];
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
 

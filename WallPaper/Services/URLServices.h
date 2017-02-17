@@ -17,4 +17,6 @@
 //缩略图
 #define ThumbURL WallHavenURL@"wallpapers/thumb/small/th-%d.jpg"
 
+
+
 #endif /* URLServices_h */

@@ -9,6 +9,7 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+#import "Header.h"
 #import "URLServices.h"
 #import "Tools.h"
 

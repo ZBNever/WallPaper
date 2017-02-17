@@ -57,6 +57,7 @@
 		CA59A53A1E5015620072FCB9 /* WallpaperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallpaperViewController.m; sourceTree = "<group>"; };
 		CA8870021E53ED51009E9333 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		CA8870031E53ED51009E9333 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		CA927FBD1E56F82900838737 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		CAFB8F721E4DA26C001185F0 /* WallpapersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallpapersViewController.h; sourceTree = "<group>"; };
 		CAFB8F731E4DA26C001185F0 /* WallpapersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallpapersViewController.m; sourceTree = "<group>"; };
 		CAFB8F751E4DA87F001185F0 /* WallpaperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallpaperCell.h; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				CA27D6A11E51EEEC00FB07EF /* PrefixHeader.pch */,
+				CA927FBD1E56F82900838737 /* Header.h */,
 			);
 			path = Global;
 			sourceTree = "<group>";

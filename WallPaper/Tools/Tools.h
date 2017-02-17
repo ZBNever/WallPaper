@@ -10,11 +10,15 @@
 #import <MBProgressHUD.h>
 
 @interface Tools : NSObject
-
+//默认方式
 + (MBProgressHUD *)MBProgressHUD:(NSString *)text;
-
+//仅文字提示
 + (MBProgressHUD *)MBProgressHUDOnlyText:(NSString *)text;
-
+//带进度view
++ (MBProgressHUD *)MBProgressHUDProgress:(NSString *)text;
+//自定义视图
 + (MBProgressHUD *)MBProgressHUDCustomView:(NSString *)text;
+
+
 
 @end
