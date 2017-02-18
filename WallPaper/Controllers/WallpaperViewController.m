@@ -38,9 +38,11 @@
 - (void)requestImge:(WallPaper *)wallpaper{
 
     [_imageView sd_setImageWithURL:wallpaper.fullSize placeholderImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:wallpaper.thumbnail]] options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        
         float progress = (float)receivedSize/expectedSize;
         NSLog(@"下载进度：%f",progress);
         dispatch_sync(dispatch_get_main_queue() , ^{
+            //必须返回主线程才能刷新UI
             _HUD.progress = progress;
         });
     
@@ -102,7 +104,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [_HUD hideAnimated:YES];
+    [_HUD removeFromSuperview];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 

@@ -68,7 +68,8 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [_HUD hideAnimated:YES];
+    [_HUD removeFromSuperview];
+//    [_HUD hideAnimated:YES];
 }
 -(void)requestData{
     
