@@ -66,18 +66,7 @@
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     _imageView.clipsToBounds = YES;
     _isFull = YES;
-    _imageView.userInteractionEnabled = YES;
-    //单击
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-    singleTap.delegate = self;
-    [_imageView addGestureRecognizer:singleTap];
-    //双击
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-    doubleTap.numberOfTapsRequired = 2;
-    doubleTap.delegate = self;
-    [_imageView addGestureRecognizer:doubleTap];
-    [singleTap requireGestureRecognizerToFail:doubleTap];
-    
+
     self.view = _imageView;
 
 }
@@ -98,6 +87,17 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"save"] style:UIBarButtonItemStyleDone target:self action:@selector(saveImage)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
+    _imageView.userInteractionEnabled = YES;
+    //单击
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    singleTap.delegate = self;
+    [_imageView addGestureRecognizer:singleTap];
+    //双击
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    doubleTap.numberOfTapsRequired = 2;
+    doubleTap.delegate = self;
+    [_imageView addGestureRecognizer:doubleTap];
+    [singleTap requireGestureRecognizerToFail:doubleTap];
     
 }
 

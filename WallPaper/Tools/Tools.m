@@ -8,75 +8,58 @@
 
 #import "Tools.h"
 
-
 @class MBProgressHUD;
 
-@interface Tools ()<MBProgressHUDDelegate>
-
-@end
 
 
 @implementation Tools
 
 
-
+//默认样式
 + (MBProgressHUD *)MBProgressHUD:(NSString *)text{
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:window];
-    HUD.mode = MBProgressHUDModeIndeterminate;
-//    HUD.delegate = self;
-    //NO允许点击其他地方，YES不允许点击其他地方
-    HUD.userInteractionEnabled = NO;
-    HUD.label.text = text;
-//    HUD.bezelView.backgroundColor = [UIColor darkGrayColor];
-//    HUD.bezelView.color = [UIColor redColor];
-
-    [window addSubview:HUD];
-    [HUD showAnimated:YES];
+   MBProgressHUD *HUD = [self creatHUDwith:text andMod:MBProgressHUDModeIndeterminate];
     return HUD;
 }
 
 //带进度条
 + (MBProgressHUD *)MBProgressHUDProgress:(NSString *)text{
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:window];
-    HUD.mode = MBProgressHUDModeAnnularDeterminate;
-//    HUD.delegate = self;
-    HUD.animationType = MBProgressHUDAnimationZoomOut;
-    //NO允许点击其他地方，YES不允许点击其他地方
-    HUD.userInteractionEnabled = NO;
-    HUD.label.text = text;
-    [window addSubview:HUD];
-    [HUD showAnimated:YES];
+    
+    MBProgressHUD *HUD = [self creatHUDwith:text andMod:MBProgressHUDModeAnnularDeterminate];
     return HUD;
+    
 }
 
 //仅文字提示
 + (MBProgressHUD *)MBProgressHUDOnlyText:(NSString *)text{
-    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:window];
-    HUD.mode = MBProgressHUDModeText;
-    //NO允许点击其他地方，YES不允许点击其他地方
-    HUD.userInteractionEnabled = NO;
-    HUD.label.text = text;
-    [window addSubview:HUD];
-    [HUD showAnimated:YES];
+    
+    MBProgressHUD *HUD = [self creatHUDwith:text andMod:MBProgressHUDModeText];
+    return HUD;
+}
+//自定义view
++ (MBProgressHUD *)MBProgressHUDCustomView:(NSString *)text{
+
+    MBProgressHUD *HUD = [self creatHUDwith:text andMod:MBProgressHUDModeCustomView];
     return HUD;
 }
 
-+ (MBProgressHUD *)MBProgressHUDCustomView:(NSString *)text{
+//封装
++ (MBProgressHUD *)creatHUDwith:(NSString *)text andMod:(MBProgressHUDMode)mod{
+
     UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
     MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:window];
-    HUD.mode = MBProgressHUDModeCustomView;
-    UIImageView *customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"minion"]];
-    HUD.customView = customView;
+    HUD.mode = mod;
+    if (mod == MBProgressHUDModeCustomView) {
+        UIImageView *customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"minion"]];
+        HUD.customView = customView;
+    }
     //NO允许点击其他地方，YES不允许点击其他地方
     HUD.userInteractionEnabled = NO;
+    HUD.bezelView.color = [UIColor colorWithWhite:0.2 alpha:0.1];
     HUD.label.text = text;
+    HUD.animationType = MBProgressHUDAnimationZoomOut;
     [window addSubview:HUD];
     [HUD showAnimated:YES];
     return HUD;
-    
 }
 
 @end

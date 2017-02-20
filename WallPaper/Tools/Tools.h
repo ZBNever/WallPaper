@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MBProgressHUD.h>
 
-@interface Tools : NSObject
+@interface Tools : NSObject<MBProgressHUDDelegate>
 //默认方式
 + (MBProgressHUD *)MBProgressHUD:(NSString *)text;
 //仅文字提示
