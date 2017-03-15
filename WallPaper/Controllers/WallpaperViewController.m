@@ -11,12 +11,13 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <MBProgressHUD.h>
 
-@interface WallpaperViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,MBProgressHUDDelegate>
+@interface WallpaperViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,MBProgressHUDDelegate,UIScrollViewDelegate>
 
 @end
 
 @implementation WallpaperViewController
 {
+    UIScrollView *_scrollView;
     UIImageView *_imageView;
     WallPaper *_wallpaper;
     BOOL _isFull;
@@ -49,7 +50,7 @@
     } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
         [_HUD hideAnimated:YES];
-//        [_activity stopAnimating];
+
         if (error) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"没找到高清图" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
             [alertView show];
@@ -60,27 +61,32 @@
     
 }
 
--(void)loadView{
-    //图片视图
-    _imageView = [[UIImageView alloc] init];
-    _imageView.contentMode = UIViewContentModeScaleAspectFit;
-    _imageView.clipsToBounds = YES;
-    _isFull = YES;
 
-    self.view = _imageView;
-
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //缓冲进度
-//    _activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(375/2.0-20, 667/2.0-20, 40, 40)];
+    //关闭优化机制
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHight)];
+    scrollView.backgroundColor = [UIColor greenColor];
+    scrollView.showsVerticalScrollIndicator = NO;
+    
+//    scrollView.minimumZoomScale = 1;
+    scrollView.maximumZoomScale = 3;
+    scrollView.delegate = self;
+    _scrollView = scrollView;
+    [self.view addSubview: _scrollView];
+    
+    _imageView = [[UIImageView alloc] initWithFrame:_scrollView.bounds];
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
+//    _imageView.clipsToBounds = NO;
+//    CGFloat width = _imageView.image.size.width;
+//    CGFloat heigth = _imageView.image.size.height;
 //    
-//    _activity.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-//
-//    _activity.color = [UIColor darkGrayColor];
-//    [self.view addSubview:_activity];
-//    [_activity startAnimating];
+//    scrollView.contentSize = CGSizeMake(width, heigth);
+    _isFull = YES;
+    
+    [_scrollView addSubview: _imageView];
     
     _HUD = [Tools MBProgressHUDProgress:@"Loading"];
     _HUD.progress = 0;
@@ -109,13 +115,33 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 
 }
+#pragma mark - UIScrollViewDelegate
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+
+    return _imageView;
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
+
+//    if (scale < 1.0) {
+//        view.center = CGPointMake(KScreenWidth/2.0, KScreenHight/2.0);
+//    }else{
+//    
+//        view.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
+//    }
+}
+
 #pragma mark - 图片点击事件
 - (void)tapAction:(UITapGestureRecognizer *)tap{
     if (tap.numberOfTapsRequired == 2) {
         _imageView.contentMode = _isFull ? UIViewContentModeScaleAspectFill :UIViewContentModeScaleAspectFit;
         _isFull = !_isFull;
     }else{
-        
+        if (![self.navigationController.navigationBar isHidden]) {
+            self.navigationController.navigationBar.hidden = YES;
+        }else{
+            self.navigationController.navigationBar.hidden = NO;
+        }
     }
     
 }

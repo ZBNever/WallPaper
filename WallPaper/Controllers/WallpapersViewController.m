@@ -48,8 +48,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
     }
 
-
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(requestData)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(requestData)];
     
     return self;
 }
@@ -69,7 +68,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_HUD removeFromSuperview];
-//    [_HUD hideAnimated:YES];
+
 }
 -(void)requestData{
     
