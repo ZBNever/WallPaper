@@ -68,7 +68,7 @@
     //关闭优化机制
     self.automaticallyAdjustsScrollViewInsets = NO;
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHight)];
-    scrollView.backgroundColor = [UIColor greenColor];
+    scrollView.backgroundColor = [UIColor clearColor];
     scrollView.showsVerticalScrollIndicator = NO;
     
 //    scrollView.minimumZoomScale = 1;
