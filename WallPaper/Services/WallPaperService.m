@@ -17,7 +17,9 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        
         if (data.length && !connectionError) {
+            
             NSArray *wallpapers = [self parse:data];
             completion(wallpapers,YES);
         }else{

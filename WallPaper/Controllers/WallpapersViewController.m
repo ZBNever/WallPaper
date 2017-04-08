@@ -17,7 +17,8 @@
 #import "WallPaper.h"
 
 #import "WallpaperViewController.h"
-
+//第三方图片浏览器
+#import "PhotoBroswerVC.h"
 
 static NSString * const reuseIdentifier = @"Cell";
 
@@ -30,7 +31,7 @@ static NSString * const reuseIdentifier = @"Cell";
     ImageCategory *_category;
     NSArray *_wallpapers;
     MBProgressHUD *_HUD;
-    int i;
+    int index;
 }
 
 - (instancetype)initWithImageCategory:(ImageCategory *)category{
@@ -58,7 +59,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.backgroundColor = [UIColor blackColor];
     
     [self.collectionView registerClass:[WallpaperCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    i = 1;
+    index = 1;
     _HUD = [Tools MBProgressHUD:@"正在加载"];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(requestData) object:nil];
@@ -76,15 +77,17 @@ static NSString * const reuseIdentifier = @"Cell";
     
     if ([_category.name isEqualToString:@"Latest"]) {
         
-        url = [NSURL URLWithString:[NSString stringWithFormat:WallLatesURL,i]];
+
+        url = [NSURL URLWithString:[NSString stringWithFormat:WallLatesURL,index]];
         
     }else{
         url = [NSURL URLWithString:[NSString stringWithFormat:WallPaperSearchURL,_category.name]];
     }
     [WallPaperService requestWallpapersFromURL:url completion:^(NSArray *wallpapers, BOOL success) {
+        
         [_HUD hideAnimated:YES];
         if (success && wallpapers.count != 0) {
-            i++;
+            index++;
             _wallpapers = wallpapers;
             
             [self.collectionView reloadData];
@@ -118,11 +121,38 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    WallPaper *wallpaper = _wallpapers[indexPath.item];
+//    WallPaper *wallpaper = _wallpapers[indexPath.item];
     
-    WallpaperViewController *wallpaperVC = [[WallpaperViewController alloc] initWithWallpaper:wallpaper];
+//    WallpaperViewController *wallpaperVC = [[WallpaperViewController alloc] initWithWallpaper:wallpaper];
+//    
+//    [self.navigationController pushViewController:wallpaperVC animated:YES];
     
-    [self.navigationController pushViewController:wallpaperVC animated:YES];
+    
+//    __weak typeof(self) weakSelf = self;
+    
+    [PhotoBroswerVC show:self type:PhotoBroswerVCTypeZoom index:indexPath.item photoModelBlock:^NSArray *{
+        NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:_wallpapers.count];
+        
+        for (NSUInteger i = 0; i < _wallpapers.count; i++) {
+            
+            WallPaper *wallpaper = _wallpapers[i];
+            PhotoModel *pbModel=[[PhotoModel alloc] init];
+            pbModel.mid = i + 1;
+//            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
+//            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
+            pbModel.image_HD_U = [NSString stringWithFormat:@"%@", wallpaper.fullSize];
+            WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+            //源frame
+            UIImageView *imageV =(UIImageView *)cell;
+            pbModel.sourceImageView = imageV;
+            
+            [modelsM addObject:pbModel];
+        }
+        
+        return modelsM;
+    }];
+    
+    
 }
 
 
