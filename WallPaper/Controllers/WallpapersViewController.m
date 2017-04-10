@@ -137,10 +137,16 @@ static NSString * const reuseIdentifier = @"Cell";
             
             WallPaper *wallpaper = _wallpapers[i];
             PhotoModel *pbModel=[[PhotoModel alloc] init];
-            pbModel.mid = i + 1;
+            //此处的展示视图为XIB，已经隐藏
 //            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
 //            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
             pbModel.image_HD_U = [NSString stringWithFormat:@"%@", wallpaper.fullSize];
+            //从图片地址中截取唯一标识id,作为保存id,不会有重复
+            NSArray *strArr = [pbModel.image_HD_U componentsSeparatedByString:@"-"];
+            NSString *idStr = [strArr[1] componentsSeparatedByString:@"."][0];
+            /** mid，保存图片缓存唯一标识，必须传 */
+            pbModel.mid = [idStr integerValue];
+            
             WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
             //源frame
             UIImageView *imageV =(UIImageView *)cell;

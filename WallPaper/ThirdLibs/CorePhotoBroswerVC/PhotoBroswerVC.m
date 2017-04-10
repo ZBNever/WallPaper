@@ -207,7 +207,7 @@
     
     self.topBarView.alpha=0;
     
-    [UIView animateWithDuration:.25f animations:^{
+    [UIView animateWithDuration:.9f animations:^{
         self.topBarView.alpha=1;
     } completion:^(BOOL finished) {
         photoModel.sourceImageView.hidden = NO;
