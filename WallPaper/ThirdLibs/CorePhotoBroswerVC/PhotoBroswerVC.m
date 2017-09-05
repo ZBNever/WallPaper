@@ -516,6 +516,9 @@
     
     [self dismiss];
 }
+- (IBAction)shareBtnClick:(id)sender {
+    
+}
 
 - (IBAction)rightBtnClick:(id)sender {
     

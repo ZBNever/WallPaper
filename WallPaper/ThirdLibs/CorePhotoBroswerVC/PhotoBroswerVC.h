@@ -114,11 +114,6 @@
 #import "PhotoModel.h"
 #import "PhotoBroswerType.h"
 
-
-
-
-
-
 @interface PhotoBroswerVC : UIViewController
 
 
