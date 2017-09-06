@@ -114,7 +114,9 @@
 #import "PhotoModel.h"
 #import "PhotoBroswerType.h"
 
-@interface PhotoBroswerVC : UIViewController
+#import "WXApi.h"
+
+@interface PhotoBroswerVC : UIViewController<WXApiDelegate>
 
 
 +(void)show:(UIViewController *)handleVC type:(PhotoBroswerVCType)type index:(NSUInteger)index photoModelBlock:(NSArray *(^)())photoModelBlock;
