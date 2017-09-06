@@ -38,7 +38,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 
-
+@property (nonatomic, strong) MBProgressHUD *HUD;
 
 /** view的单击 */
 @property (nonatomic,strong) UITapGestureRecognizer *tap_single_viewGesture;
@@ -118,6 +118,9 @@
         } completedBlock:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             if (error) {
                 NSLog(@"error:%@",error);
+              
+                _HUD = [Tools MBProgressHUDOnlyText:@"未找到高清图"];
+                [_HUD hideAnimated:YES afterDelay:2.0f];
             }
             self.hasImage = image !=nil;
             self.progressView.hidden = YES;
@@ -345,11 +348,8 @@
 }
 
 
-
-
-
 /*
- *  imageView单击
+ *  imageView双击
  */
 -(UITapGestureRecognizer *)tap_double_imageViewGesture{
     

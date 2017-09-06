@@ -10,10 +10,7 @@
 
 @class MBProgressHUD;
 
-
-
 @implementation Tools
-
 
 //默认样式
 + (MBProgressHUD *)MBProgressHUD:(NSString *)text{

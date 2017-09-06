@@ -21,6 +21,7 @@
         if (data.length && !connectionError) {
             
             NSArray *wallpapers = [self parse:data];
+            
             completion(wallpapers,YES);
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"获取缩略图失败" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

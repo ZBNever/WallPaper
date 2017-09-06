@@ -26,7 +26,7 @@
     
     [photoModels enumerateObjectsUsingBlock:^(PhotoModel *photoModel, NSUInteger idx, BOOL *stop) {
         
-        if(photoModel.mid ==0){
+        if(photoModel.mid == 0){
             
             result = @"错误：请为每个相册模型对象传入唯一的mid标识，因为保存图片涉及缓存等需要唯一标识,且不能为0";
             

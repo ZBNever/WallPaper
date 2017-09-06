@@ -57,7 +57,6 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.collectionView.backgroundColor = [UIColor blackColor];
-    
     [self.collectionView registerClass:[WallpaperCell class] forCellWithReuseIdentifier:reuseIdentifier];
     index = 1;
     _HUD = [Tools MBProgressHUD:@"正在加载"];
@@ -71,13 +70,13 @@ static NSString * const reuseIdentifier = @"Cell";
     [_HUD removeFromSuperview];
 
 }
+/** 请求数据 */
 -(void)requestData{
     
     NSURL *url;
     
     if ([_category.name isEqualToString:@"Latest"]) {
         
-
         url = [NSURL URLWithString:[NSString stringWithFormat:WallLatesURL,index]];
         
     }else{

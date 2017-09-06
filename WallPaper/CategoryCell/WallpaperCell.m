@@ -28,9 +28,11 @@
 
     [_image sd_setImageWithURL:wallpaper.thumbnail completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         _image.alpha = 0;
-        _image.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(.5, .5), drand48()-0.5);
-        
-        [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:0 animations:^{
+        //旋转
+//      _image.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(.5, .5), drand48()-0.5);
+        //缩放
+        _image.transform = CGAffineTransformMakeScale(0.6, 0.6);
+        [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:0 animations:^{
             
             _image.transform = CGAffineTransformIdentity;
             _image.alpha = 1;
