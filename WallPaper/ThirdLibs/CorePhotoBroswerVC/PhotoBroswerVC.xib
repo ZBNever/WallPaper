@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -45,6 +45,17 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ltM-TQ-rO0">
+                            <rect key="frame" x="298" y="29.5" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="8x4-A6-J0C"/>
+                                <constraint firstAttribute="width" constant="25" id="WWz-Sa-n2u"/>
+                            </constraints>
+                            <state key="normal" image="preview_share_icon.png"/>
+                            <connections>
+                                <action selector="shareBtnClick:" destination="-1" eventType="touchUpInside" id="cXK-gi-3Qx"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2q-sR-DMR" userLabel="SaveButton" customClass="PBSaveBtn">
                             <rect key="frame" x="333" y="26" width="32" height="32"/>
                             <constraints>
@@ -52,7 +63,7 @@
                                 <constraint firstAttribute="height" constant="10" id="aFd-Y2-aNH"/>
                                 <constraint firstAttribute="width" constant="32" id="xjB-4h-BUr"/>
                             </constraints>
-                            <state key="normal">
+                            <state key="normal" image="preview_save_icon.png">
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <variation key="default">
@@ -81,7 +92,9 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="2GQ-dh-k6A" secondAttribute="centerY" constant="-10" id="0Q9-Ux-ped"/>
+                        <constraint firstItem="d2q-sR-DMR" firstAttribute="centerY" secondItem="ltM-TQ-rO0" secondAttribute="centerY" id="4JW-io-EQt"/>
                         <constraint firstItem="j0X-oO-d7p" firstAttribute="top" secondItem="aju-yJ-YWP" secondAttribute="top" id="4ci-id-PLD"/>
+                        <constraint firstItem="d2q-sR-DMR" firstAttribute="leading" secondItem="ltM-TQ-rO0" secondAttribute="trailing" constant="10" id="Kdi-Bk-0Ce"/>
                         <constraint firstAttribute="height" constant="64" id="MMc-Xx-tCw"/>
                         <constraint firstItem="DNA-Uz-FcA" firstAttribute="leading" secondItem="aju-yJ-YWP" secondAttribute="leading" constant="5" id="MwV-ra-BNA"/>
                         <constraint firstAttribute="trailing" secondItem="d2q-sR-DMR" secondAttribute="trailing" constant="10" id="RaB-Gb-9qX"/>
@@ -109,5 +122,7 @@
     </objects>
     <resources>
         <image name="PB.bundle/back_arrow.png" width="16" height="16"/>
+        <image name="preview_save_icon.png" width="24" height="24"/>
+        <image name="preview_share_icon.png" width="32" height="32"/>
     </resources>
 </document>

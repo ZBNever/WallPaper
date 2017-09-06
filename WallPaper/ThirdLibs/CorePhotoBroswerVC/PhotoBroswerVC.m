@@ -17,10 +17,12 @@
 #import "PBScrollView.h"
 #import "CALayer+Transition.h"
 
-
+#import "XMShareView.h"
+#import "CommonMarco.h"
 
 @interface PhotoBroswerVC ()<UIScrollViewDelegate>
-
+/** 分享界面 */
+@property (nonatomic, strong) XMShareView *shareView;
 
 /** 外部操作控制器 */
 @property (nonatomic,weak) UIViewController *handleVC;
@@ -515,6 +517,38 @@
 - (IBAction)leftBtnClick:(id)sender {
     
     [self dismiss];
+}
+- (IBAction)shareBtnClick:(id)sender {
+    if(!self.shareView){
+        
+        //取出对应模型
+        PhotoModel *itemModel = (PhotoModel *)self.photoModels[self.page];
+        
+        self.shareView = [[XMShareView alloc] initWithFrame:self.view.bounds];
+        
+        self.shareView.alpha = 0.0;
+        
+        self.shareView.shareTitle = NSLocalizedString(@"分享标题", nil);
+        
+        self.shareView.shareText = NSLocalizedString(@"分享内容", nil);
+        
+        self.shareView.shareUrl = itemModel.image_HD_U;
+
+        self.shareView.shareImgUrl = itemModel.image_thumbnail_U;
+        
+        [self.view addSubview:self.shareView];
+        
+        [UIView animateWithDuration:1 animations:^{
+            self.shareView.alpha = 1.0;
+        }];
+        
+        
+    }else{
+        [UIView animateWithDuration:1 animations:^{
+            self.shareView.alpha = 1.0;
+        }];
+        
+    }
 }
 
 - (IBAction)rightBtnClick:(id)sender {

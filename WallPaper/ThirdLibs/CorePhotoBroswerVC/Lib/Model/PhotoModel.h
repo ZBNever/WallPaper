@@ -17,7 +17,8 @@
 @property (nonatomic,assign) NSUInteger mid;
 
 
-
+/** 缩略图地址 */
+@property (nonatomic,copy) NSString *image_thumbnail_U;
 
 /*
  *  网络图片

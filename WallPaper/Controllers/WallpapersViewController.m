@@ -140,6 +140,8 @@ static NSString * const reuseIdentifier = @"Cell";
 //            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
 //            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
             pbModel.image_HD_U = [NSString stringWithFormat:@"%@", wallpaper.fullSize];
+            
+            pbModel.image_thumbnail_U = [NSString stringWithFormat:@"%@", wallpaper.thumbnail];
             //从图片地址中截取唯一标识id,作为保存id,不会有重复
             NSArray *strArr = [pbModel.image_HD_U componentsSeparatedByString:@"-"];
             NSString *idStr = [strArr[1] componentsSeparatedByString:@"."][0];
