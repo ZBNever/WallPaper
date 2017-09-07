@@ -14,8 +14,7 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     if ([[url absoluteString] hasPrefix:@"tencent"]) {
-        
-        //        return [TencentOAuth HandleOpenURL:url];
+
         return [QQApiInterface handleOpenURL:url delegate:self];
         
     }else if([[url absoluteString] hasPrefix:@"wb"]) {
@@ -24,8 +23,7 @@
         
     }else if([[url absoluteString] hasPrefix:@"wx"]) {
         
-        PhotoBroswerVC *vc = [[PhotoBroswerVC alloc] init];;
-        return [WXApi handleOpenURL:url delegate:vc];
+        return [WXApi handleOpenURL:url delegate:self];
         
     }
     
@@ -43,11 +41,9 @@
         return [WeiboSDK handleOpenURL:url delegate:self];
         
     }else{
-        
-        PhotoBroswerVC *vc = [[PhotoBroswerVC alloc] init];;
-        return [WXApi handleOpenURL:url delegate:vc];
-        //        ViewController *vc = (ViewController *)self.window.rootViewController;
-        //        return [WXApi handleOpenURL:url delegate:vc];
+
+        return [WXApi handleOpenURL:url delegate:self];
+
 
     }
 }
@@ -58,7 +54,7 @@
 - (void)init3rdParty
 {
     [WXApi registerApp:APP_KEY_WEIXIN];
-    
+
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:APP_KEY_WEIBO];
     
@@ -117,16 +113,17 @@
  *
  *  @param resp 响应体，根据响应结果作对应处理
  */
-- (void)onResp:(QQBaseResp *)resp
-{
-    NSString *message;
-    if([resp.result integerValue] == 0) {
-        message = @"分享成功";
-    }else{
-        message = @"分享失败";
-    }
-    showAlert(message);
-}
+//- (void)onResp:(QQBaseResp *)resp
+//{
+//    NSString *message;
+//    if([resp.result integerValue] == 0) {
+//        message = @"分享成功";
+//    }else{
+//        message = @"分享失败";
+//    }
+//    showAlert(message);
+//}
+
 /**
  处理QQ在线状态的回调
  */
@@ -135,5 +132,46 @@
     
 }
 
+/**
+    处理来自QQ和微信的返回响应,QQ跟微信的代理方法名相同,故此做以下处理
+
+ @param resp 响应体，根据响应结果作对应处理
+ */
+- (void)onResp:(id)resp{
+
+    //Wechat分享返回
+    NSString *message;
+    if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
+        
+        SendMessageToWXResp * tmpResp = (SendMessageToWXResp *)resp;
+        
+        if (tmpResp.errCode == WXSuccess) {
+            //分享成功
+             message = @"分享成功";
+        }else{
+            //分享失败
+            message = @"分享失败";
+        }
+        
+    }
+    
+    //QQ分享返回
+    
+    if ([resp isKindOfClass:[SendMessageToQQResp class]]) {
+        
+        SendMessageToQQResp * tmpResp = (SendMessageToQQResp *)resp;
+        
+        if (tmpResp.type == ESENDMESSAGETOQQRESPTYPE && [tmpResp.result integerValue] == 0) {
+            //分享成功
+            message = @"分享成功";
+        }
+        else{
+            //分享失败
+            message = @"分享失败";
+        }
+        
+    }
+    showAlert(message);
+}
 
 @end

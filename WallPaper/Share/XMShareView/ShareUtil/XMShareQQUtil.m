@@ -60,8 +60,15 @@
         
     }
 }
+- (void)tencentDidLogin{
 
+}
+- (void)tencentDidNotLogin:(BOOL)cancelled{
 
+}
+- (void)tencentDidNotNetWork{
+
+}
 + (instancetype)sharedInstance
 {
     

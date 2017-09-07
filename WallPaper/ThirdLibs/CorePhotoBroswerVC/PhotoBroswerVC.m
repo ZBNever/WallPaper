@@ -453,10 +453,6 @@
 }
 
 
-
-
-
-
 -(void)setPhotoModels:(NSArray *)photoModels{
     
     _photoModels = photoModels;

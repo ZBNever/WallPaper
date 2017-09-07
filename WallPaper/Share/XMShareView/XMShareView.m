@@ -80,7 +80,7 @@ static const NSInteger numbersOfItemInLine = 3;
     for ( int i = 0; i < iconList.count; i ++ ) {
         
         VerticalUIButton *tempButton;
-        UIImage *img = [UIImage imageNamed: iconList[i] ];
+        UIImage *img = [UIImage imageNamed: iconList[i]];
         
         int row = i / numbersOfItemInLine;
         
@@ -205,7 +205,7 @@ static const NSInteger numbersOfItemInLine = 3;
     util.shareTitle = self.shareTitle;
     util.shareText = self.shareText;
     util.shareUrl = self.shareUrl;
-    
+    util.shareImgUrl = self.shareImgUrl;
     [util shareToWeixinSession];
     
 }
@@ -217,7 +217,7 @@ static const NSInteger numbersOfItemInLine = 3;
     util.shareTitle = self.shareTitle;
     util.shareText = self.shareText;
     util.shareUrl = self.shareUrl;
-    
+    util.shareImgUrl = self.shareImgUrl;
     [util shareToWeixinTimeline];
     
 }

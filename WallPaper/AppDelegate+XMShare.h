@@ -8,13 +8,12 @@
 
 #import "AppDelegate.h"
 #import "CommonMarco.h"
-//#import "ViewController.h"
 #import "WXApi.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "WeiboSDK.h"
 
-@interface AppDelegate (XMShare)<WeiboSDKDelegate, QQApiInterfaceDelegate>
+@interface AppDelegate (XMShare)<WeiboSDKDelegate, QQApiInterfaceDelegate,WXApiDelegate>
 
 - (void)init3rdParty;
 

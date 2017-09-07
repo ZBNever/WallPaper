@@ -10,10 +10,10 @@
 #define XMShare_CommonMarco_h
 
 ///  APP KEY
-#define APP_KEY_WEIXIN            @"wxd930ea5d5a258f4f"
+#define APP_KEY_WEIXIN            @"wx4e8a3b7abcdd98fa"   //@"wxd930ea5d5a258f4f"
 
 #define APP_KEY_QQ                @"222222"
-
+/// 微博开发平台申请的KEY
 #define APP_KEY_WEIBO             @"2045436852"
 
 #define APP_KEY_WEIBO_RedirectURL @"http://www.sina.com"

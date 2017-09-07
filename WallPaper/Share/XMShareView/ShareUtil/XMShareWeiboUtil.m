@@ -36,12 +36,13 @@
 
 - (WBMessageObject *)messageToShare
 {
-    
+    //一个消息结构由三部分组成：文字、图片和多媒体数据。三部分内容中至少有一项不为空，图片和多媒体数据不能共存。
     WBMessageObject *message = [WBMessageObject message];
     //判断是否安装了微博客户端
     BOOL hadInstalledWeibo = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weibo://"]];
     
     if(hadInstalledWeibo){
+        //消息的多媒体内容
         WBWebpageObject *webpage = [WBWebpageObject object];
         webpage.objectID = @"identifier1";
         webpage.title = self.shareTitle;
@@ -51,13 +52,16 @@
         webpage.thumbnailData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.shareImgUrl]];
         webpage.webpageUrl = self.shareUrl;
 //        message.mediaObject = webpage;
+        
+        /** 消息多媒体与消息图片不能共存 */
+        //消息图片内容
         WBImageObject *imageObj = [WBImageObject object];
         imageObj.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.shareImgUrl]];
         message.imageObject = imageObj;
 
     }
     
-    message.text = [NSString stringWithFormat:@"#%@#\n%@\n%@", self.shareTitle, self.shareText, self.shareUrl];
+//    message.text = [NSString stringWithFormat:@"#%@#\n%@\n%@", self.shareTitle, self.shareText, self.shareUrl];
     
     return message;
     

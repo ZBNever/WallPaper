@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "WeiboSDK.h"
-
 #import "XMShareUtil.h"
+
 
 @interface XMShareWeiboUtil : XMShareUtil
 
