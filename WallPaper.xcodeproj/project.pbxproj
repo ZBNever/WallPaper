@@ -46,7 +46,6 @@
 		CA5670001E4C6FB900ADE9EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA566FFF1E4C6FB900ADE9EA /* main.m */; };
 		CA5670031E4C6FB900ADE9EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5670021E4C6FB900ADE9EA /* AppDelegate.m */; };
 		CA56700B1E4C6FB900ADE9EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA56700A1E4C6FB900ADE9EA /* Assets.xcassets */; };
-		CA56700E1E4C6FB900ADE9EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA56700C1E4C6FB900ADE9EA /* LaunchScreen.storyboard */; };
 		CA5670181E4C707300ADE9EA /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5670171E4C707300ADE9EA /* CategoriesViewController.m */; };
 		CA56701C1E4C727800ADE9EA /* CategoriesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA56701B1E4C727800ADE9EA /* CategoriesManager.m */; };
 		CA5670201E4C776800ADE9EA /* ImageCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA56701F1E4C776800ADE9EA /* ImageCategory.m */; };
@@ -54,6 +53,7 @@
 		CA59A5381E500D6D0072FCB9 /* LaunchScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */; };
 		CA59A53B1E5015620072FCB9 /* WallpaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA59A53A1E5015620072FCB9 /* WallpaperViewController.m */; };
 		CA8870041E53ED51009E9333 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8870031E53ED51009E9333 /* Tools.m */; };
+		CAC30AAD1FF4943700C6270D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC30AAC1FF4943600C6270D /* LaunchScreen.storyboard */; };
 		CAD501F31E98661A00795CDA /* UIView+PBExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD5015F1E98661A00795CDA /* UIView+PBExtend.m */; };
 		CAD501F41E98661A00795CDA /* PBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD501621E98661A00795CDA /* PBConst.m */; };
 		CAD501F51E98661A00795CDA /* PhotoBroswerLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD501651E98661A00795CDA /* PhotoBroswerLayout.m */; };
@@ -170,7 +170,6 @@
 		CA5670011E4C6FB900ADE9EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA5670021E4C6FB900ADE9EA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CA56700A1E4C6FB900ADE9EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CA56700D1E4C6FB900ADE9EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA56700F1E4C6FB900ADE9EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA5670161E4C707300ADE9EA /* CategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesViewController.h; sourceTree = "<group>"; };
 		CA5670171E4C707300ADE9EA /* CategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesViewController.m; sourceTree = "<group>"; };
@@ -186,6 +185,7 @@
 		CA8870021E53ED51009E9333 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		CA8870031E53ED51009E9333 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		CA927FBD1E56F82900838737 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		CAC30AAC1FF4943600C6270D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAD5015E1E98661A00795CDA /* UIView+PBExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBExtend.h"; sourceTree = "<group>"; };
 		CAD5015F1E98661A00795CDA /* UIView+PBExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PBExtend.m"; sourceTree = "<group>"; };
 		CAD501611E98661A00795CDA /* PBConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBConst.h; sourceTree = "<group>"; };
@@ -366,12 +366,12 @@
 		585322BF1F5E9C4100EF2496 /* XMShareView */ = {
 			isa = PBXGroup;
 			children = (
-				585322C01F5E9C4100EF2496 /* CommonMarco.h */,
 				585322C11F5E9C4100EF2496 /* ExtView */,
 				585322C41F5E9C4100EF2496 /* Resource */,
 				585322CB1F5E9C4100EF2496 /* ShareUtil */,
 				585322D41F5E9C4100EF2496 /* XMShareView.h */,
 				585322D51F5E9C4100EF2496 /* XMShareView.m */,
+				585322C01F5E9C4100EF2496 /* CommonMarco.h */,
 			);
 			path = XMShareView;
 			sourceTree = "<group>";
@@ -490,7 +490,7 @@
 				CA56700A1E4C6FB900ADE9EA /* Assets.xcassets */,
 				CA27D69D1E514BF400FB07EF /* image.xcassets */,
 				CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */,
-				CA56700C1E4C6FB900ADE9EA /* LaunchScreen.storyboard */,
+				CAC30AAC1FF4943600C6270D /* LaunchScreen.storyboard */,
 				CA56700F1E4C6FB900ADE9EA /* Info.plist */,
 				CA566FFE1E4C6FB900ADE9EA /* Supporting Files */,
 			);
@@ -953,7 +953,7 @@
 		CA566FF31E4C6FB900ADE9EA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Never;
 				TargetAttributes = {
 					CA566FFA1E4C6FB900ADE9EA = {
@@ -989,13 +989,13 @@
 				585322D91F5E9C4100EF2496 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				585322E01F5E9C4100EF2496 /* icon_share_wechat@2x.png in Resources */,
 				CAD502001E98661A00795CDA /* PhotoBroswerVC.xib in Resources */,
-				CA56700E1E4C6FB900ADE9EA /* LaunchScreen.storyboard in Resources */,
 				585322E11F5E9C4100EF2496 /* logo.jpg in Resources */,
 				585322DC1F5E9C4100EF2496 /* icon_share_moment@2x.png in Resources */,
 				CA27D69E1E514BF400FB07EF /* image.xcassets in Resources */,
 				CAD501FE1E98661A00795CDA /* PhotoItemView.xib in Resources */,
 				CAD501F71E98661A00795CDA /* PB.bundle in Resources */,
 				585322DD1F5E9C4100EF2496 /* icon_share_qq@2x.png in Resources */,
+				CAC30AAD1FF4943700C6270D /* LaunchScreen.storyboard in Resources */,
 				CAD5022C1E98661A00795CDA /* SVProgressHUD.bundle in Resources */,
 				CA56700B1E4C6FB900ADE9EA /* Assets.xcassets in Resources */,
 				585322DF1F5E9C4100EF2496 /* icon_share_webo@2x.png in Resources */,
@@ -1124,17 +1124,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		CA56700C1E4C6FB900ADE9EA /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA56700D1E4C6FB900ADE9EA /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		CA5670101E4C6FB900ADE9EA /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1145,7 +1134,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1153,7 +1144,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1192,7 +1187,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1200,7 +1197,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1237,7 +1238,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WallPaper/Global/PrefixHeader.pch";
 				INFOPLIST_FILE = WallPaper/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1262,7 +1263,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WallPaper/Global/PrefixHeader.pch";
 				INFOPLIST_FILE = WallPaper/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

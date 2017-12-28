@@ -26,7 +26,6 @@ static const CGFloat itemHorPadding = 20.0;
 //  垂直间隔
 static const CGFloat itemVerPadding = 20.0;
 
-
 //  每行显示数量
 static const NSInteger numbersOfItemInLine = 3;
 
@@ -38,7 +37,7 @@ static const NSInteger numbersOfItemInLine = 3;
     
     self = [super initWithFrame:frame];
     if (self) {
-        
+        [self init3rdParty];
         [self configureData];
         [self initUI];
         
@@ -46,7 +45,16 @@ static const NSInteger numbersOfItemInLine = 3;
     return self;
     
 }
-
+/**
+ *  初始化第三方组件
+ */
+- (void)init3rdParty
+{
+    [WXApi registerApp:APP_KEY_WEIXIN];
+    [WeiboSDK enableDebugMode:YES];
+    [WeiboSDK registerApp:APP_KEY_WEIBO];
+    
+}
 /**
  *  加载视图（视图界面可自定义）
  */

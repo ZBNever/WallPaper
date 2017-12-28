@@ -27,7 +27,7 @@
 //    nav.navigationBar.tintColor = [UIColor whiteColor];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
-    [self init3rdParty];
+//    [self init3rdParty];
     return YES;
 }
 

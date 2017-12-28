@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "WXApi.h"
 #import "XMShareUtil.h"
 
 @interface XMShareWechatUtil : XMShareUtil

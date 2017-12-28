@@ -37,6 +37,7 @@
     NSString *description = self.shareText;
 //    NSData *imageData = UIImageJPEGRepresentation(SHARE_IMG, SHARE_IMG_COMPRESSION_QUALITY);
 //    NSData *imageData= [NSData dataWithContentsOfURL:[NSURL URLWithString:self.shareImgUrl]];
+    //预览缩略图
     NSURL *imageUrl = [NSURL URLWithString:self.shareImgUrl];
     QQApiNewsObject *newsObj = [QQApiNewsObject
                                 objectWithURL:[NSURL URLWithString:utf8String]

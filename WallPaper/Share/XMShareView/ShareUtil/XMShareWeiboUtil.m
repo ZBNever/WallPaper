@@ -61,7 +61,7 @@
 
     }
     
-//    message.text = [NSString stringWithFormat:@"#%@#\n%@\n%@", self.shareTitle, self.shareText, self.shareUrl];
+    message.text = [NSString stringWithFormat:@"#%@#\n%@\n%@", self.shareTitle, self.shareText, self.shareUrl];
     
     return message;
     

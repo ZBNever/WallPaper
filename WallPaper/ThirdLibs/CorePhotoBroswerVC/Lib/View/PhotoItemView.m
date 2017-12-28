@@ -108,7 +108,7 @@
             
             CGFloat progress =(CGFloat)receivedSize/expectedSize;
             
-            NSLog(@"progress:%f",fabs(progress));
+//            NSLog(@"progress:%f",fabs(progress));
             
             dispatch_sync(dispatch_get_main_queue() , ^{
                 //必须返回主线程才能刷新UI

@@ -90,7 +90,7 @@
 @implementation PhotoBroswerVC
 
 
-+(void)show:(UIViewController *)handleVC type:(PhotoBroswerVCType)type index:(NSUInteger)index photoModelBlock:(NSArray *(^)())photoModelBlock{
++(void)show:(UIViewController *)handleVC type:(PhotoBroswerVCType)type index:(NSUInteger)index photoModelBlock:(NSArray *(^)(void))photoModelBlock{
     
     //取出相册数组
     NSArray *photoModels = photoModelBlock();
@@ -247,6 +247,8 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    
 }
 
 

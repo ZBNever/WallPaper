@@ -7,7 +7,7 @@
 //
 
 #import "XMShareWechatUtil.h"
-#import "WXApi.h"
+
 
 @implementation XMShareWechatUtil
 

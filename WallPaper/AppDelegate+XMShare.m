@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate+XMShare.h"
-#import "PhotoBroswerVC.h"
+
 
 @implementation AppDelegate (XMShare)
 
