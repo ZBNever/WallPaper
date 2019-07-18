@@ -164,17 +164,6 @@
     
 }
 
-
-    
-
-
-    
-
-    
-    
-    
-
-
 #pragma mark - 保存图片到本地
 - (void)saveImage{
     

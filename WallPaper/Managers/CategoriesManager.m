@@ -8,7 +8,7 @@
 
 #import "CategoriesManager.h"
 #import "ImageCategory.h"
-
+#import "PixabayService.h"
 
 
 @implementation CategoriesManager
@@ -28,41 +28,41 @@
     if (self = [super init]) {
         
         _categories = @[
-                [ImageCategory categoryWithName:@"Latest" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,188271]]],
+                [ImageCategory categoryWithName:@"Latest" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Snow" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,122217]]],
+                [ImageCategory categoryWithName:@"Snow" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Motorbike" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,140009]]],
+                [ImageCategory categoryWithName:@"Motorbike" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Car" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,136550]]],
+                [ImageCategory categoryWithName:@"Car" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Beach" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,70477]]],
+                [ImageCategory categoryWithName:@"Beach" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Sunset" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,131104]]],
+                [ImageCategory categoryWithName:@"Sunset" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                  
-                [ImageCategory categoryWithName:@"Wine" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,377213]]],
+                [ImageCategory categoryWithName:@"Wine" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                  
-                [ImageCategory categoryWithName:@"Girl" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,484197]]],
+                [ImageCategory categoryWithName:@"Girl" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Train" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,424393]]],
+                [ImageCategory categoryWithName:@"Train" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"City" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,228304]]],
+                [ImageCategory categoryWithName:@"City" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Animal" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,196775]]],
+                [ImageCategory categoryWithName:@"Animal" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Architecture" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,423312]]],
+                [ImageCategory categoryWithName:@"Architecture" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Food" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,276316]]],
+                [ImageCategory categoryWithName:@"Food" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Nature" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,265254]]],
+                [ImageCategory categoryWithName:@"Nature" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Landscape" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,155541]]],
+                [ImageCategory categoryWithName:@"Landscape" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Sky" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,26646]]],
+                [ImageCategory categoryWithName:@"Sky" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
         
-                [ImageCategory categoryWithName:@"Plant" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,307700]]],
+                [ImageCategory categoryWithName:@"Plant" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
-                [ImageCategory categoryWithName:@"Ocean" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,381367]]],
+                [ImageCategory categoryWithName:@"Ocean" thumbnail:[NSURL URLWithString:[NSString stringWithFormat:ThumbURL,@"kwkg5q"]]],
                 
                 
                 ];

@@ -40,6 +40,11 @@
 		585323001F5E9D7100EF2496 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 585322FF1F5E9D7100EF2496 /* libc++.tbd */; };
 		585323021F5E9D8100EF2496 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 585323011F5E9D8100EF2496 /* libz.tbd */; };
 		585323051F5FE87100EF2496 /* AppDelegate+XMShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 585323041F5FE87100EF2496 /* AppDelegate+XMShare.m */; };
+		C7106B4E22E0191F00FA904A /* PixabayService.m in Sources */ = {isa = PBXBuildFile; fileRef = C7106B4D22E0191F00FA904A /* PixabayService.m */; };
+		C7106BAD22E01B3500FA904A /* MHNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7106BA422E01B3400FA904A /* MHNetworkManager.m */; };
+		C7106BAE22E01B3500FA904A /* MHAsiNetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C7106BA722E01B3500FA904A /* MHAsiNetworkHandler.m */; };
+		C7106BAF22E01B3500FA904A /* MHAsiNetworkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C7106BA922E01B3500FA904A /* MHAsiNetworkItem.m */; };
+		C7106BB922E0564B00FA904A /* PixabayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7106BB822E0564B00FA904A /* PixabayModel.m */; };
 		CA1AFF311E4D66C1006B8CA7 /* WallPaper.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AFF301E4D66C1006B8CA7 /* WallPaper.m */; };
 		CA1AFF341E4D66E3006B8CA7 /* WallPaperService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AFF331E4D66E3006B8CA7 /* WallPaperService.m */; };
 		CA27D69E1E514BF400FB07EF /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA27D69D1E514BF400FB07EF /* image.xcassets */; };
@@ -158,6 +163,20 @@
 		585323031F5FE87100EF2496 /* AppDelegate+XMShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+XMShare.h"; sourceTree = "<group>"; };
 		585323041F5FE87100EF2496 /* AppDelegate+XMShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+XMShare.m"; sourceTree = "<group>"; };
 		87F993290F8BC00C173C0EFB /* Pods-WallPaper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallPaper.release.xcconfig"; path = "Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper.release.xcconfig"; sourceTree = "<group>"; };
+		C7106B4C22E0191F00FA904A /* PixabayService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixabayService.h; sourceTree = "<group>"; };
+		C7106B4D22E0191F00FA904A /* PixabayService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PixabayService.m; sourceTree = "<group>"; };
+		C7106BA322E01B3400FA904A /* MHNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNetwork.h; sourceTree = "<group>"; };
+		C7106BA422E01B3400FA904A /* MHNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHNetworkManager.m; sourceTree = "<group>"; };
+		C7106BA522E01B3500FA904A /* MHNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNetworkManager.h; sourceTree = "<group>"; };
+		C7106BA622E01B3500FA904A /* MHAsiNetworkDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAsiNetworkDelegate.h; sourceTree = "<group>"; };
+		C7106BA722E01B3500FA904A /* MHAsiNetworkHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHAsiNetworkHandler.m; sourceTree = "<group>"; };
+		C7106BA822E01B3500FA904A /* MHAsiNetworkItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAsiNetworkItem.h; sourceTree = "<group>"; };
+		C7106BA922E01B3500FA904A /* MHAsiNetworkItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHAsiNetworkItem.m; sourceTree = "<group>"; };
+		C7106BAA22E01B3500FA904A /* MHAsiNetworkDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAsiNetworkDefine.h; sourceTree = "<group>"; };
+		C7106BAB22E01B3500FA904A /* MHAsiNetworkUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAsiNetworkUrl.h; sourceTree = "<group>"; };
+		C7106BAC22E01B3500FA904A /* MHAsiNetworkHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAsiNetworkHandler.h; sourceTree = "<group>"; };
+		C7106BB722E0564B00FA904A /* PixabayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixabayModel.h; sourceTree = "<group>"; };
+		C7106BB822E0564B00FA904A /* PixabayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PixabayModel.m; sourceTree = "<group>"; };
 		CA1AFF2F1E4D66C1006B8CA7 /* WallPaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallPaper.h; sourceTree = "<group>"; };
 		CA1AFF301E4D66C1006B8CA7 /* WallPaper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallPaper.m; sourceTree = "<group>"; };
 		CA1AFF321E4D66E3006B8CA7 /* WallPaperService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallPaperService.h; sourceTree = "<group>"; };
@@ -444,6 +463,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C7106B4F22E01A0500FA904A /* Netwroking */ = {
+			isa = PBXGroup;
+			children = (
+				C7106B5522E01A0500FA904A /* NetwrokHandle */,
+			);
+			path = Netwroking;
+			sourceTree = "<group>";
+		};
+		C7106B5522E01A0500FA904A /* NetwrokHandle */ = {
+			isa = PBXGroup;
+			children = (
+				C7106BAA22E01B3500FA904A /* MHAsiNetworkDefine.h */,
+				C7106BA622E01B3500FA904A /* MHAsiNetworkDelegate.h */,
+				C7106BAC22E01B3500FA904A /* MHAsiNetworkHandler.h */,
+				C7106BA722E01B3500FA904A /* MHAsiNetworkHandler.m */,
+				C7106BA822E01B3500FA904A /* MHAsiNetworkItem.h */,
+				C7106BA922E01B3500FA904A /* MHAsiNetworkItem.m */,
+				C7106BAB22E01B3500FA904A /* MHAsiNetworkUrl.h */,
+				C7106BA522E01B3500FA904A /* MHNetworkManager.h */,
+				C7106BA422E01B3400FA904A /* MHNetworkManager.m */,
+				C7106BA322E01B3400FA904A /* MHNetwork.h */,
+			);
+			path = NetwrokHandle;
+			sourceTree = "<group>";
+		};
 		CA27D6A01E51EED900FB07EF /* Global */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,6 +578,8 @@
 				CA56701F1E4C776800ADE9EA /* ImageCategory.m */,
 				CA1AFF2F1E4D66C1006B8CA7 /* WallPaper.h */,
 				CA1AFF301E4D66C1006B8CA7 /* WallPaper.m */,
+				C7106BB722E0564B00FA904A /* PixabayModel.h */,
+				C7106BB822E0564B00FA904A /* PixabayModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -554,6 +600,8 @@
 			children = (
 				CA1AFF321E4D66E3006B8CA7 /* WallPaperService.h */,
 				CA1AFF331E4D66E3006B8CA7 /* WallPaperService.m */,
+				C7106B4C22E0191F00FA904A /* PixabayService.h */,
+				C7106B4D22E0191F00FA904A /* PixabayService.m */,
 				CA27D69F1E51EE5900FB07EF /* URLServices.h */,
 			);
 			path = Services;
@@ -571,6 +619,7 @@
 		CAD5015A1E98661A00795CDA /* ThirdLibs */ = {
 			isa = PBXGroup;
 			children = (
+				C7106B4F22E01A0500FA904A /* Netwroking */,
 				CAD5015B1E98661A00795CDA /* CorePhotoBroswerVC */,
 				CAD5017E1E98661A00795CDA /* FrameWorks */,
 			);
@@ -952,7 +1001,7 @@
 		CA566FF31E4C6FB900ADE9EA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = Never;
 				TargetAttributes = {
 					CA566FFA1E4C6FB900ADE9EA = {
@@ -964,7 +1013,7 @@
 			};
 			buildConfigurationList = CA566FF61E4C6FB900ADE9EA /* Build configuration list for PBXProject "WallPaper" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -1015,7 +1064,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -1024,7 +1073,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B2E67B77DBA67C8A82B59A83 /* [CP] Check Pods Manifest.lock */ = {
@@ -1056,6 +1105,8 @@
 				585322DB1F5E9C4100EF2496 /* VerticalUIButton.m in Sources */,
 				CAD501FF1E98661A00795CDA /* PhotoBroswerVC.m in Sources */,
 				CAD501FB1E98661A00795CDA /* PBScrollView.m in Sources */,
+				C7106BAD22E01B3500FA904A /* MHNetworkManager.m in Sources */,
+				C7106B4E22E0191F00FA904A /* PixabayService.m in Sources */,
 				CAD501FD1E98661A00795CDA /* PhotoItemView.m in Sources */,
 				CAD502091E98661A00795CDA /* NSString+Password.m in Sources */,
 				585322E41F5E9C4100EF2496 /* XMShareWechatUtil.m in Sources */,
@@ -1068,6 +1119,7 @@
 				CAD5020A1E98661A00795CDA /* UIColor+Extend.m in Sources */,
 				CAD501F51E98661A00795CDA /* PhotoBroswerLayout.m in Sources */,
 				CA1AFF311E4D66C1006B8CA7 /* WallPaper.m in Sources */,
+				C7106BAF22E01B3500FA904A /* MHAsiNetworkItem.m in Sources */,
 				CA8870041E53ED51009E9333 /* Tools.m in Sources */,
 				CAD5022D1E98661A00795CDA /* SVProgressHUD.m in Sources */,
 				CAD501F91E98661A00795CDA /* PBPGView.m in Sources */,
@@ -1079,6 +1131,7 @@
 				CAD502141E98661A00795CDA /* UIWindow+Launch.m in Sources */,
 				CAD502111E98661A00795CDA /* UIImage+Water.m in Sources */,
 				CAD5020C1E98661A00795CDA /* UIFont+Extend.m in Sources */,
+				C7106BB922E0564B00FA904A /* PixabayModel.m in Sources */,
 				CAD502021E98661A00795CDA /* CoreArchive.m in Sources */,
 				CAD5022A1E98661A00795CDA /* CoreSVP.m in Sources */,
 				585322E31F5E9C4100EF2496 /* XMShareUtil.m in Sources */,
@@ -1096,6 +1149,7 @@
 				CAD501FC1E98661A00795CDA /* PhotoImageView.m in Sources */,
 				CAD502051E98661A00795CDA /* NSArray+Extend.m in Sources */,
 				CAD501FA1E98661A00795CDA /* PBSaveBtn.m in Sources */,
+				C7106BAE22E01B3500FA904A /* MHAsiNetworkHandler.m in Sources */,
 				CAD502281E98661A00795CDA /* UIImageView+SD.m in Sources */,
 				CA5670001E4C6FB900ADE9EA /* main.m in Sources */,
 				CAD502101E98661A00795CDA /* UIImage+FixOrientation.m in Sources */,
@@ -1119,6 +1173,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1174,6 +1229,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1232,14 +1288,14 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WallPaper/Global/PrefixHeader.pch";
 				INFOPLIST_FILE = WallPaper/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WallPaper/Share/Vendor/libWeiboSDK",
 					"$(PROJECT_DIR)/WallPaper/Share/Vendor/Weixin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.never.WallPaperS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.never.WallPaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1257,14 +1313,14 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WallPaper/Global/PrefixHeader.pch";
 				INFOPLIST_FILE = WallPaper/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WallPaper/Share/Vendor/libWeiboSDK",
 					"$(PROJECT_DIR)/WallPaper/Share/Vendor/Weixin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.never.WallPaperS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.never.WallPaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

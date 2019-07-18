@@ -9,6 +9,7 @@
 #import "WallpaperCell.h"
 #import "WallPaper.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "PixabayModel.h"
 
 @implementation WallpaperCell{
     UIImageView *_image;
@@ -22,6 +23,24 @@
         [self.contentView addSubview:_image];
     }
     return self;
+}
+
+
+- (void)setPixabayModel:(PixabayModel *)model{
+    [_image sd_setImageWithURL:model.webformatURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self->_image.alpha = 0;
+        //旋转
+        //      _image.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(.5, .5), drand48()-0.5);
+        //缩放
+        self->_image.transform = CGAffineTransformMakeScale(0.6, 0.6);
+        [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:0 animations:^{
+            
+            self->_image.transform = CGAffineTransformIdentity;
+            self->_image.alpha = 1;
+            
+        } completion:nil];
+        
+    }];
 }
 
 -(void)setWallpaper:(WallPaper *)wallpaper{
