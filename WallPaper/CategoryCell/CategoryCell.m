@@ -35,7 +35,7 @@
 - (void)setImageCategory:(ImageCategory *)category{
 
     [_thumbnail sd_setImageWithURL:category.thumbnail completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        _name.text = category.name;
+        self->_name.text = category.name;
         
         CATransform3D rotation;//3D旋转
         rotation = CATransform3DMakeTranslation(0 ,50 ,20);

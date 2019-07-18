@@ -7,7 +7,13 @@
 //
 
 #import "PixabayModel.h"
+#import <MJExtension/MJExtension.h>
 
 @implementation PixabayModel
 
++(NSDictionary *)mj_replacedKeyFromPropertyName{
+    
+    return @{@"Id":@"id"};
+    
+}
 @end

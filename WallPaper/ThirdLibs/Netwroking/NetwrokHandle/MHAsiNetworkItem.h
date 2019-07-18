@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MHAsiNetworkDefine.h"
-#import "MHAsiNetworkDelegate.h"
+#import "MHNetwork.h"
 
 /**
  *  网络请求子项

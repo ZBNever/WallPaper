@@ -7,8 +7,10 @@
 //
 
 #import "MHAsiNetworkItem.h"
-#import "AFNetworking.h"
+#import <AFNetworking.h>
 #import "MBProgressHUD.h"
+//#import "MHNetwork.h"
+
 @interface MHAsiNetworkItem ()
 
 @end
@@ -52,19 +54,20 @@
         self.tagrget        = target;
         self.select         = action;
         if (showHUD==YES) {
-            [MBProgressHUD showHUD];
+//            [MBProgressHUD showHUD];
         }
         __weak typeof(self)weakSelf = self;
-        DTLog(@"--请求url地址--%@\n",url);
-        DTLog(@"----请求参数%@\n",params);
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSLog(@"--请求url地址--%@\n",url);
+        NSLog(@"----请求参数%@\n",params);
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //        manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObject:@"text/html"];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", nil];
 //        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         if (networkType==MHAsiNetWorkGET)
         {
-            [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                [MBProgressHUD dissmiss];
+            [manager GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 int code = 0;
                 NSString *msg = nil;
                 if (responseObject) {
@@ -72,7 +75,7 @@
                     code                = success.intValue;
                     msg                 = responseObject[@"msg"];
                 }
-                DTLog(@"\n\n----请求的返回结果 %@\n",responseObject);
+                NSLog(@"\n\n----请求的返回结果 %@\n",responseObject);
                 if (successBlock) {
                     successBlock(responseObject,code,msg);
                 }
@@ -81,9 +84,8 @@
                 }
                 [weakSelf performSelector:@selector(finishedRequest: didFaild:) withObject:responseObject withObject:nil];
                 [weakSelf removewItem];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                [MBProgressHUD dissmiss];
-                DTLog(@"---error==%@\n",error.localizedDescription);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"---error==%@\n",error.localizedDescription);
                 if (failureBlock) {
                     failureBlock(error);
                 }
@@ -91,13 +93,15 @@
                     [weakSelf.delegate requestdidFailWithError:error];
                 }
                 [weakSelf performSelector:@selector(finishedRequest: didFaild:) withObject:nil withObject:error];
-            
+                
                 [weakSelf removewItem];
             }];
+
         }else if (networkType==MHAsiNetWorkPOST){
             
-            [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                [MBProgressHUD dissmiss];
+            [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 int code = 0;
                 NSString *msg = nil;
                 if (responseObject) {
@@ -105,7 +109,7 @@
                     code                = success.intValue;
                     msg                 = responseObject[@"msg"];
                 }
-                DTLog(@"\n\n----请求的返回结果 %@\n",responseObject);
+                NSLog(@"\n\n----请求的返回结果 %@\n",responseObject);
                 if (successBlock) {
                     successBlock(responseObject,code,msg);
                 }
@@ -114,10 +118,8 @@
                 }
                 [weakSelf performSelector:@selector(finishedRequest: didFaild:) withObject:responseObject withObject:nil];
                 [weakSelf removewItem];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-            {
-                [MBProgressHUD dissmiss];
-                DTLog(@"---error==%@\n",error.localizedDescription);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"---error==%@\n",error.localizedDescription);
                 if (failureBlock) {
                     failureBlock(error);
                 }
@@ -156,7 +158,7 @@
     static int i = 0;
     
     NSLog(@"----%d",i);
-    DTLog(@"网络请求项被移除了");
+    NSLog(@"网络请求项被移除了");
     
     i++;
 }

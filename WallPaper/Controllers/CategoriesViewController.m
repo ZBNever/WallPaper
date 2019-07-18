@@ -12,11 +12,14 @@
 #import "CategoryCell.h"
 #import "WallPaperService.h"
 #import "WallpapersViewController.h"
+#import "PixabayService.h"
+#import "MHNetwork.h"
 
 static NSString *kCellID = @"cell";
 
 @interface CategoriesViewController ()
-
+/** 模型数组 */
+@property (nonatomic, strong) NSMutableArray *modelArr;
 @end
 
 @implementation CategoriesViewController

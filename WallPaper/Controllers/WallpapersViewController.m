@@ -20,6 +20,12 @@
 //第三方图片浏览器
 #import "PhotoBroswerVC.h"
 
+#import "PixabayService.h"
+
+#import "PixabayModel.h"
+
+#import "MHNetwork.h"
+
 static NSString * const reuseIdentifier = @"Cell";
 
 @interface WallpapersViewController ()
@@ -32,6 +38,7 @@ static NSString * const reuseIdentifier = @"Cell";
     NSArray *_wallpapers;
     MBProgressHUD *_HUD;
     int index;
+    int _page;
 }
 
 - (instancetype)initWithImageCategory:(ImageCategory *)category{
@@ -48,8 +55,8 @@ static NSString * const reuseIdentifier = @"Cell";
         self.title = category.name;
 
     }
-
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(requestData)];
+    _page = 1;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(requestNext)];
     
     return self;
 }
@@ -60,6 +67,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[WallpaperCell class] forCellWithReuseIdentifier:reuseIdentifier];
     index = 1;
     _HUD = [Tools MBProgressHUD:@"正在加载"];
+    
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(requestData) object:nil];
     [queue addOperation:op];
@@ -70,35 +78,39 @@ static NSString * const reuseIdentifier = @"Cell";
     [_HUD removeFromSuperview];
 
 }
+
+- (void)requestNext{
+    _page++;
+    [self requestData];
+}
+
 /** 请求数据 */
 -(void)requestData{
-    
-    NSURL *url;
-    
+
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
     if ([_category.name isEqualToString:@"Latest"]) {
-        
-        url = [NSURL URLWithString:[NSString stringWithFormat:WallLatesURL,index]];
-        
+        [param setObject:@"latest" forKey:@"order"];
     }else{
-        url = [NSURL URLWithString:[NSString stringWithFormat:WallPaperSearchURL,_category.name]];
+        [param setObject:_category.name forKey:@"q"];
     }
-    [WallPaperService requestWallpapersFromURL:url completion:^(NSArray *wallpapers, BOOL success) {
-        
-        [_HUD hideAnimated:YES];
-        if (success && wallpapers.count != 0) {
-            index++;
-            _wallpapers = wallpapers;
+    [param setObject:@(_page) forKey:@"page"];
+    [PixabayService requestWallpapersFromURL:API_HOST params:param completion:^(NSArray *Pixabaypapers, BOOL success) {
+        [self->_HUD hideAnimated:YES];
+        if (success && Pixabaypapers.count != 0) {
+            self->index++;
+            self->_wallpapers = Pixabaypapers;
             
             [self.collectionView reloadData];
             
         }else{
             
-            _HUD = [Tools MBProgressHUDOnlyText:@"加载失败"];
+            self->_HUD = [Tools MBProgressHUDOnlyText:@"加载失败"];
             
-            [_HUD hideAnimated:YES afterDelay:2.0f];
+            [self->_HUD hideAnimated:YES afterDelay:2.0f];
         }
     }];
-    
+
+
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -110,8 +122,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    WallPaper *wallpaper = _wallpapers[indexPath.item];
-    [cell setWallpaper:wallpaper];
+    PixabayModel *model = _wallpapers[indexPath.item];
+    [cell setPixabayModel:model];
     return cell;
 }
 
@@ -120,33 +132,25 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-//    WallPaper *wallpaper = _wallpapers[indexPath.item];
-    
-//    WallpaperViewController *wallpaperVC = [[WallpaperViewController alloc] initWithWallpaper:wallpaper];
-//    
-//    [self.navigationController pushViewController:wallpaperVC animated:YES];
-    
-    
-//    __weak typeof(self) weakSelf = self;
-    
     [PhotoBroswerVC show:self type:PhotoBroswerVCTypeZoom index:indexPath.item photoModelBlock:^NSArray *{
+        
         NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:_wallpapers.count];
         
-        for (NSUInteger i = 0; i < _wallpapers.count; i++) {
-            
-            WallPaper *wallpaper = _wallpapers[i];
+        for (NSUInteger i = 0; i < self->_wallpapers.count; i++) {
+            PixabayModel *model = self->_wallpapers[i];
+//            WallPaper *wallpaper = _wallpapers[i];
             PhotoModel *pbModel=[[PhotoModel alloc] init];
             //此处的展示视图为XIB，已经隐藏
 //            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
 //            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
-            pbModel.image_HD_U = [NSString stringWithFormat:@"%@", wallpaper.fullSize];
+            pbModel.image_HD_U = [NSString stringWithFormat:@"%@", model.largeImageURL];
             
-            pbModel.image_thumbnail_U = [NSString stringWithFormat:@"%@", wallpaper.thumbnail];
+            pbModel.image_thumbnail_U = [NSString stringWithFormat:@"%@", model.webformatURL];
             //从图片地址中截取唯一标识id,作为保存id,不会有重复
-            NSArray *strArr = [pbModel.image_HD_U componentsSeparatedByString:@"-"];
-            NSString *idStr = [strArr[1] componentsSeparatedByString:@"."][0];
+//            NSArray *strArr = [pbModel.image_HD_U componentsSeparatedByString:@"-"];
+//            NSString *idStr = [strArr[1] componentsSeparatedByString:@"."][0];
             /** mid，保存图片缓存唯一标识，必须传 */
-            pbModel.mid = [idStr integerValue];
+            pbModel.mid = [model.Id integerValue];
             
             WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
             //源frame

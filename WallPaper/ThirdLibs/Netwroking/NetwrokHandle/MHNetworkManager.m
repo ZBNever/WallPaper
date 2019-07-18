@@ -31,7 +31,7 @@
  *   GET请求的公共方法 一下三种方法都调用这个方法 根据传入的不同参数觉得回调的方式
  *
  *   @param url           ur
- *   @param paramsDict   paramsDict
+ *   @param params   paramsDict
  *   @param target       target
  *   @param action       action
  *   @param delegate     delegate
@@ -55,7 +55,7 @@
  *   GET请求通过Block 回调结果
  *
  *   @param url          url
- *   @param paramsDict   paramsDict
+ *   @param params   paramsDict
  *   @param successBlock  成功的回调
  *   @param failureBlock  失败的回调
  *   @param showHUD      是否加载进度指示器
@@ -72,7 +72,7 @@
  *   GET请求通过代理回调
  *
  *   @param url         url
- *   @param paramsDict  请求的参数
+ *   @param params  请求的参数
  *   @param delegate    delegate
  *   @param showHUD    是否转圈圈
  */
@@ -88,7 +88,7 @@
  *   get 请求通过 taget 回调方法
  *
  *   @param url         url
- *   @param paramsDict  请求参数的字典
+ *   @param params  请求参数的字典
  *   @param target      target
  *   @param action      action
  *   @param showHUD     是否加载进度指示器
@@ -107,7 +107,7 @@
  *   发送一个 POST请求的公共方法 传入不同的回调参数决定回调的方式
  *
  *   @param url           ur
- *   @param paramsDict   paramsDict
+ *   @param params   paramsDict
  *   @param target       target
  *   @param action       action
  *   @param delegate     delegate
@@ -131,7 +131,7 @@
  *   通过 Block回调结果
  *
  *   @param url           url
- *   @param paramsDict    请求的参数字典
+ *   @param params    请求的参数字典
  *   @param successBlock  成功的回调
  *   @param failureBlock  失败的回调
  *   @param showHUD       是否加载进度指示器
@@ -149,7 +149,7 @@
  *   post请求通过代理回调
  *
  *   @param url         url
- *   @param paramsDict  请求的参数
+ *   @param params  请求的参数
  *   @param delegate    delegate
  *   @param showHUD    是否转圈圈
  */
@@ -166,7 +166,7 @@
  *   post 请求通过 target 回调结果
  *
  *   @param url         url
- *   @param paramsDict  请求参数的字典
+ *   @param params  请求参数的字典
  *   @param target      target
  *   @param showHUD     是否显示圈圈
  */

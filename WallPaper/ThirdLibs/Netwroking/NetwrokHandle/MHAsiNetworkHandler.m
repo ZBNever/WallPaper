@@ -9,6 +9,8 @@
 #import "MHAsiNetworkHandler.h"
 #import "MHAsiNetworkItem.h"
 #import "AFNetworking.h"
+#import "MHNetwork.h"
+
 @interface MHAsiNetworkHandler ()
 <MHAsiNetworkDelegate>
 @end;

@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MHAsiNetworkDefine.h"
-#import "MHAsiNetworkDelegate.h"
+#import "MHNetwork.h"
 
 /// 请求管理着
 @interface MHNetworkManager : NSObject

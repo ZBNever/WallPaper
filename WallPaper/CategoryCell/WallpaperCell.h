@@ -10,9 +10,11 @@
 
 @class WallPaper;
 
+@class PixabayModel;
+
 @interface WallpaperCell : UICollectionViewCell
 
-
+- (void)setPixabayModel:(PixabayModel *)model;
 
 -(void)setWallpaper:(WallPaper *)wallpaper;
 
