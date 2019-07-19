@@ -206,7 +206,8 @@
     [_handleVC addChildViewController:self];
     
     self.topBarView.alpha = 1;
-    self.topBarHeight.constant = isIphoneX?88:64;
+    self.topBarHeight.constant = iPhoneXSeries ? 88 : 64;
+//    [self.topBarView setNeedsLayout];
     [UIView animateWithDuration:.9f animations:^{
         self.topBarView.alpha=1;
     } completion:^(BOOL finished) {

@@ -56,16 +56,33 @@ static NSString * const reuseIdentifier = @"Cell";
     if (self = [super initWithCollectionViewLayout:layout]) {
         _category = category;
         self.title = category.name;
-
+        
     }
     _page = 1;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadData)];
-    
+
     return self;
 }
-
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIButton *refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [refreshBtn setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
+    [refreshBtn addTarget:self action:@selector(reloadData) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *refreshItem = [[UIBarButtonItem alloc] initWithCustomView:refreshBtn];
+    self.navigationItem.rightBarButtonItem = refreshItem;
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn setImage:[UIImage imageNamed:@"back_arrow"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = backItem;
+    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadData)];
+//   self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+//    self.navigationItem.backBarButtonItem.title = @"返回";
     self.collectionView.backgroundColor = [UIColor blackColor];
     [self.collectionView registerClass:[WallpaperCell class] forCellWithReuseIdentifier:reuseIdentifier];
     index = 1;
