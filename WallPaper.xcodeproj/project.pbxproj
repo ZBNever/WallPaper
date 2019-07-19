@@ -984,7 +984,7 @@
 				CA566FF71E4C6FB900ADE9EA /* Sources */,
 				CA566FF81E4C6FB900ADE9EA /* Frameworks */,
 				CA566FF91E4C6FB900ADE9EA /* Resources */,
-				8A13AD8115A9009254338140 /* [CP] Copy Pods Resources */,
+				665B10788406863B6368763F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1058,13 +1058,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8A13AD8115A9009254338140 /* [CP] Copy Pods Resources */ = {
+		665B10788406863B6368763F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -1073,7 +1073,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B2E67B77DBA67C8A82B59A83 /* [CP] Check Pods Manifest.lock */ = {
