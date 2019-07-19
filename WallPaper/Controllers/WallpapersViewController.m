@@ -26,10 +26,13 @@
 
 #import "MHNetwork.h"
 
+#import <MJRefresh.h>
+
 static NSString * const reuseIdentifier = @"Cell";
 
 @interface WallpapersViewController ()
-
+@property (nonatomic, strong) MJRefreshNormalHeader *header;
+@property (nonatomic, strong) MJRefreshBackNormalFooter *footer;
 @end
 
 @implementation WallpapersViewController{
@@ -56,7 +59,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
     }
     _page = 1;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(requestNext)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadData)];
     
     return self;
 }
@@ -67,24 +70,53 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[WallpaperCell class] forCellWithReuseIdentifier:reuseIdentifier];
     index = 1;
     _HUD = [Tools MBProgressHUD:@"正在加载"];
-    
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(requestData) object:nil];
     [queue addOperation:op];
-
+    [self mj_pullRefresh];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_HUD removeFromSuperview];
 
 }
-
-- (void)requestNext{
+#pragma mark - **********  添加MJ_Refresh  **********
+- (void)mj_pullRefresh{
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self requestPreviousPage];
+    }];
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self requestNextPage];
+    }];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    [header setTitle:@"上一页" forState:MJRefreshStatePulling];
+    [footer setTitle:@"下一页" forState:MJRefreshStatePulling];
+    self.header = header;
+    self.footer = footer;
+    self.collectionView.mj_header = self.header;
+    self.collectionView.mj_footer = self.footer;
+}
+#pragma mark  **********  重新加载  **********
+- (void)reloadData{
+    _page = 1;
+    [self requestData];
+}
+#pragma mark  **********  上一页数据  **********
+- (void)requestPreviousPage{
+    if (_page>1) {
+        _page--;
+    }else{
+        _page = 1;
+    }
+    [self requestData];
+}
+#pragma mark  **********  下一页数据  **********
+- (void)requestNextPage{
     _page++;
     [self requestData];
 }
 
-/** 请求数据 */
+#pragma mark  **********  请求数据  **********
 -(void)requestData{
 
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
@@ -95,6 +127,8 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     [param setObject:@(_page) forKey:@"page"];
     [PixabayService requestWallpapersFromURL:API_HOST params:param completion:^(NSArray *Pixabaypapers, BOOL success) {
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
         [self->_HUD hideAnimated:YES];
         if (success && Pixabaypapers.count != 0) {
             self->index++;
@@ -103,7 +137,8 @@ static NSString * const reuseIdentifier = @"Cell";
             [self.collectionView reloadData];
             
         }else{
-            
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshing];
             self->_HUD = [Tools MBProgressHUDOnlyText:@"加载失败"];
             
             [self->_HUD hideAnimated:YES afterDelay:2.0f];
@@ -113,7 +148,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 }
 
-#pragma mark <UICollectionViewDataSource>
+#pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 

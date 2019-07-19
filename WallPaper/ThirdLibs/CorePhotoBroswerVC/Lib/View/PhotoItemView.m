@@ -119,8 +119,8 @@
             if (error) {
                 NSLog(@"error:%@",error);
               
-                _HUD = [Tools MBProgressHUDOnlyText:@"未找到高清图"];
-                [_HUD hideAnimated:YES afterDelay:2.0f];
+                self->_HUD = [Tools MBProgressHUDOnlyText:@"未找到高清图"];
+                [self->_HUD hideAnimated:YES afterDelay:2.0f];
             }
             self.hasImage = image !=nil;
             self.progressView.hidden = YES;

@@ -8,7 +8,7 @@
 
 #import "UIImageView+SD.h"
 #import "UIImageView+WebCache.h"
-
+#import "YYKit.h"
 
 @implementation UIImageView (SD)
 

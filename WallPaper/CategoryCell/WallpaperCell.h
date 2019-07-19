@@ -16,6 +16,6 @@
 
 - (void)setPixabayModel:(PixabayModel *)model;
 
--(void)setWallpaper:(WallPaper *)wallpaper;
+//-(void)setWallpaper:(WallPaper *)wallpaper;
 
 @end
