@@ -12,6 +12,14 @@
 #define KScreenWidth self.view.frame.size.width
 #define KScreenHight self.view.frame.size.height
 
-
+#define isIphoneX ({\
+BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+if (!UIEdgeInsetsEqualToEdgeInsets([UIApplication sharedApplication].delegate.window.safeAreaInsets, UIEdgeInsetsZero)) {\
+isPhoneX = YES;\
+}\
+}\
+isPhoneX;\
+})
 
 #endif /* Header_h */

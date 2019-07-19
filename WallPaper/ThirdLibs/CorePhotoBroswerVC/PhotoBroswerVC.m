@@ -45,12 +45,10 @@
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBarHeightC;
-
+/** 导航栏高度 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBarHeight;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewRightMarginC;
-
-
-
 
 /** 相册数组 */
 @property (nonatomic,strong) NSArray *photoModels;
@@ -207,8 +205,8 @@
     //添加子控制器
     [_handleVC addChildViewController:self];
     
-    self.topBarView.alpha=0;
-    
+    self.topBarView.alpha = 1;
+    self.topBarHeight.constant = isIphoneX?88:64;
     [UIView animateWithDuration:.9f animations:^{
         self.topBarView.alpha=1;
     } completion:^(BOOL finished) {
@@ -355,8 +353,8 @@
     
     [UIView animateWithDuration:.25f animations:^{
         
-        [_topBarView setNeedsLayout];
-        [_topBarView layoutIfNeeded];
+        [self->_topBarView setNeedsLayout];
+        [self->_topBarView layoutIfNeeded];
     }];
     
     [self.scrollView.subviews enumerateObjectsUsingBlock:^(UIView *subView, NSUInteger idx, BOOL *stop) {
@@ -500,10 +498,6 @@
         self.currentItemView = [self.visiblePhotoItemViewDictM objectForKey:@(self.page)];
     });
 }
-
-
-
-
 
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
