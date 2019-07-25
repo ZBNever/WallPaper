@@ -42,6 +42,14 @@ static NSString *kCellID = @"cell";
     self.tableView.rowHeight = 180;
 }
 
+- (void)requestDate{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@"" forKey:@""];
+    [PixabayService requestWallpapersParams:params completion:^(NSArray * _Nonnull Pixabaypapers, BOOL success) {
+        
+    }];
+}
+
 
 #pragma mark - Table view data source
 

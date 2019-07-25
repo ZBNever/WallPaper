@@ -12,7 +12,10 @@
 #import "PixabayModel.h"
 @implementation PixabayService
 
-+(void)requestWallpapersFromURL:(NSString *)url params:(NSMutableDictionary *)params completion:(PixabayCompletion)completion{
++(void)requestWallpapersParams:(NSMutableDictionary *)params completion:(PixabayCompletion)completion{
+    if (params == nil) {
+        params = [NSMutableDictionary dictionary];
+    }
     [params setObject:API_Key forKey:@"key"];
     [MHNetworkManager getRequstWithURL:API_HOST params:params successBlock:^(id returnData, int code, NSString *msg) {
         NSLog(@"returnData:%@",returnData);

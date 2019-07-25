@@ -13,7 +13,7 @@ typedef void(^PixabayCompletion)(NSArray *Pixabaypapers,BOOL success);
 
 @interface PixabayService : NSObject
 
-+ (void)requestWallpapersFromURL:(NSString *)url params:(NSMutableDictionary *)params completion:(PixabayCompletion)completion;
++ (void)requestWallpapersParams:(NSMutableDictionary *)params completion:(PixabayCompletion)completion;
 
 @end
 

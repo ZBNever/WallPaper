@@ -8,6 +8,7 @@
 
 #import "CategoryCell.h"
 #import "ImageCategory.h"
+#import "YYKit.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation CategoryCell{
@@ -34,9 +35,31 @@
 }
 - (void)setImageCategory:(ImageCategory *)category{
 
+    self->_name.text = category.name;
+    
+//    [_thumbnail setImageWithURL:category.thumbnail placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+//        CATransform3D rotation;//3D旋转
+//        rotation = CATransform3DMakeTranslation(0 ,50 ,20);
+//        rotation = CATransform3DMakeRotation(M_PI_4 , 0.0, 0.7, 0.4);
+//        //逆时针旋转
+//        rotation = CATransform3DScale(rotation, 0.9, .9, 1);
+//        rotation.m34 = 1.0/ -600;
+//        self.layer.shadowColor = [[UIColor blackColor] CGColor];
+//        self.layer.shadowOffset = CGSizeMake(10, 10);
+//        self.alpha = 0.2;
+//        self.layer.transform = rotation;
+//
+//        [UIView beginAnimations:@"rotation" context:NULL];
+//        //旋转时间
+//        [UIView setAnimationDuration:0.5];
+//        self.layer.transform = CATransform3DIdentity;
+//        self.alpha = 1;
+//        self.layer.shadowOffset = CGSizeMake(0, 0);
+//        [UIView commitAnimations];
+//    }];
+    
     [_thumbnail sd_setImageWithURL:category.thumbnail completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        self->_name.text = category.name;
-        
+
         CATransform3D rotation;//3D旋转
         rotation = CATransform3DMakeTranslation(0 ,50 ,20);
         rotation = CATransform3DMakeRotation(M_PI_4 , 0.0, 0.7, 0.4);
@@ -47,7 +70,7 @@
         self.layer.shadowOffset = CGSizeMake(10, 10);
         self.alpha = 0.2;
         self.layer.transform = rotation;
-        
+
         [UIView beginAnimations:@"rotation" context:NULL];
         //旋转时间
         [UIView setAnimationDuration:0.5];

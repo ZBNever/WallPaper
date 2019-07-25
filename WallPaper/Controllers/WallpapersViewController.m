@@ -30,7 +30,7 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
-@interface WallpapersViewController ()
+@interface WallpapersViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) MJRefreshNormalHeader *header;
 @property (nonatomic, strong) MJRefreshBackNormalFooter *footer;
 @end
@@ -67,22 +67,21 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // 右侧刷新按钮
     UIButton *refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [refreshBtn setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
     [refreshBtn addTarget:self action:@selector(reloadData) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *refreshItem = [[UIBarButtonItem alloc] initWithCustomView:refreshBtn];
     self.navigationItem.rightBarButtonItem = refreshItem;
-    
+    // 左侧返回按钮
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [backBtn setImage:[UIImage imageNamed:@"back_arrow"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem = backItem;
-    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadData)];
-//   self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-//    self.navigationItem.backBarButtonItem.title = @"返回";
+    // 保证侧滑返回可用
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
     self.collectionView.backgroundColor = [UIColor blackColor];
     [self.collectionView registerClass:[WallpaperCell class] forCellWithReuseIdentifier:reuseIdentifier];
     index = 1;
@@ -143,7 +142,7 @@ static NSString * const reuseIdentifier = @"Cell";
         [param setObject:_category.name forKey:@"q"];
     }
     [param setObject:@(_page) forKey:@"page"];
-    [PixabayService requestWallpapersFromURL:API_HOST params:param completion:^(NSArray *Pixabaypapers, BOOL success) {
+    [PixabayService requestWallpapersParams:param completion:^(NSArray *Pixabaypapers, BOOL success) {
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
         [self->_HUD hideAnimated:YES];
