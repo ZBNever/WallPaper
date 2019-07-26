@@ -14,4 +14,6 @@
 
 #define iPhoneXSeries (([[UIApplication sharedApplication] statusBarFrame].size.height == 44.0f) ? (YES):(NO))
 
+#define WeakSelf __weak typeof(self) weakSelf = self;
+
 #endif /* Header_h */

@@ -10,8 +10,14 @@
 
 @class ImageCategory;
 
+@class PixabayModel;
+
 @interface CategoryCell : UITableViewCell
 
 - (void)setImageCategory:(ImageCategory *)category;
+
+- (void)setImageModel:(PixabayModel *)imageModel;
+
+
 
 @end

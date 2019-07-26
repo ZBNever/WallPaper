@@ -7,5 +7,6 @@ target 'WallPaper' do
   pod 'SDWebImage','~>5.0.6'
   pod 'YYKit','~>1.0.9'
   pod 'MBProgressHUD','~>1.1.0'
-
+  pod "PYSearch",'~>0.9.1'
+  
 end

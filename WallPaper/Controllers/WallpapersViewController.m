@@ -40,10 +40,26 @@ static NSString * const reuseIdentifier = @"Cell";
     ImageCategory *_category;
     NSArray *_wallpapers;
     MBProgressHUD *_HUD;
+    NSString *_tag;
     int index;
     int _page;
 }
-
+- (instancetype)initWithImageTag:(NSString *)tag{
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.minimumLineSpacing = 1;
+    layout.minimumInteritemSpacing = 1;
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    int portraitWith = MIN(screenSize.width, screenSize.height);
+    int itemSize = floor((portraitWith-1)/2);
+    layout.itemSize = CGSizeMake(itemSize, itemSize);
+    if (self = [super initWithCollectionViewLayout:layout]) {
+        self.title = tag;
+        _tag = tag;
+    }
+    _page = 1;
+    
+    return self;
+}
 - (instancetype)initWithImageCategory:(ImageCategory *)category{
 
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -75,6 +91,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.navigationItem.rightBarButtonItem = refreshItem;
     // 左侧返回按钮
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(0, 0, 22, 44);
     [backBtn setImage:[UIImage imageNamed:@"back_arrow"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
@@ -136,10 +153,10 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)requestData{
 
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    if ([_category.name isEqualToString:@"Latest"]) {
+    if ([_tag isEqualToString:@"Latest"]) {
         [param setObject:@"latest" forKey:@"order"];
     }else{
-        [param setObject:_category.name forKey:@"q"];
+        [param setObject:_tag forKey:@"q"];
     }
     [param setObject:@(_page) forKey:@"page"];
     [PixabayService requestWallpapersParams:param completion:^(NSArray *Pixabaypapers, BOOL success) {
@@ -185,7 +202,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [PhotoBroswerVC show:self type:PhotoBroswerVCTypeZoom index:indexPath.item photoModelBlock:^NSArray *{
         
-        NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:_wallpapers.count];
+        NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:self->_wallpapers.count];
         
         for (NSUInteger i = 0; i < self->_wallpapers.count; i++) {
             PixabayModel *model = self->_wallpapers[i];

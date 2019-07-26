@@ -1064,16 +1064,18 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/PYSearch/PYSearch/PYSearch.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PYSearch.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B2E67B77DBA67C8A82B59A83 /* [CP] Check Pods Manifest.lock */ = {

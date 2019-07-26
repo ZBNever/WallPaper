@@ -17,6 +17,7 @@ PODS:
   - MBProgressHUD (1.1.0)
   - MJExtension (3.1.0)
   - MJRefresh (3.2.0)
+  - PYSearch (0.9.1)
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - MBProgressHUD (~> 1.1.0)
   - MJExtension (~> 3.1.0)
   - MJRefresh (~> 3.2.0)
+  - PYSearch (~> 0.9.1)
   - SDWebImage (~> 5.0.6)
   - YYKit (~> 1.0.9)
 
@@ -38,6 +40,7 @@ SPEC REPOS:
     - MBProgressHUD
     - MJExtension
     - MJRefresh
+    - PYSearch
     - SDWebImage
     - YYKit
 
@@ -46,9 +49,10 @@ SPEC CHECKSUMS:
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 6b69b3bef2864fd550ce1a184eda219e321209d2
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  PYSearch: 76dee18eea3309b60921a5d6a69390a63a5dda15
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 8057757366827f2d79572684ad701020fe007f85
+PODFILE CHECKSUM: 77408ad717bef3959c7759bf2b020f1bee36352c
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.7.0

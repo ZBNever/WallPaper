@@ -12,6 +12,7 @@
 
 @interface WallpapersViewController : UICollectionViewController
 
+- (instancetype)initWithImageTag:(NSString *)tag;
 
 - (instancetype)initWithImageCategory:(ImageCategory *)category;
 @end

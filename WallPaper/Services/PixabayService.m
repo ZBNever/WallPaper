@@ -17,6 +17,7 @@
         params = [NSMutableDictionary dictionary];
     }
     [params setObject:API_Key forKey:@"key"];
+    [params setObject:@"zh" forKey:@"lang"];
     [MHNetworkManager getRequstWithURL:API_HOST params:params successBlock:^(id returnData, int code, NSString *msg) {
         NSLog(@"returnData:%@",returnData);
         NSMutableArray *ModelArr = [PixabayModel mj_objectArrayWithKeyValuesArray:returnData[@"hits"]];
