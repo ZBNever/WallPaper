@@ -166,14 +166,17 @@ static NSString * const reuseIdentifier = @"Cell";
         if (success && Pixabaypapers.count != 0) {
             self->index++;
             self->_wallpapers = Pixabaypapers;
-            
             [self.collectionView reloadData];
             
+        }else if (success && Pixabaypapers.count == 0){
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+            self->_HUD = [Tools MBProgressHUDOnlyText:@"已加载全部"];
+            [self->_HUD hideAnimated:YES afterDelay:2.0f];
         }else{
             [self.collectionView.mj_header endRefreshing];
             [self.collectionView.mj_footer endRefreshing];
             self->_HUD = [Tools MBProgressHUDOnlyText:@"加载失败"];
-            
             [self->_HUD hideAnimated:YES afterDelay:2.0f];
         }
     }];

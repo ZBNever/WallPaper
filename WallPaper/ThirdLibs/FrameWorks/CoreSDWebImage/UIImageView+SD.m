@@ -46,7 +46,19 @@
     SDWebImageOptions options = SDWebImageLowPriority | SDWebImageRetryFailed;
 
     [self sd_setImageWithURL:url placeholderImage:phImage options:options progress:progressBlock completed:completedBlock];
+
 }
 
+
+- (void)yy_imageWithUrlStr:(NSString *)urlStr phImage:(UIImage *)phImage progressBlock:(YYWebImageProgressBlock)progressBlock completedBlock:(YYWebImageCompletionBlock)completedBlock{
+    
+    if(urlStr == nil) return;
+    
+    NSURL *url=[NSURL URLWithString:urlStr];
+    
+    YYWebImageOptions options = YYWebImageOptionProgressiveBlur;
+    [self setImageWithURL:url placeholder:phImage options:options progress:progressBlock transform:nil completion:completedBlock];
+
+}
 
 @end

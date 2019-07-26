@@ -104,31 +104,52 @@
         if(image == nil) return;
         self.progressView.hidden = NO;
         self.progressView.progress = 0.f;
-        [self.photoImageView imageWithUrlStr:_photoModel.image_HD_U phImage:image progressBlock:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-            
+        // SDWebImage
+//        [self.photoImageView imageWithUrlStr:_photoModel.image_HD_U phImage:image progressBlock:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+//
+//            CGFloat progress =(CGFloat)receivedSize/expectedSize;
+//
+////            NSLog(@"progress:%f",fabs(progress));
+//
+//            dispatch_sync(dispatch_get_main_queue() , ^{
+//                //必须返回主线程才能刷新UI
+//                self.progressView.progress = fabs(progress);
+//            });
+//
+//        } completedBlock:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+//            if (error) {
+//                NSLog(@"error:%@",error);
+//
+//                self->_HUD = [Tools MBProgressHUDOnlyText:@"未找到高清图"];
+//                [self->_HUD hideAnimated:YES afterDelay:2.0f];
+//            }
+//            self.hasImage = image != nil;
+//            self.progressView.hidden = YES;
+//        }];
+        
+        // YYWebImage
+        [self.photoImageView yy_imageWithUrlStr:_photoModel.image_HD_U phImage:image progressBlock:^(NSInteger receivedSize, NSInteger expectedSize) {
             CGFloat progress =(CGFloat)receivedSize/expectedSize;
             
 //            NSLog(@"progress:%f",fabs(progress));
-            
-            dispatch_sync(dispatch_get_main_queue() , ^{
-                //必须返回主线程才能刷新UI
-                self.progressView.progress = fabs(progress);
-            });
-            
-        } completedBlock:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+
+            self.progressView.progress = fabs(progress);
+
+        } completedBlock:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
             if (error) {
                 NSLog(@"error:%@",error);
-              
+                
                 self->_HUD = [Tools MBProgressHUDOnlyText:@"未找到高清图"];
                 [self->_HUD hideAnimated:YES afterDelay:2.0f];
             }
-            self.hasImage = image !=nil;
+            self.hasImage = image != nil;
             self.progressView.hidden = YES;
         }];
+        
     }else{
         self.progressView.hidden = YES;
         self.photoImageView.image = _photoModel.image;
-        //标记
+        // 标记
         self.hasImage = YES;
     }
 

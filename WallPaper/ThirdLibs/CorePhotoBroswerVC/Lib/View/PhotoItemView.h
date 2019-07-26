@@ -20,7 +20,7 @@
 @property (nonatomic,assign) BOOL isScaleNormal;
 
 /** 单击 */
-@property (nonatomic,copy) void (^ItemViewSingleTapBlock)();
+@property (nonatomic,copy) void (^ItemViewSingleTapBlock)(void);
 
 /** 当前的页标 */
 @property (nonatomic,assign) NSUInteger pageIndex;
@@ -49,11 +49,11 @@
 /*
  *  保存图片及回调
  */
--(void)save:(void(^)())ItemImageSaveCompleteBlock failBlock:(void(^)())failBlock;
+-(void)save:(void(^)(void))ItemImageSaveCompleteBlock failBlock:(void(^)(void))failBlock;
 
 
 /** 缩回正常 */
--(void)zoomDismiss:(void(^)())compeletionBlock;
+-(void)zoomDismiss:(void(^)(void))compeletionBlock;
 
 
 

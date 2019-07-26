@@ -10,7 +10,7 @@
 #import "SDWebImageDownloader.h"
 #import "SDWebImageManager.h"
 #import "UIImage+ReMake.h"
-
+#import <YYKit.h>
 
 @interface UIImageView (SD)
 
@@ -33,5 +33,14 @@
  */
 -(void)imageWithUrlStr:(NSString *)urlStr phImage:(UIImage *)phImage progressBlock:(SDWebImageDownloaderProgressBlock)progressBlock completedBlock:(SDExternalCompletionBlock)completedBlock;
 
+/**
+ 带有进度的网络图片
+
+ @param urlStr 图片地址
+ @param phImage 占位图
+ @param progressBlock 进度
+ @param completedBlock 完成
+ */
+- (void)yy_imageWithUrlStr:(NSString *)urlStr phImage:(UIImage *)phImage progressBlock:(YYWebImageProgressBlock)progressBlock completedBlock:(YYWebImageCompletionBlock)completedBlock;
 
 @end
