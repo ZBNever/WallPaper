@@ -19,7 +19,7 @@
 
 static NSString *kCellID = @"cell";
 
-@interface CategoriesViewController ()<PYSearchViewControllerDelegate>
+@interface CategoriesViewController ()<PYSearchViewControllerDelegate,HXCellTagsViewDelegate>
 /** 模型数组 */
 @property (nonatomic, strong) NSMutableArray *modelArr;
 @end
@@ -61,7 +61,7 @@ static NSString *kCellID = @"cell";
 
 - (void)requestDate{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@"" forKey:@""];
+//    [params setObject:@"" forKey:@""];
     [PixabayService requestWallpapersParams:params completion:^(NSArray * _Nonnull Pixabaypapers, BOOL success) {
         self.modelArr = [Pixabaypapers mutableCopy];
         [self.tableView reloadData];
@@ -73,8 +73,7 @@ static NSString *kCellID = @"cell";
     NSArray *hotSeaches = @[@"科技", @"星空", @"运动", @"风景", @"商务", @"天空", @"学习", @"森林", @"美女", @"城市", @"背景", @"美食"];
     // 2. Create a search view controller
     PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        // Called when search begain.
-        // eg：Push to a temp view controller
+
         [searchViewController.navigationController pushViewController:[[WallpapersViewController alloc] initWithImageTag:searchText] animated:YES];
     }];
     // 3. Set style for popular search and search history
@@ -83,20 +82,15 @@ static NSString *kCellID = @"cell";
     
     // 4. Set delegate
     searchViewController.delegate = self;
-    // 5. Present(Modal) or push search view controller
-    // Present(Modal)
-    //    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-    //    [self presentViewController:nav animated:YES completion:nil];
-    // Push
-    // Set mode of show search view controller, default is `PYSearchViewControllerShowModeModal`
+
     searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
-    //    // Push search view controller
+    // Push search view controller
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return [CategoriesManager shareManager].categories.count;
+
     return self.modelArr.count;
 }
 
@@ -104,26 +98,26 @@ static NSString *kCellID = @"cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
-//    ImageCategory *category = [CategoriesManager shareManager].categories[indexPath.row];
-//    [cell setImageCategory:category];
-
     PixabayModel *model = self.modelArr[indexPath.row];
     [cell setImageModel:model];
+    cell.delegate = self;
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-//    NSString *url = @"https://alpha.wallhaven.cc/search?q=snow&page=3";
-    
-//    ImageCategory *category = [CategoriesManager shareManager].categories[indexPath.row];
-//    WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageCategory:category];
-    
     PixabayModel *model = self.modelArr[indexPath.row];
     NSString *tag = [[model.tags componentsSeparatedByString:@","] firstObject];
     WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageTag:tag];
     [self.navigationController pushViewController:wallpapers animated:YES];
 
+}
+
+- (void)cellTagsViewButtonAction:(HXTagsView *)tagsView button:(UIButton *)sender{
+    
+    NSString *tag = sender.titleLabel.text;
+    WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageTag:tag];
+    [self.navigationController pushViewController:wallpapers animated:YES];
 }
 
 @end

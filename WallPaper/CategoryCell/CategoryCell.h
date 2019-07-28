@@ -12,9 +12,18 @@
 
 @class PixabayModel;
 
+@class HXTagsView;
+
+@protocol HXCellTagsViewDelegate <NSObject>
+
+@optional
+- (void)cellTagsViewButtonAction:(HXTagsView *)tagsView button:(UIButton *)sender;
+
+@end
+
 @interface CategoryCell : UITableViewCell
 
-- (void)setImageCategory:(ImageCategory *)category;
+@property (nonatomic,assign) id<HXCellTagsViewDelegate> delegate;
 
 - (void)setImageModel:(PixabayModel *)imageModel;
 

@@ -53,7 +53,7 @@
 //        } completion:nil];
 //
 //    }];
-    
+//    WeakSelf
     [_webImageView setImageWithURL:model.webformatURL
                        placeholder:nil
                            options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation

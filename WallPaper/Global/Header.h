@@ -9,8 +9,8 @@
 #ifndef Header_h
 #define Header_h
 
-#define KScreenWidth self.view.frame.size.width
-#define KScreenHight self.view.frame.size.height
+#define KScreenWidth [[UIScreen mainScreen] bounds].size.width
+#define KScreenHight [[UIScreen mainScreen] bounds].size.height
 
 #define iPhoneXSeries (([[UIApplication sharedApplication] statusBarFrame].size.height == 44.0f) ? (YES):(NO))
 

@@ -58,6 +58,7 @@
 		CA59A5381E500D6D0072FCB9 /* LaunchScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */; };
 		CA59A53B1E5015620072FCB9 /* WallpaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA59A53A1E5015620072FCB9 /* WallpaperViewController.m */; };
 		CA8870041E53ED51009E9333 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8870031E53ED51009E9333 /* Tools.m */; };
+		CAA9E7F422ED242100365A46 /* HXTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9E7F222ED242000365A46 /* HXTagsView.m */; };
 		CAC30AAD1FF4943700C6270D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC30AAC1FF4943600C6270D /* LaunchScreen.storyboard */; };
 		CAD501F31E98661A00795CDA /* UIView+PBExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD5015F1E98661A00795CDA /* UIView+PBExtend.m */; };
 		CAD501F41E98661A00795CDA /* PBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD501621E98661A00795CDA /* PBConst.m */; };
@@ -204,6 +205,8 @@
 		CA8870021E53ED51009E9333 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		CA8870031E53ED51009E9333 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		CA927FBD1E56F82900838737 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		CAA9E7F222ED242000365A46 /* HXTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXTagsView.m; sourceTree = "<group>"; };
+		CAA9E7F322ED242000365A46 /* HXTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXTagsView.h; sourceTree = "<group>"; };
 		CAC30AAC1FF4943600C6270D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAD5015E1E98661A00795CDA /* UIView+PBExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBExtend.h"; sourceTree = "<group>"; };
 		CAD5015F1E98661A00795CDA /* UIView+PBExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PBExtend.m"; sourceTree = "<group>"; };
@@ -616,9 +619,19 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		CAA9E7F122ED242000365A46 /* 标签 */ = {
+			isa = PBXGroup;
+			children = (
+				CAA9E7F322ED242000365A46 /* HXTagsView.h */,
+				CAA9E7F222ED242000365A46 /* HXTagsView.m */,
+			);
+			path = "标签";
+			sourceTree = "<group>";
+		};
 		CAD5015A1E98661A00795CDA /* ThirdLibs */ = {
 			isa = PBXGroup;
 			children = (
+				CAA9E7F122ED242000365A46 /* 标签 */,
 				C7106B4F22E01A0500FA904A /* Netwroking */,
 				CAD5015B1E98661A00795CDA /* CorePhotoBroswerVC */,
 				CAD5017E1E98661A00795CDA /* FrameWorks */,
@@ -1151,6 +1164,7 @@
 				CAD501FC1E98661A00795CDA /* PhotoImageView.m in Sources */,
 				CAD502051E98661A00795CDA /* NSArray+Extend.m in Sources */,
 				CAD501FA1E98661A00795CDA /* PBSaveBtn.m in Sources */,
+				CAA9E7F422ED242100365A46 /* HXTagsView.m in Sources */,
 				C7106BAE22E01B3500FA904A /* MHAsiNetworkHandler.m in Sources */,
 				CAD502281E98661A00795CDA /* UIImageView+SD.m in Sources */,
 				CA5670001E4C6FB900ADE9EA /* main.m in Sources */,
