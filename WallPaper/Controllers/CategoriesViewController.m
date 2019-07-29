@@ -16,12 +16,18 @@
 #import "MHNetwork.h"
 #import "PixabayModel.h"
 #import <PYSearch.h>
+#import <MJRefresh/MJRefresh.h>
 
 static NSString *kCellID = @"cell";
 
 @interface CategoriesViewController ()<PYSearchViewControllerDelegate,HXCellTagsViewDelegate>
 /** 模型数组 */
 @property (nonatomic, strong) NSMutableArray *modelArr;
+
+@property (nonatomic, strong) MJRefreshNormalHeader *header;
+
+@property (nonatomic, strong) MJRefreshBackNormalFooter *footer;
+@property (nonatomic, assign) int page;
 @end
 
 @implementation CategoriesViewController
@@ -56,13 +62,49 @@ static NSString *kCellID = @"cell";
     [self.tableView registerClass:[CategoryCell class] forCellReuseIdentifier:kCellID];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 180;
+    _page = 1;
+    [self mj_pullRefresh];
+    [self requestDate];
+}
+#pragma mark - **********  添加MJ_Refresh  **********
+- (void)mj_pullRefresh{
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self requestPreviousPage];
+    }];
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self requestNextPage];
+    }];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    [header setTitle:@"上一页" forState:MJRefreshStatePulling];
+    [footer setTitle:@"下一页" forState:MJRefreshStatePulling];
+    self.header = header;
+    self.footer = footer;
+    self.tableView.mj_header = self.header;
+    self.tableView.mj_footer = self.footer;
+}
+
+#pragma mark  **********  上一页数据  **********
+- (void)requestPreviousPage{
+    if (_page>1) {
+        _page--;
+    }else{
+        _page = 1;
+    }
+    [self requestDate];
+}
+#pragma mark  **********  下一页数据  **********
+- (void)requestNextPage{
+    _page++;
     [self requestDate];
 }
 
 - (void)requestDate{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    [params setObject:@"" forKey:@""];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@"" forKey:@"q"];
     [PixabayService requestWallpapersParams:params completion:^(NSArray * _Nonnull Pixabaypapers, BOOL success) {
+        [self.header endRefreshing];
+        [self.footer endRefreshing];
         self.modelArr = [Pixabaypapers mutableCopy];
         [self.tableView reloadData];
     }];

@@ -18,7 +18,4 @@
 //缩略图
 #define ThumbURL @"https://th.wallhaven.cc/small/kw/%@.jpg"
 
-
-
-
 #endif /* URLServices_h */

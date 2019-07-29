@@ -10,6 +10,7 @@
 #import "MHNetwork.h"
 #import <MJExtension.h>
 #import "PixabayModel.h"
+
 @implementation PixabayService
 
 +(void)requestWallpapersParams:(NSMutableDictionary *)params completion:(PixabayCompletion)completion{
@@ -18,8 +19,9 @@
     }
     [params setObject:API_Key forKey:@"key"];
     [params setObject:@"zh" forKey:@"lang"];
+    [params setObject:@"photo" forKey:@"image_type"];
     [MHNetworkManager getRequstWithURL:API_HOST params:params successBlock:^(id returnData, int code, NSString *msg) {
-        NSLog(@"returnData:%@",returnData);
+//        NSLog(@"returnData:%@",returnData);
         NSMutableArray *ModelArr = [PixabayModel mj_objectArrayWithKeyValuesArray:returnData[@"hits"]];
         completion(ModelArr,YES);
     } failureBlock:^(NSError *error) {

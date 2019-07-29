@@ -26,18 +26,4 @@
 // 接口路径全拼
 #define PATH(_path) [NSString stringWithFormat:_path, API_HOST]
 
-/**
- *      用户登录
- */
-//#define DEF_USER_Login  PATH(@"%@/user/login.pa")
-
-/**
- *      发送验证码
- */
-//#define DEF_SendCode   PATH(@"%@/user/sendRegisterVerifyCode.pa")
-/**
- *      用户注册
- */
-//#define DEF_USER_REGIST PATH(@"%@/user/sendRegisterVerifyCode.pa")
-
 #endif

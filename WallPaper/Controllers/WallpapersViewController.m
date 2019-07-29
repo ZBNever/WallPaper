@@ -16,7 +16,6 @@
 
 #import "WallPaper.h"
 
-#import "WallpaperViewController.h"
 //第三方图片浏览器
 #import "PhotoBroswerVC.h"
 

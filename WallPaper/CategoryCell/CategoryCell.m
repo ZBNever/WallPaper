@@ -58,10 +58,7 @@
 
 - (void)setImageModel:(PixabayModel *)imageModel{
     WeakSelf
-    NSArray *arr = [imageModel.tags componentsSeparatedByString:@","];
-    [self configTag:arr];
-    NSString *tag = [[imageModel.tags componentsSeparatedByString:@","] firstObject];
-    self->_name.text = tag;
+
     [_thumbnail setImageWithURL:imageModel.webformatURL placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
         CATransform3D rotation;//3D旋转
         rotation = CATransform3DMakeTranslation(0 ,50 ,20);
@@ -82,6 +79,10 @@
         weakSelf.layer.shadowOffset = CGSizeMake(0, 0);
         [UIView commitAnimations];
     }];
+    NSArray *arr = [imageModel.tags componentsSeparatedByString:@","];
+    [self configTag:arr];
+    NSString *tag = [[imageModel.tags componentsSeparatedByString:@","] firstObject];
+    self->_name.text = tag;
 }
 
 - (void)tagsViewButtonAction:(HXTagsView *)tagsView button:(UIButton *)sender{

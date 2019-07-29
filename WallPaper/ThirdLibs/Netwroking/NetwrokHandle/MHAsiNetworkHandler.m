@@ -126,7 +126,7 @@
     [self.items removeObject:itme];
     self.netWorkItem = nil;
     
-    NSLog(@"-----%@",self.items);
+//    NSLog(@"-----%@",self.items);
 
 }
 @end

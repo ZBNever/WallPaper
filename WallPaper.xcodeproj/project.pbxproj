@@ -56,7 +56,6 @@
 		CA5670201E4C776800ADE9EA /* ImageCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA56701F1E4C776800ADE9EA /* ImageCategory.m */; };
 		CA5670241E4D535700ADE9EA /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5670231E4D535700ADE9EA /* CategoryCell.m */; };
 		CA59A5381E500D6D0072FCB9 /* LaunchScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */; };
-		CA59A53B1E5015620072FCB9 /* WallpaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA59A53A1E5015620072FCB9 /* WallpaperViewController.m */; };
 		CA8870041E53ED51009E9333 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8870031E53ED51009E9333 /* Tools.m */; };
 		CAA9E7F422ED242100365A46 /* HXTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9E7F222ED242000365A46 /* HXTagsView.m */; };
 		CAC30AAD1FF4943700C6270D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC30AAC1FF4943600C6270D /* LaunchScreen.storyboard */; };
@@ -200,8 +199,6 @@
 		CA5670221E4D535700ADE9EA /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		CA5670231E4D535700ADE9EA /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LaunchScreen.jpg; sourceTree = "<group>"; };
-		CA59A5391E5015620072FCB9 /* WallpaperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallpaperViewController.h; sourceTree = "<group>"; };
-		CA59A53A1E5015620072FCB9 /* WallpaperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallpaperViewController.m; sourceTree = "<group>"; };
 		CA8870021E53ED51009E9333 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		CA8870031E53ED51009E9333 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		CA927FBD1E56F82900838737 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
@@ -559,8 +556,6 @@
 				CA5670171E4C707300ADE9EA /* CategoriesViewController.m */,
 				CAFB8F721E4DA26C001185F0 /* WallpapersViewController.h */,
 				CAFB8F731E4DA26C001185F0 /* WallpapersViewController.m */,
-				CA59A5391E5015620072FCB9 /* WallpaperViewController.h */,
-				CA59A53A1E5015620072FCB9 /* WallpaperViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1077,7 +1072,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/PYSearch/PYSearch/PYSearch.bundle",
 			);
@@ -1088,7 +1083,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B2E67B77DBA67C8A82B59A83 /* [CP] Check Pods Manifest.lock */ = {
@@ -1155,7 +1150,6 @@
 				CAFB8F741E4DA26C001185F0 /* WallpapersViewController.m in Sources */,
 				CAD5020B1E98661A00795CDA /* UIDevice+Extend.m in Sources */,
 				585323051F5FE87100EF2496 /* AppDelegate+XMShare.m in Sources */,
-				CA59A53B1E5015620072FCB9 /* WallpaperViewController.m in Sources */,
 				CA5670241E4D535700ADE9EA /* CategoryCell.m in Sources */,
 				CA5670201E4C776800ADE9EA /* ImageCategory.m in Sources */,
 				CAD502041E98661A00795CDA /* CALayer+Transition.m in Sources */,

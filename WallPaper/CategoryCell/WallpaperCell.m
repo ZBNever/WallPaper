@@ -37,22 +37,7 @@
 
 
 - (void)setPixabayModel:(PixabayModel *)model{
-    
-    // SDWebImage在iOS13中有崩溃情况出现 所以更改为YYKit中的YYAnimatedImageView
-//    [_image sd_setImageWithURL:model.webformatURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        self->_image.alpha = 0;
-//        //旋转
-//        //      _image.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(.5, .5), drand48()-0.5);
-//        //缩放
-//        self->_image.transform = CGAffineTransformMakeScale(0.6, 0.6);
-//        [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:0 animations:^{
-//
-//            self->_image.transform = CGAffineTransformIdentity;
-//            self->_image.alpha = 1;
-//
-//        } completion:nil];
-//
-//    }];
+
 //    WeakSelf
     [_webImageView setImageWithURL:model.webformatURL
                        placeholder:nil
@@ -75,24 +60,6 @@
     
 }
 
-//-(void)setWallpaper:(WallPaper *)wallpaper{
-//
-//    [_image sd_setImageWithURL:wallpaper.thumbnail completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        _image.alpha = 0;
-//        //旋转
-////      _image.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(.5, .5), drand48()-0.5);
-//        //缩放
-//        _image.transform = CGAffineTransformMakeScale(0.6, 0.6);
-//        [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:0 animations:^{
-//            
-//            _image.transform = CGAffineTransformIdentity;
-//            _image.alpha = 1;
-//            
-//        } completion:nil];
-//        
-//    }];
-//    
-//}
 
 - (void)layoutSubviews{
     [super layoutSubviews];
