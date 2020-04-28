@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "CategoriesViewController.h"
 #import "AppDelegate+XMShare.h"
+#import "ZBTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -19,15 +20,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
     [NSThread sleepForTimeInterval:2.0];//设置启动页面时间
-    CategoriesViewController *categoryVC = [[CategoriesViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:categoryVC];
-    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    CategoriesViewController *categoryVC = [[CategoriesViewController alloc] init];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:categoryVC];
+    ZBTabBarController *TabVC = [[ZBTabBarController alloc] init];
+    
+    
     
     
 //    nav.navigationBar.tintColor = [UIColor whiteColor];
-    self.window.rootViewController = nav;
+    self.window.rootViewController = TabVC;
     [self.window makeKeyAndVisible];
 //    [self init3rdParty];
     return YES;

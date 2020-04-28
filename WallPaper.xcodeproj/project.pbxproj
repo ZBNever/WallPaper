@@ -45,6 +45,27 @@
 		C7106BAE22E01B3500FA904A /* MHAsiNetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C7106BA722E01B3500FA904A /* MHAsiNetworkHandler.m */; };
 		C7106BAF22E01B3500FA904A /* MHAsiNetworkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C7106BA922E01B3500FA904A /* MHAsiNetworkItem.m */; };
 		C7106BB922E0564B00FA904A /* PixabayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7106BB822E0564B00FA904A /* PixabayModel.m */; };
+		C747F6A42457D68400B979D6 /* ZBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6A32457D68400B979D6 /* ZBTabBarController.m */; };
+		C747F6A72457D6D800B979D6 /* ZBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6A62457D6D800B979D6 /* ZBNavigationController.m */; };
+		C747F6AA2457D71F00B979D6 /* ZBVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6A92457D71F00B979D6 /* ZBVideoViewController.m */; };
+		C747F6B72457D97400B979D6 /* SelPlaybackControls.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6AC2457D97400B979D6 /* SelPlaybackControls.m */; };
+		C747F6B82457D97400B979D6 /* SelVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6AD2457D97400B979D6 /* SelVideoPlayer.m */; };
+		C747F6B92457D97400B979D6 /* UIViewController+PlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6B12457D97400B979D6 /* UIViewController+PlayerRotation.m */; };
+		C747F6BA2457D97400B979D6 /* SelPlayerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6B42457D97400B979D6 /* SelPlayerConfiguration.m */; };
+		C747F6BB2457D97400B979D6 /* SelVideoSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6B62457D97400B979D6 /* SelVideoSlider.m */; };
+		C747F6C12457D98700B979D6 /* SelVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6BF2457D98700B979D6 /* SelVideoViewController.m */; };
+		C747F6C22457D98700B979D6 /* SelMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6C02457D98700B979D6 /* SelMainViewController.m */; };
+		C747F6D02457DB3200B979D6 /* PDFPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6C72457DB3100B979D6 /* PDFPageModel.m */; };
+		C747F6D12457DB3200B979D6 /* PDFReaderSlideController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6C82457DB3100B979D6 /* PDFReaderSlideController.m */; };
+		C747F6D22457DB3200B979D6 /* Objective-C.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C747F6C92457DB3100B979D6 /* Objective-C.pdf */; };
+		C747F6D32457DB3200B979D6 /* PDFReaderMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6CC2457DB3100B979D6 /* PDFReaderMainViewController.m */; };
+		C747F6D42457DB3200B979D6 /* PDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6CD2457DB3100B979D6 /* PDFView.m */; };
+		C747F6D52457DB3200B979D6 /* PDFPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6CF2457DB3200B979D6 /* PDFPageController.m */; };
+		C747F6DA2457DB3C00B979D6 /* CommentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6D62457DB3B00B979D6 /* CommentNode.m */; };
+		C747F6DB2457DB3C00B979D6 /* ContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6D92457DB3C00B979D6 /* ContentsViewController.m */; };
+		C747F6DD2457DB4200B979D6 /* 002.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C747F6DC2457DB4200B979D6 /* 002.pdf */; };
+		C747F6E12457DD5D00B979D6 /* PDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6DF2457DD5D00B979D6 /* PDFViewController.m */; };
+		C747F6E22457DD5D00B979D6 /* PDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C747F6E02457DD5D00B979D6 /* PDFViewController.xib */; };
 		CA1AFF311E4D66C1006B8CA7 /* WallPaper.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AFF301E4D66C1006B8CA7 /* WallPaper.m */; };
 		CA1AFF341E4D66E3006B8CA7 /* WallPaperService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AFF331E4D66E3006B8CA7 /* WallPaperService.m */; };
 		CA27D69E1E514BF400FB07EF /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA27D69D1E514BF400FB07EF /* image.xcassets */; };
@@ -182,6 +203,46 @@
 		C7106BAC22E01B3500FA904A /* MHAsiNetworkHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAsiNetworkHandler.h; sourceTree = "<group>"; };
 		C7106BB722E0564B00FA904A /* PixabayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixabayModel.h; sourceTree = "<group>"; };
 		C7106BB822E0564B00FA904A /* PixabayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PixabayModel.m; sourceTree = "<group>"; };
+		C747F6A22457D68400B979D6 /* ZBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBTabBarController.h; sourceTree = "<group>"; };
+		C747F6A32457D68400B979D6 /* ZBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZBTabBarController.m; sourceTree = "<group>"; };
+		C747F6A52457D6D800B979D6 /* ZBNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBNavigationController.h; sourceTree = "<group>"; };
+		C747F6A62457D6D800B979D6 /* ZBNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZBNavigationController.m; sourceTree = "<group>"; };
+		C747F6A82457D71F00B979D6 /* ZBVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBVideoViewController.h; sourceTree = "<group>"; };
+		C747F6A92457D71F00B979D6 /* ZBVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZBVideoViewController.m; sourceTree = "<group>"; };
+		C747F6AC2457D97400B979D6 /* SelPlaybackControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelPlaybackControls.m; sourceTree = "<group>"; };
+		C747F6AD2457D97400B979D6 /* SelVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelVideoPlayer.m; sourceTree = "<group>"; };
+		C747F6AE2457D97400B979D6 /* SelVideoSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelVideoSlider.h; sourceTree = "<group>"; };
+		C747F6AF2457D97400B979D6 /* SelPlaybackControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelPlaybackControls.h; sourceTree = "<group>"; };
+		C747F6B12457D97400B979D6 /* UIViewController+PlayerRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PlayerRotation.m"; sourceTree = "<group>"; };
+		C747F6B22457D97400B979D6 /* SelPlayerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelPlayerConfiguration.h; sourceTree = "<group>"; };
+		C747F6B32457D97400B979D6 /* UIViewController+PlayerRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PlayerRotation.h"; sourceTree = "<group>"; };
+		C747F6B42457D97400B979D6 /* SelPlayerConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelPlayerConfiguration.m; sourceTree = "<group>"; };
+		C747F6B52457D97400B979D6 /* SelVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelVideoPlayer.h; sourceTree = "<group>"; };
+		C747F6B62457D97400B979D6 /* SelVideoSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelVideoSlider.m; sourceTree = "<group>"; };
+		C747F6BD2457D98700B979D6 /* SelVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelVideoViewController.h; sourceTree = "<group>"; };
+		C747F6BE2457D98700B979D6 /* SelMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelMainViewController.h; sourceTree = "<group>"; };
+		C747F6BF2457D98700B979D6 /* SelVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelVideoViewController.m; sourceTree = "<group>"; };
+		C747F6C02457D98700B979D6 /* SelMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelMainViewController.m; sourceTree = "<group>"; };
+		C747F6C42457DB3000B979D6 /* PDFReaderMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFReaderMainViewController.h; sourceTree = "<group>"; };
+		C747F6C52457DB3000B979D6 /* PDFReaderSlideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFReaderSlideController.h; sourceTree = "<group>"; };
+		C747F6C62457DB3100B979D6 /* PDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFView.h; sourceTree = "<group>"; };
+		C747F6C72457DB3100B979D6 /* PDFPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFPageModel.m; sourceTree = "<group>"; };
+		C747F6C82457DB3100B979D6 /* PDFReaderSlideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFReaderSlideController.m; sourceTree = "<group>"; };
+		C747F6C92457DB3100B979D6 /* Objective-C.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Objective-C.pdf"; sourceTree = "<group>"; };
+		C747F6CA2457DB3100B979D6 /* PDFReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFReader.h; sourceTree = "<group>"; };
+		C747F6CB2457DB3100B979D6 /* PDFPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFPageController.h; sourceTree = "<group>"; };
+		C747F6CC2457DB3100B979D6 /* PDFReaderMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFReaderMainViewController.m; sourceTree = "<group>"; };
+		C747F6CD2457DB3100B979D6 /* PDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFView.m; sourceTree = "<group>"; };
+		C747F6CE2457DB3200B979D6 /* PDFPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFPageModel.h; sourceTree = "<group>"; };
+		C747F6CF2457DB3200B979D6 /* PDFPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFPageController.m; sourceTree = "<group>"; };
+		C747F6D62457DB3B00B979D6 /* CommentNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentNode.m; sourceTree = "<group>"; };
+		C747F6D72457DB3B00B979D6 /* ContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentsViewController.h; sourceTree = "<group>"; };
+		C747F6D82457DB3C00B979D6 /* CommentNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentNode.h; sourceTree = "<group>"; };
+		C747F6D92457DB3C00B979D6 /* ContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentsViewController.m; sourceTree = "<group>"; };
+		C747F6DC2457DB4200B979D6 /* 002.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 002.pdf; sourceTree = "<group>"; };
+		C747F6DE2457DD5D00B979D6 /* PDFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFViewController.h; sourceTree = "<group>"; };
+		C747F6DF2457DD5D00B979D6 /* PDFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFViewController.m; sourceTree = "<group>"; };
+		C747F6E02457DD5D00B979D6 /* PDFViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PDFViewController.xib; sourceTree = "<group>"; };
 		CA1AFF2F1E4D66C1006B8CA7 /* WallPaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallPaper.h; sourceTree = "<group>"; };
 		CA1AFF301E4D66C1006B8CA7 /* WallPaper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallPaper.m; sourceTree = "<group>"; };
 		CA1AFF321E4D66E3006B8CA7 /* WallPaperService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallPaperService.h; sourceTree = "<group>"; };
@@ -502,6 +563,70 @@
 			path = NetwrokHandle;
 			sourceTree = "<group>";
 		};
+		C747F6AB2457D97400B979D6 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				C747F6BC2457D98700B979D6 /* ViewController */,
+				C747F6AC2457D97400B979D6 /* SelPlaybackControls.m */,
+				C747F6AD2457D97400B979D6 /* SelVideoPlayer.m */,
+				C747F6AE2457D97400B979D6 /* SelVideoSlider.h */,
+				C747F6AF2457D97400B979D6 /* SelPlaybackControls.h */,
+				C747F6B02457D97400B979D6 /* Configs */,
+				C747F6B52457D97400B979D6 /* SelVideoPlayer.h */,
+				C747F6B62457D97400B979D6 /* SelVideoSlider.m */,
+			);
+			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
+		C747F6B02457D97400B979D6 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				C747F6B12457D97400B979D6 /* UIViewController+PlayerRotation.m */,
+				C747F6B22457D97400B979D6 /* SelPlayerConfiguration.h */,
+				C747F6B32457D97400B979D6 /* UIViewController+PlayerRotation.h */,
+				C747F6B42457D97400B979D6 /* SelPlayerConfiguration.m */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
+		C747F6BC2457D98700B979D6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C747F6BD2457D98700B979D6 /* SelVideoViewController.h */,
+				C747F6BF2457D98700B979D6 /* SelVideoViewController.m */,
+				C747F6BE2457D98700B979D6 /* SelMainViewController.h */,
+				C747F6C02457D98700B979D6 /* SelMainViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C747F6C32457DB0E00B979D6 /* PDFReader */ = {
+			isa = PBXGroup;
+			children = (
+				C747F6DC2457DB4200B979D6 /* 002.pdf */,
+				C747F6D82457DB3C00B979D6 /* CommentNode.h */,
+				C747F6D62457DB3B00B979D6 /* CommentNode.m */,
+				C747F6D72457DB3B00B979D6 /* ContentsViewController.h */,
+				C747F6D92457DB3C00B979D6 /* ContentsViewController.m */,
+				C747F6C92457DB3100B979D6 /* Objective-C.pdf */,
+				C747F6CB2457DB3100B979D6 /* PDFPageController.h */,
+				C747F6CF2457DB3200B979D6 /* PDFPageController.m */,
+				C747F6CE2457DB3200B979D6 /* PDFPageModel.h */,
+				C747F6C72457DB3100B979D6 /* PDFPageModel.m */,
+				C747F6CA2457DB3100B979D6 /* PDFReader.h */,
+				C747F6C42457DB3000B979D6 /* PDFReaderMainViewController.h */,
+				C747F6CC2457DB3100B979D6 /* PDFReaderMainViewController.m */,
+				C747F6C52457DB3000B979D6 /* PDFReaderSlideController.h */,
+				C747F6C82457DB3100B979D6 /* PDFReaderSlideController.m */,
+				C747F6C62457DB3100B979D6 /* PDFView.h */,
+				C747F6CD2457DB3100B979D6 /* PDFView.m */,
+				C747F6DE2457DD5D00B979D6 /* PDFViewController.h */,
+				C747F6DF2457DD5D00B979D6 /* PDFViewController.m */,
+				C747F6E02457DD5D00B979D6 /* PDFViewController.xib */,
+			);
+			path = PDFReader;
+			sourceTree = "<group>";
+		};
 		CA27D6A01E51EED900FB07EF /* Global */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,10 +682,18 @@
 				CA56701D1E4C774300ADE9EA /* Models */,
 				CA5670191E4C724000ADE9EA /* Managers */,
 				CA5670151E4C701400ADE9EA /* Controllers */,
+				C747F6C32457DB0E00B979D6 /* PDFReader */,
+				C747F6AB2457D97400B979D6 /* VideoPlayer */,
 				CA5670011E4C6FB900ADE9EA /* AppDelegate.h */,
 				CA5670021E4C6FB900ADE9EA /* AppDelegate.m */,
 				585323031F5FE87100EF2496 /* AppDelegate+XMShare.h */,
 				585323041F5FE87100EF2496 /* AppDelegate+XMShare.m */,
+				C747F6A22457D68400B979D6 /* ZBTabBarController.h */,
+				C747F6A32457D68400B979D6 /* ZBTabBarController.m */,
+				C747F6A82457D71F00B979D6 /* ZBVideoViewController.h */,
+				C747F6A92457D71F00B979D6 /* ZBVideoViewController.m */,
+				C747F6A52457D6D800B979D6 /* ZBNavigationController.h */,
+				C747F6A62457D6D800B979D6 /* ZBNavigationController.m */,
 				CA56700A1E4C6FB900ADE9EA /* Assets.xcassets */,
 				CA27D69D1E514BF400FB07EF /* image.xcassets */,
 				CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */,
@@ -1076,6 +1209,7 @@
 				585322D91F5E9C4100EF2496 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				585322E01F5E9C4100EF2496 /* icon_share_wechat@2x.png in Resources */,
 				CAD502001E98661A00795CDA /* PhotoBroswerVC.xib in Resources */,
+				C747F6DD2457DB4200B979D6 /* 002.pdf in Resources */,
 				585322E11F5E9C4100EF2496 /* logo.jpg in Resources */,
 				585322DC1F5E9C4100EF2496 /* icon_share_moment@2x.png in Resources */,
 				CA27D69E1E514BF400FB07EF /* image.xcassets in Resources */,
@@ -1087,11 +1221,13 @@
 				CA56700B1E4C6FB900ADE9EA /* Assets.xcassets in Resources */,
 				585322DF1F5E9C4100EF2496 /* icon_share_webo@2x.png in Resources */,
 				CA28A5A1237679C200C9A5DC /* README.md in Resources */,
+				C747F6D22457DB3200B979D6 /* Objective-C.pdf in Resources */,
 				CAD502161E98661A00795CDA /* CoreSDWebImage.bundle in Resources */,
 				585322D71F5E9C4100EF2496 /* WeiboSDK.bundle in Resources */,
 				585322DE1F5E9C4100EF2496 /* icon_share_qzone@2x.png in Resources */,
 				CAD502291E98661A00795CDA /* CoreSVP.bundle in Resources */,
 				CA59A5381E500D6D0072FCB9 /* LaunchScreen.jpg in Resources */,
+				C747F6E22457DD5D00B979D6 /* PDFViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,7 +1240,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/PYSearch/PYSearch/PYSearch.bundle",
 			);
@@ -1115,7 +1251,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B2E67B77DBA67C8A82B59A83 /* [CP] Check Pods Manifest.lock */ = {
@@ -1143,21 +1279,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C747F6D52457DB3200B979D6 /* PDFPageController.m in Sources */,
 				CAFB8F771E4DA87F001185F0 /* WallpaperCell.m in Sources */,
 				CA28A59F237679C200C9A5DC /* NSArray+Unicode.m in Sources */,
 				585322DB1F5E9C4100EF2496 /* VerticalUIButton.m in Sources */,
 				CAD501FF1E98661A00795CDA /* PhotoBroswerVC.m in Sources */,
 				CAD501FB1E98661A00795CDA /* PBScrollView.m in Sources */,
 				CA28A5A2237679C200C9A5DC /* NSDictionary+Unicode.m in Sources */,
+				C747F6BA2457D97400B979D6 /* SelPlayerConfiguration.m in Sources */,
 				C7106BAD22E01B3500FA904A /* MHNetworkManager.m in Sources */,
+				C747F6A72457D6D800B979D6 /* ZBNavigationController.m in Sources */,
 				C7106B4E22E0191F00FA904A /* PixabayService.m in Sources */,
 				CAD501FD1E98661A00795CDA /* PhotoItemView.m in Sources */,
 				CAD502091E98661A00795CDA /* NSString+Password.m in Sources */,
 				585322E41F5E9C4100EF2496 /* XMShareWechatUtil.m in Sources */,
+				C747F6D02457DB3200B979D6 /* PDFPageModel.m in Sources */,
 				CAD501F31E98661A00795CDA /* UIView+PBExtend.m in Sources */,
 				CAD501F61E98661A00795CDA /* PhotoModel.m in Sources */,
 				CA5670031E4C6FB900ADE9EA /* AppDelegate.m in Sources */,
 				CAD501F41E98661A00795CDA /* PBConst.m in Sources */,
+				C747F6E12457DD5D00B979D6 /* PDFViewController.m in Sources */,
 				CAD501F81E98661A00795CDA /* PBBlurImageView.m in Sources */,
 				CAD502131E98661A00795CDA /* UIView+Extend.m in Sources */,
 				CAD5020A1E98661A00795CDA /* UIColor+Extend.m in Sources */,
@@ -1165,33 +1306,42 @@
 				CA1AFF311E4D66C1006B8CA7 /* WallPaper.m in Sources */,
 				C7106BAF22E01B3500FA904A /* MHAsiNetworkItem.m in Sources */,
 				CA8870041E53ED51009E9333 /* Tools.m in Sources */,
+				C747F6D42457DB3200B979D6 /* PDFView.m in Sources */,
 				CAD5022D1E98661A00795CDA /* SVProgressHUD.m in Sources */,
 				CAD501F91E98661A00795CDA /* PBPGView.m in Sources */,
+				C747F6C22457D98700B979D6 /* SelMainViewController.m in Sources */,
 				CAD5022E1E98661A00795CDA /* LFRoundProgressView.m in Sources */,
 				CAD502151E98661A00795CDA /* UIImage+ReMake.m in Sources */,
 				CAD502011E98661A00795CDA /* NSString+File.m in Sources */,
 				CAD5020E1E98661A00795CDA /* UIImage+Cut.m in Sources */,
+				C747F6A42457D68400B979D6 /* ZBTabBarController.m in Sources */,
 				CAD5022B1E98661A00795CDA /* SVIndefiniteAnimatedView.m in Sources */,
 				CAD502141E98661A00795CDA /* UIWindow+Launch.m in Sources */,
 				CAD502111E98661A00795CDA /* UIImage+Water.m in Sources */,
 				CAD5020C1E98661A00795CDA /* UIFont+Extend.m in Sources */,
 				C7106BB922E0564B00FA904A /* PixabayModel.m in Sources */,
 				CAD502021E98661A00795CDA /* CoreArchive.m in Sources */,
+				C747F6D12457DB3200B979D6 /* PDFReaderSlideController.m in Sources */,
+				C747F6AA2457D71F00B979D6 /* ZBVideoViewController.m in Sources */,
 				CAD5022A1E98661A00795CDA /* CoreSVP.m in Sources */,
 				CA28A5A3237679C200C9A5DC /* NSObject+SafeSwizzle.m in Sources */,
 				585322E31F5E9C4100EF2496 /* XMShareUtil.m in Sources */,
 				CAD502121E98661A00795CDA /* UITableViewCell+Extend.m in Sources */,
 				CAD502071E98661A00795CDA /* NSObject+Extend.m in Sources */,
 				CAFB8F741E4DA26C001185F0 /* WallpapersViewController.m in Sources */,
+				C747F6B92457D97400B979D6 /* UIViewController+PlayerRotation.m in Sources */,
 				CAD5020B1E98661A00795CDA /* UIDevice+Extend.m in Sources */,
 				585323051F5FE87100EF2496 /* AppDelegate+XMShare.m in Sources */,
 				CA5670241E4D535700ADE9EA /* CategoryCell.m in Sources */,
 				CA5670201E4C776800ADE9EA /* ImageCategory.m in Sources */,
+				C747F6D32457DB3200B979D6 /* PDFReaderMainViewController.m in Sources */,
+				C747F6B82457D97400B979D6 /* SelVideoPlayer.m in Sources */,
 				CAD502041E98661A00795CDA /* CALayer+Transition.m in Sources */,
 				CAD502271E98661A00795CDA /* UIButton+SD.m in Sources */,
 				CA5670181E4C707300ADE9EA /* CategoriesViewController.m in Sources */,
 				CAD501FC1E98661A00795CDA /* PhotoImageView.m in Sources */,
 				CAD502051E98661A00795CDA /* NSArray+Extend.m in Sources */,
+				C747F6C12457D98700B979D6 /* SelVideoViewController.m in Sources */,
 				CAD501FA1E98661A00795CDA /* PBSaveBtn.m in Sources */,
 				CAA9E7F422ED242100365A46 /* HXTagsView.m in Sources */,
 				C7106BAE22E01B3500FA904A /* MHAsiNetworkHandler.m in Sources */,
@@ -1200,7 +1350,10 @@
 				CAD502101E98661A00795CDA /* UIImage+FixOrientation.m in Sources */,
 				585322E51F5E9C4100EF2496 /* XMShareWeiboUtil.m in Sources */,
 				CAD5020F1E98661A00795CDA /* UIImage+Extend.m in Sources */,
+				C747F6BB2457D97400B979D6 /* SelVideoSlider.m in Sources */,
 				CA28A5A0237679C200C9A5DC /* NSString+Unicode.m in Sources */,
+				C747F6B72457D97400B979D6 /* SelPlaybackControls.m in Sources */,
+				C747F6DA2457DB3C00B979D6 /* CommentNode.m in Sources */,
 				CA1AFF341E4D66E3006B8CA7 /* WallPaperService.m in Sources */,
 				585322E21F5E9C4100EF2496 /* XMShareQQUtil.m in Sources */,
 				CAD502061E98661A00795CDA /* NSDate+Extend.m in Sources */,
@@ -1209,6 +1362,7 @@
 				CAD5020D1E98661A00795CDA /* UIImage+Color.m in Sources */,
 				CA56701C1E4C727800ADE9EA /* CategoriesManager.m in Sources */,
 				CAD502081E98661A00795CDA /* NSString+Extend.m in Sources */,
+				C747F6DB2457DB3C00B979D6 /* ContentsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

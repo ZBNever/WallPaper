@@ -8,6 +8,7 @@ target 'WallPaper' do
   pod 'YYKit','~>1.0.9'
   pod 'MBProgressHUD','~>1.1.0'
   pod 'PYSearch','~>0.9.1'
+  pod 'Masonry', '~> 1.1.0'
 #  pod 'PPNetworkHelper'
   
 end
