@@ -24,6 +24,8 @@
     CategoriesViewController *categoryVC = [[CategoriesViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:categoryVC];
     nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    
+    
 //    nav.navigationBar.tintColor = [UIColor whiteColor];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
