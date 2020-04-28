@@ -48,6 +48,11 @@
 		CA1AFF311E4D66C1006B8CA7 /* WallPaper.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AFF301E4D66C1006B8CA7 /* WallPaper.m */; };
 		CA1AFF341E4D66E3006B8CA7 /* WallPaperService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AFF331E4D66E3006B8CA7 /* WallPaperService.m */; };
 		CA27D69E1E514BF400FB07EF /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA27D69D1E514BF400FB07EF /* image.xcassets */; };
+		CA28A59F237679C200C9A5DC /* NSArray+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA28A597237679C200C9A5DC /* NSArray+Unicode.m */; };
+		CA28A5A0237679C200C9A5DC /* NSString+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA28A598237679C200C9A5DC /* NSString+Unicode.m */; };
+		CA28A5A1237679C200C9A5DC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA28A59A237679C200C9A5DC /* README.md */; };
+		CA28A5A2237679C200C9A5DC /* NSDictionary+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA28A59B237679C200C9A5DC /* NSDictionary+Unicode.m */; };
+		CA28A5A3237679C200C9A5DC /* NSObject+SafeSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = CA28A59D237679C200C9A5DC /* NSObject+SafeSwizzle.m */; };
 		CA5670001E4C6FB900ADE9EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA566FFF1E4C6FB900ADE9EA /* main.m */; };
 		CA5670031E4C6FB900ADE9EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5670021E4C6FB900ADE9EA /* AppDelegate.m */; };
 		CA56700B1E4C6FB900ADE9EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA56700A1E4C6FB900ADE9EA /* Assets.xcassets */; };
@@ -184,6 +189,15 @@
 		CA27D69D1E514BF400FB07EF /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
 		CA27D69F1E51EE5900FB07EF /* URLServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLServices.h; sourceTree = "<group>"; };
 		CA27D6A11E51EEEC00FB07EF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		CA28A596237679C200C9A5DC /* NSDictionary+Unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Unicode.h"; sourceTree = "<group>"; };
+		CA28A597237679C200C9A5DC /* NSArray+Unicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Unicode.m"; sourceTree = "<group>"; };
+		CA28A598237679C200C9A5DC /* NSString+Unicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Unicode.m"; sourceTree = "<group>"; };
+		CA28A599237679C200C9A5DC /* NSObject+SafeSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SafeSwizzle.h"; sourceTree = "<group>"; };
+		CA28A59A237679C200C9A5DC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CA28A59B237679C200C9A5DC /* NSDictionary+Unicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Unicode.m"; sourceTree = "<group>"; };
+		CA28A59C237679C200C9A5DC /* NSArray+Unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Unicode.h"; sourceTree = "<group>"; };
+		CA28A59D237679C200C9A5DC /* NSObject+SafeSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SafeSwizzle.m"; sourceTree = "<group>"; };
+		CA28A59E237679C200C9A5DC /* NSString+Unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Unicode.h"; sourceTree = "<group>"; };
 		CA566FFB1E4C6FB900ADE9EA /* WallPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA566FFF1E4C6FB900ADE9EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CA5670011E4C6FB900ADE9EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -497,6 +511,22 @@
 			path = Global;
 			sourceTree = "<group>";
 		};
+		CA28A595237679C200C9A5DC /* XcodeUnicode */ = {
+			isa = PBXGroup;
+			children = (
+				CA28A596237679C200C9A5DC /* NSDictionary+Unicode.h */,
+				CA28A597237679C200C9A5DC /* NSArray+Unicode.m */,
+				CA28A598237679C200C9A5DC /* NSString+Unicode.m */,
+				CA28A599237679C200C9A5DC /* NSObject+SafeSwizzle.h */,
+				CA28A59A237679C200C9A5DC /* README.md */,
+				CA28A59B237679C200C9A5DC /* NSDictionary+Unicode.m */,
+				CA28A59C237679C200C9A5DC /* NSArray+Unicode.h */,
+				CA28A59D237679C200C9A5DC /* NSObject+SafeSwizzle.m */,
+				CA28A59E237679C200C9A5DC /* NSString+Unicode.h */,
+			);
+			path = XcodeUnicode;
+			sourceTree = "<group>";
+		};
 		CA566FF21E4C6FB900ADE9EA = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +638,7 @@
 		CA8870011E53ED34009E9333 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				CA28A595237679C200C9A5DC /* XcodeUnicode */,
 				CA8870021E53ED51009E9333 /* Tools.h */,
 				CA8870031E53ED51009E9333 /* Tools.m */,
 			);
@@ -1055,6 +1086,7 @@
 				CAD5022C1E98661A00795CDA /* SVProgressHUD.bundle in Resources */,
 				CA56700B1E4C6FB900ADE9EA /* Assets.xcassets in Resources */,
 				585322DF1F5E9C4100EF2496 /* icon_share_webo@2x.png in Resources */,
+				CA28A5A1237679C200C9A5DC /* README.md in Resources */,
 				CAD502161E98661A00795CDA /* CoreSDWebImage.bundle in Resources */,
 				585322D71F5E9C4100EF2496 /* WeiboSDK.bundle in Resources */,
 				585322DE1F5E9C4100EF2496 /* icon_share_qzone@2x.png in Resources */,
@@ -1072,7 +1104,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/PYSearch/PYSearch/PYSearch.bundle",
 			);
@@ -1083,7 +1115,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B2E67B77DBA67C8A82B59A83 /* [CP] Check Pods Manifest.lock */ = {
@@ -1112,9 +1144,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAFB8F771E4DA87F001185F0 /* WallpaperCell.m in Sources */,
+				CA28A59F237679C200C9A5DC /* NSArray+Unicode.m in Sources */,
 				585322DB1F5E9C4100EF2496 /* VerticalUIButton.m in Sources */,
 				CAD501FF1E98661A00795CDA /* PhotoBroswerVC.m in Sources */,
 				CAD501FB1E98661A00795CDA /* PBScrollView.m in Sources */,
+				CA28A5A2237679C200C9A5DC /* NSDictionary+Unicode.m in Sources */,
 				C7106BAD22E01B3500FA904A /* MHNetworkManager.m in Sources */,
 				C7106B4E22E0191F00FA904A /* PixabayService.m in Sources */,
 				CAD501FD1E98661A00795CDA /* PhotoItemView.m in Sources */,
@@ -1144,6 +1178,7 @@
 				C7106BB922E0564B00FA904A /* PixabayModel.m in Sources */,
 				CAD502021E98661A00795CDA /* CoreArchive.m in Sources */,
 				CAD5022A1E98661A00795CDA /* CoreSVP.m in Sources */,
+				CA28A5A3237679C200C9A5DC /* NSObject+SafeSwizzle.m in Sources */,
 				585322E31F5E9C4100EF2496 /* XMShareUtil.m in Sources */,
 				CAD502121E98661A00795CDA /* UITableViewCell+Extend.m in Sources */,
 				CAD502071E98661A00795CDA /* NSObject+Extend.m in Sources */,
@@ -1165,6 +1200,7 @@
 				CAD502101E98661A00795CDA /* UIImage+FixOrientation.m in Sources */,
 				585322E51F5E9C4100EF2496 /* XMShareWeiboUtil.m in Sources */,
 				CAD5020F1E98661A00795CDA /* UIImage+Extend.m in Sources */,
+				CA28A5A0237679C200C9A5DC /* NSString+Unicode.m in Sources */,
 				CA1AFF341E4D66E3006B8CA7 /* WallPaperService.m in Sources */,
 				585322E21F5E9C4100EF2496 /* XMShareQQUtil.m in Sources */,
 				CAD502061E98661A00795CDA /* NSDate+Extend.m in Sources */,

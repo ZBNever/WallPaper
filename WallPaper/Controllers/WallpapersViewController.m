@@ -32,12 +32,13 @@ static NSString * const reuseIdentifier = @"Cell";
 @interface WallpapersViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) MJRefreshNormalHeader *header;
 @property (nonatomic, strong) MJRefreshBackNormalFooter *footer;
+@property (nonatomic, strong) NSMutableArray *wallpapers;
 @end
 
 @implementation WallpapersViewController{
     
     ImageCategory *_category;
-    NSArray *_wallpapers;
+//    NSMutableArray *_wallpapers;
     MBProgressHUD *_HUD;
     NSString *_tag;
     int index;
@@ -131,16 +132,19 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark  **********  重新加载  **********
 - (void)reloadData{
     _page = 1;
+    [self.wallpapers removeAllObjects];
     [self requestData];
 }
 #pragma mark  **********  上一页数据  **********
 - (void)requestPreviousPage{
-    if (_page>1) {
-        _page--;
-    }else{
-        _page = 1;
-    }
-    [self requestData];
+    [self reloadData];
+//    if (_page>1) {
+//        _page--;
+//    }else{
+//        _page = 1;
+//    }
+//
+//    [self requestData];
 }
 #pragma mark  **********  下一页数据  **********
 - (void)requestNextPage{
@@ -164,7 +168,7 @@ static NSString * const reuseIdentifier = @"Cell";
         [self->_HUD hideAnimated:YES];
         if (success && Pixabaypapers.count != 0) {
             self->index++;
-            self->_wallpapers = Pixabaypapers;
+            [self.wallpapers addObjectsFromArray:Pixabaypapers];
             [self.collectionView reloadData];
             
         }else if (success && Pixabaypapers.count == 0){
@@ -187,12 +191,12 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    return _wallpapers.count;
+    return self.wallpapers.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    PixabayModel *model = _wallpapers[indexPath.item];
+    PixabayModel *model = self.wallpapers[indexPath.item];
     [cell setPixabayModel:model];
     return cell;
 }
@@ -204,10 +208,10 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [PhotoBroswerVC show:self type:PhotoBroswerVCTypeZoom index:indexPath.item photoModelBlock:^NSArray *{
         
-        NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:self->_wallpapers.count];
+        NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:self.wallpapers.count];
         
-        for (NSUInteger i = 0; i < self->_wallpapers.count; i++) {
-            PixabayModel *model = self->_wallpapers[i];
+        for (NSUInteger i = 0; i < self.wallpapers.count; i++) {
+            PixabayModel *model = self.wallpapers[i];
 //            WallPaper *wallpaper = _wallpapers[i];
             PhotoModel *pbModel=[[PhotoModel alloc] init];
             //此处的展示视图为XIB，已经隐藏
@@ -236,5 +240,13 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
+
+- (NSMutableArray *)wallpapers{
+    
+    if (!_wallpapers) {
+        _wallpapers = [NSMutableArray array];
+    }
+    return _wallpapers;
+}
 
 @end

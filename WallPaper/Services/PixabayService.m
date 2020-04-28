@@ -25,7 +25,7 @@
         NSMutableArray *ModelArr = [PixabayModel mj_objectArrayWithKeyValuesArray:returnData[@"hits"]];
         completion(ModelArr,YES);
     } failureBlock:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     } showHUD:NO];
     
 }

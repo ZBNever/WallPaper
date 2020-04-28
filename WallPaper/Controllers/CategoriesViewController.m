@@ -62,6 +62,8 @@ static NSString *kCellID = @"cell";
     [self.tableView registerClass:[CategoryCell class] forCellReuseIdentifier:kCellID];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 180;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     _page = 1;
     [self mj_pullRefresh];
     [self requestDate];
@@ -85,11 +87,15 @@ static NSString *kCellID = @"cell";
 
 #pragma mark  **********  上一页数据  **********
 - (void)requestPreviousPage{
-    if (_page>1) {
-        _page--;
-    }else{
-        _page = 1;
-    }
+//    if (_page>1) {
+//        _page--;
+//    }else{
+//        _page = 1;
+//        [self.modelArr removeAllObjects];
+//    }
+    
+    _page = 1;
+    [self.modelArr removeAllObjects];
     [self requestDate];
 }
 #pragma mark  **********  下一页数据  **********
@@ -105,8 +111,12 @@ static NSString *kCellID = @"cell";
     [PixabayService requestWallpapersParams:params completion:^(NSArray * _Nonnull Pixabaypapers, BOOL success) {
         [self.header endRefreshing];
         [self.footer endRefreshing];
-        self.modelArr = [Pixabaypapers mutableCopy];
-        [self.tableView reloadData];
+        [self.modelArr addObjectsFromArray:Pixabaypapers];
+        //在主线程更新UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+        
     }];
 }
 
@@ -160,6 +170,15 @@ static NSString *kCellID = @"cell";
     NSString *tag = sender.titleLabel.text;
     WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageTag:tag];
     [self.navigationController pushViewController:wallpapers animated:YES];
+}
+
+
+- (NSMutableArray *)modelArr{
+    
+    if (!_modelArr) {
+        _modelArr = [NSMutableArray array];
+    }
+    return _modelArr;
 }
 
 @end

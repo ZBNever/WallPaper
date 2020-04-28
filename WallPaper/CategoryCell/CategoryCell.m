@@ -60,24 +60,27 @@
     WeakSelf
 
     [_thumbnail setImageWithURL:imageModel.webformatURL placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
-        CATransform3D rotation;//3D旋转
-        rotation = CATransform3DMakeTranslation(0 ,50 ,20);
-        rotation = CATransform3DMakeRotation(M_PI_4 , 0.0, 0.7, 0.4);
-        //逆时针旋转
-        rotation = CATransform3DScale(rotation, 0.9, .9, 1);
-        rotation.m34 = 1.0/ -600;
-        weakSelf.layer.shadowColor = [[UIColor blackColor] CGColor];
-        weakSelf.layer.shadowOffset = CGSizeMake(10, 10);
-        weakSelf.alpha = 0.2;
-        weakSelf.layer.transform = rotation;
-        
-        [UIView beginAnimations:@"rotation" context:NULL];
-        //旋转时间
-        [UIView setAnimationDuration:0.5];
-        weakSelf.layer.transform = CATransform3DIdentity;
-        weakSelf.alpha = 1;
-        weakSelf.layer.shadowOffset = CGSizeMake(0, 0);
-        [UIView commitAnimations];
+        if (stage == YYWebImageStageFinished) {
+            CATransform3D rotation;//3D旋转
+            rotation = CATransform3DMakeTranslation(0 ,50 ,20);
+            rotation = CATransform3DMakeRotation(M_PI_4 , 0.0, 0.7, 0.4);
+            //逆时针旋转
+            rotation = CATransform3DScale(rotation, 0.9, .9, 1);
+            rotation.m34 = 1.0/ -600;
+            weakSelf.layer.shadowColor = [[UIColor blackColor] CGColor];
+            weakSelf.layer.shadowOffset = CGSizeMake(10, 10);
+            weakSelf.alpha = 0.2;
+            weakSelf.layer.transform = rotation;
+            
+            [UIView beginAnimations:@"rotation" context:NULL];
+            //旋转时间
+            [UIView setAnimationDuration:0.5];
+            weakSelf.layer.transform = CATransform3DIdentity;
+            weakSelf.alpha = 1;
+            weakSelf.layer.shadowOffset = CGSizeMake(0, 0);
+            [UIView commitAnimations];
+        }
+
     }];
     NSArray *arr = [imageModel.tags componentsSeparatedByString:@","];
     [self configTag:arr];
