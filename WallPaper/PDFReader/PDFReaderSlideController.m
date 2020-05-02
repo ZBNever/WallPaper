@@ -22,10 +22,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"PDF浏览";
     [self.pdfView layoutIfNeeded];
     CGRect frame = CGRectMake(0, 0, self.pdfView.bounds.size.width, self.pdfView.bounds.size.height);
-    CFURLRef pdfURL = CFBundleCopyResourceURL(CFBundleGetMainBundle(), (__bridge CFStringRef)@"002.pdf", NULL, NULL);
+    CFURLRef pdfURL = CFBundleCopyResourceURL(CFBundleGetMainBundle(), (__bridge CFStringRef)@"Presentation.pdf", NULL, NULL);
     pdfDocument = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);
     CFRelease(pdfURL);
     

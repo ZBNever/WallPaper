@@ -66,6 +66,9 @@
 		C747F6DD2457DB4200B979D6 /* 002.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C747F6DC2457DB4200B979D6 /* 002.pdf */; };
 		C747F6E12457DD5D00B979D6 /* PDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6DF2457DD5D00B979D6 /* PDFViewController.m */; };
 		C747F6E22457DD5D00B979D6 /* PDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C747F6E02457DD5D00B979D6 /* PDFViewController.xib */; };
+		C747F6E52457F8C000B979D6 /* HWPDFBrowseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6E32457F8BF00B979D6 /* HWPDFBrowseScrollView.m */; };
+		C747F6E8245AB04F00B979D6 /* Catalog.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C747F6E6245AB04E00B979D6 /* Catalog.pdf */; };
+		C747F6E9245AB04F00B979D6 /* Presentation.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C747F6E7245AB04F00B979D6 /* Presentation.pdf */; };
 		CA1AFF311E4D66C1006B8CA7 /* WallPaper.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AFF301E4D66C1006B8CA7 /* WallPaper.m */; };
 		CA1AFF341E4D66E3006B8CA7 /* WallPaperService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AFF331E4D66E3006B8CA7 /* WallPaperService.m */; };
 		CA27D69E1E514BF400FB07EF /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA27D69D1E514BF400FB07EF /* image.xcassets */; };
@@ -243,6 +246,10 @@
 		C747F6DE2457DD5D00B979D6 /* PDFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFViewController.h; sourceTree = "<group>"; };
 		C747F6DF2457DD5D00B979D6 /* PDFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFViewController.m; sourceTree = "<group>"; };
 		C747F6E02457DD5D00B979D6 /* PDFViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PDFViewController.xib; sourceTree = "<group>"; };
+		C747F6E32457F8BF00B979D6 /* HWPDFBrowseScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWPDFBrowseScrollView.m; sourceTree = "<group>"; };
+		C747F6E42457F8BF00B979D6 /* HWPDFBrowseScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWPDFBrowseScrollView.h; sourceTree = "<group>"; };
+		C747F6E6245AB04E00B979D6 /* Catalog.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Catalog.pdf; sourceTree = "<group>"; };
+		C747F6E7245AB04F00B979D6 /* Presentation.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Presentation.pdf; sourceTree = "<group>"; };
 		CA1AFF2F1E4D66C1006B8CA7 /* WallPaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallPaper.h; sourceTree = "<group>"; };
 		CA1AFF301E4D66C1006B8CA7 /* WallPaper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallPaper.m; sourceTree = "<group>"; };
 		CA1AFF321E4D66E3006B8CA7 /* WallPaperService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallPaperService.h; sourceTree = "<group>"; };
@@ -567,10 +574,10 @@
 			isa = PBXGroup;
 			children = (
 				C747F6BC2457D98700B979D6 /* ViewController */,
-				C747F6AC2457D97400B979D6 /* SelPlaybackControls.m */,
-				C747F6AD2457D97400B979D6 /* SelVideoPlayer.m */,
-				C747F6AE2457D97400B979D6 /* SelVideoSlider.h */,
 				C747F6AF2457D97400B979D6 /* SelPlaybackControls.h */,
+				C747F6AC2457D97400B979D6 /* SelPlaybackControls.m */,
+				C747F6AE2457D97400B979D6 /* SelVideoSlider.h */,
+				C747F6AD2457D97400B979D6 /* SelVideoPlayer.m */,
 				C747F6B02457D97400B979D6 /* Configs */,
 				C747F6B52457D97400B979D6 /* SelVideoPlayer.h */,
 				C747F6B62457D97400B979D6 /* SelVideoSlider.m */,
@@ -581,10 +588,10 @@
 		C747F6B02457D97400B979D6 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				C747F6B12457D97400B979D6 /* UIViewController+PlayerRotation.m */,
 				C747F6B22457D97400B979D6 /* SelPlayerConfiguration.h */,
-				C747F6B32457D97400B979D6 /* UIViewController+PlayerRotation.h */,
 				C747F6B42457D97400B979D6 /* SelPlayerConfiguration.m */,
+				C747F6B32457D97400B979D6 /* UIViewController+PlayerRotation.h */,
+				C747F6B12457D97400B979D6 /* UIViewController+PlayerRotation.m */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -603,6 +610,10 @@
 		C747F6C32457DB0E00B979D6 /* PDFReader */ = {
 			isa = PBXGroup;
 			children = (
+				C747F6E6245AB04E00B979D6 /* Catalog.pdf */,
+				C747F6E7245AB04F00B979D6 /* Presentation.pdf */,
+				C747F6E42457F8BF00B979D6 /* HWPDFBrowseScrollView.h */,
+				C747F6E32457F8BF00B979D6 /* HWPDFBrowseScrollView.m */,
 				C747F6DC2457DB4200B979D6 /* 002.pdf */,
 				C747F6D82457DB3C00B979D6 /* CommentNode.h */,
 				C747F6D62457DB3B00B979D6 /* CommentNode.m */,
@@ -1215,6 +1226,7 @@
 				CA27D69E1E514BF400FB07EF /* image.xcassets in Resources */,
 				CAD501FE1E98661A00795CDA /* PhotoItemView.xib in Resources */,
 				CAD501F71E98661A00795CDA /* PB.bundle in Resources */,
+				C747F6E8245AB04F00B979D6 /* Catalog.pdf in Resources */,
 				585322DD1F5E9C4100EF2496 /* icon_share_qq@2x.png in Resources */,
 				CAC30AAD1FF4943700C6270D /* LaunchScreen.storyboard in Resources */,
 				CAD5022C1E98661A00795CDA /* SVProgressHUD.bundle in Resources */,
@@ -1225,6 +1237,7 @@
 				CAD502161E98661A00795CDA /* CoreSDWebImage.bundle in Resources */,
 				585322D71F5E9C4100EF2496 /* WeiboSDK.bundle in Resources */,
 				585322DE1F5E9C4100EF2496 /* icon_share_qzone@2x.png in Resources */,
+				C747F6E9245AB04F00B979D6 /* Presentation.pdf in Resources */,
 				CAD502291E98661A00795CDA /* CoreSVP.bundle in Resources */,
 				CA59A5381E500D6D0072FCB9 /* LaunchScreen.jpg in Resources */,
 				C747F6E22457DD5D00B979D6 /* PDFViewController.xib in Resources */,
@@ -1293,6 +1306,7 @@
 				CAD501FD1E98661A00795CDA /* PhotoItemView.m in Sources */,
 				CAD502091E98661A00795CDA /* NSString+Password.m in Sources */,
 				585322E41F5E9C4100EF2496 /* XMShareWechatUtil.m in Sources */,
+				C747F6E52457F8C000B979D6 /* HWPDFBrowseScrollView.m in Sources */,
 				C747F6D02457DB3200B979D6 /* PDFPageModel.m in Sources */,
 				CAD501F31E98661A00795CDA /* UIView+PBExtend.m in Sources */,
 				CAD501F61E98661A00795CDA /* PhotoModel.m in Sources */,

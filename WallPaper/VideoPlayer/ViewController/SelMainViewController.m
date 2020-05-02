@@ -50,6 +50,10 @@
     
     if (!_dataArr) {
         _dataArr = [NSMutableArray arrayWithObjects:
+                    @"http://139.199.74.115:8080/app/video/Performance%20Testing/Fire-resistance.mp4",
+                    @"http://139.199.74.115:8080/app/video/Performance%20Testing/Rugged%20Durability%20Test%20Rolled%20by%20Car%20-%20UK%20customer.mp4",
+                    @"http://139.199.74.115:8080/app/video/Performance%20Testing/WISDOM%20Cordless%20Lamp%20-%20Chilean%20customer%20TUBOLED.mp4",
+                    @"http://139.199.74.115:8080/app/video//WISDOM%20Company%20Introduction/WISDOM-Video-Company-Introduction-EN-2017.mp4",
                     @"http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4",
                     @"http://vfx.mtime.cn/Video/2019/03/21/mp4/190321153853126488.mp4",
                     @"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319222227698228.mp4",
@@ -65,6 +69,7 @@
                     @"http://vfx.mtime.cn/Video/2019/03/12/mp4/190312143927981075.mp4",
                     @"http://vfx.mtime.cn/Video/2019/03/12/mp4/190312083533415853.mp4",
                     @"http://vfx.mtime.cn/Video/2019/03/09/mp4/190309153658147087.mp4",
+                    
                     nil];
     }
     return _dataArr;

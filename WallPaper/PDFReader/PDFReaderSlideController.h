@@ -22,6 +22,6 @@
 @property float scale_;
 -(CGRect)zoomRectForScale:(float)scale inView:(UIScrollView*)scrollView withCenter:(CGPoint)center;
 -(void) skip: (NSInteger) num;
-@property (weak, nonatomic) IBOutlet UIView *pdfView;
+@property (strong, nonatomic) UIView *pdfView;
 
 @end

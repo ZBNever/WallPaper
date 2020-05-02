@@ -10,12 +10,13 @@
 #import "PDFReaderMainViewController.h"
 #import "ContentsViewController.h"
 #import "PDFReader.h"
+#import "HWPDFBrowseScrollView.h"
 
-@interface PDFReaderMainViewController (){
+@interface PDFReaderMainViewController ()<UIScrollViewDelegate>{
     CGPDFDocumentRef pdfDocument;
     
 }
-
+@property (nonatomic, strong) HWPDFBrowseScrollView *scrollView;
 @end
 
 @implementation PDFReaderMainViewController
@@ -26,7 +27,7 @@
     //self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"PDF浏览";
    
-    CFURLRef pdfURL = CFBundleCopyResourceURL(CFBundleGetMainBundle(), (__bridge CFStringRef)@"Objective-C.pdf", NULL, NULL);
+    CFURLRef pdfURL = CFBundleCopyResourceURL(CFBundleGetMainBundle(), (__bridge CFStringRef)@"Catalog.pdf", NULL, NULL);
     pdfDocument = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);
     CFRelease(pdfURL);
     
@@ -49,7 +50,21 @@
                             animated:NO
                           completion:^(BOOL f){}];
     [self addChildViewController:pageViewCtrl];
-    [self.view addSubview:pageViewCtrl.view];
+//    [self.view addSubview:pageViewCtrl.view];
+    
+    
+    //scrollView
+    HWPDFBrowseScrollView *scrollView = [[HWPDFBrowseScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    scrollView.delegate = self;
+    scrollView.backgroundColor = [UIColor blackColor];
+    scrollView.maximumZoomScale = 3.0;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    [self.view addSubview:scrollView];
+    _scrollView = scrollView;
+    
+    [scrollView addSubview:pageViewCtrl.view];
+    
     [pageViewCtrl didMoveToParentViewController:self];
     
     UIButton * button = [[UIButton alloc] init];
@@ -73,7 +88,9 @@
 -(void)tapClick: (UITapGestureRecognizer *)gesture{
     NSArray * contents = [self getPDFContents:pdfDocument];
     if (contents && contents.count>0) {
-        ContentsViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContentsViewController"];
+//        ContentsViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContentsViewController"];
+        
+        ContentsViewController *viewController = [[ContentsViewController alloc] init];
         viewController.contents = contents;
         viewController.title = @"Contents";
         [self.navigationController pushViewController:viewController animated:YES];
