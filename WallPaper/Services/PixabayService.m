@@ -30,4 +30,21 @@
     
 }
 
++(void)requestVideoParams:(NSMutableDictionary *)params completion:(PixabayCompletion)completion{
+        if (params == nil) {
+            params = [NSMutableDictionary dictionary];
+        }
+        [params setObject:API_Key forKey:@"key"];
+        [params setObject:@"zh" forKey:@"lang"];
+        [params setObject:@"all" forKey:@"video_type"];
+        [MHNetworkManager getRequstWithURL:API_Video_HOST params:params successBlock:^(id returnData, int code, NSString *msg) {
+    //        NSLog(@"returnData:%@",returnData);
+            NSMutableArray *ModelArr = [PixabayModel mj_objectArrayWithKeyValuesArray:returnData[@"hits"]];
+            completion(ModelArr,YES);
+        } failureBlock:^(NSError *error) {
+    //        NSLog(@"%@",error);
+        } showHUD:NO];
+    
+}
+
 @end

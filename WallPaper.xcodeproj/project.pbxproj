@@ -69,6 +69,7 @@
 		C747F6E52457F8C000B979D6 /* HWPDFBrowseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C747F6E32457F8BF00B979D6 /* HWPDFBrowseScrollView.m */; };
 		C747F6E8245AB04F00B979D6 /* Catalog.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C747F6E6245AB04E00B979D6 /* Catalog.pdf */; };
 		C747F6E9245AB04F00B979D6 /* Presentation.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C747F6E7245AB04F00B979D6 /* Presentation.pdf */; };
+		C7F04B82246EB5BF00469650 /* PixabayVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F04B81246EB5BF00469650 /* PixabayVideoModel.m */; };
 		CA1AFF311E4D66C1006B8CA7 /* WallPaper.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AFF301E4D66C1006B8CA7 /* WallPaper.m */; };
 		CA1AFF341E4D66E3006B8CA7 /* WallPaperService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AFF331E4D66E3006B8CA7 /* WallPaperService.m */; };
 		CA27D69E1E514BF400FB07EF /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA27D69D1E514BF400FB07EF /* image.xcassets */; };
@@ -250,6 +251,8 @@
 		C747F6E42457F8BF00B979D6 /* HWPDFBrowseScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWPDFBrowseScrollView.h; sourceTree = "<group>"; };
 		C747F6E6245AB04E00B979D6 /* Catalog.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Catalog.pdf; sourceTree = "<group>"; };
 		C747F6E7245AB04F00B979D6 /* Presentation.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Presentation.pdf; sourceTree = "<group>"; };
+		C7F04B80246EB5BF00469650 /* PixabayVideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixabayVideoModel.h; sourceTree = "<group>"; };
+		C7F04B81246EB5BF00469650 /* PixabayVideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PixabayVideoModel.m; sourceTree = "<group>"; };
 		CA1AFF2F1E4D66C1006B8CA7 /* WallPaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallPaper.h; sourceTree = "<group>"; };
 		CA1AFF301E4D66C1006B8CA7 /* WallPaper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallPaper.m; sourceTree = "<group>"; };
 		CA1AFF321E4D66E3006B8CA7 /* WallPaperService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallPaperService.h; sourceTree = "<group>"; };
@@ -577,10 +580,12 @@
 				C747F6AF2457D97400B979D6 /* SelPlaybackControls.h */,
 				C747F6AC2457D97400B979D6 /* SelPlaybackControls.m */,
 				C747F6AE2457D97400B979D6 /* SelVideoSlider.h */,
-				C747F6AD2457D97400B979D6 /* SelVideoPlayer.m */,
-				C747F6B02457D97400B979D6 /* Configs */,
-				C747F6B52457D97400B979D6 /* SelVideoPlayer.h */,
 				C747F6B62457D97400B979D6 /* SelVideoSlider.m */,
+				C747F6B52457D97400B979D6 /* SelVideoPlayer.h */,
+				C747F6AD2457D97400B979D6 /* SelVideoPlayer.m */,
+				C7F04B80246EB5BF00469650 /* PixabayVideoModel.h */,
+				C7F04B81246EB5BF00469650 /* PixabayVideoModel.m */,
+				C747F6B02457D97400B979D6 /* Configs */,
 			);
 			path = VideoPlayer;
 			sourceTree = "<group>";
@@ -1298,6 +1303,7 @@
 				585322DB1F5E9C4100EF2496 /* VerticalUIButton.m in Sources */,
 				CAD501FF1E98661A00795CDA /* PhotoBroswerVC.m in Sources */,
 				CAD501FB1E98661A00795CDA /* PBScrollView.m in Sources */,
+				C7F04B82246EB5BF00469650 /* PixabayVideoModel.m in Sources */,
 				CA28A5A2237679C200C9A5DC /* NSDictionary+Unicode.m in Sources */,
 				C747F6BA2457D97400B979D6 /* SelPlayerConfiguration.m in Sources */,
 				C7106BAD22E01B3500FA904A /* MHNetworkManager.m in Sources */,

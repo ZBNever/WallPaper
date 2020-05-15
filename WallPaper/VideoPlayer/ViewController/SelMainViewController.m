@@ -8,10 +8,13 @@
 
 #import "SelMainViewController.h"
 #import "SelVideoViewController.h"
+#import "PixabayService.h"
+#import "PixabayVideoModel.h"
 
 @interface SelMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 @property (nonatomic, strong) NSMutableArray *dataArr;
+
 @end
 
 @implementation SelMainViewController
@@ -20,12 +23,14 @@
     [super viewDidLoad];
     self.title = @"视频";
     [self.view addSubview:self.mainTableView];
+    [self requestVideo];
 }
 
 - (void)playAction:(NSInteger)index titleStr:(NSString *)titleStr{
     SelVideoViewController *videoVC = [[SelVideoViewController alloc]init];
-    videoVC.urlStr = self.dataArr[index];
-    videoVC.titleStr = titleStr;
+    PixabayVideoModel *model = self.dataArr[index];
+    videoVC.urlStr = model.videos.large.url;
+    videoVC.titleStr = model.tags;
     [self.navigationController pushViewController:videoVC animated:YES];
 }
 
@@ -49,31 +54,50 @@
 - (NSMutableArray *)dataArr{
     
     if (!_dataArr) {
-        _dataArr = [NSMutableArray arrayWithObjects:
-                    @"http://139.199.74.115:8080/app/video/Performance%20Testing/Fire-resistance.mp4",
-                    @"http://139.199.74.115:8080/app/video/Performance%20Testing/Rugged%20Durability%20Test%20Rolled%20by%20Car%20-%20UK%20customer.mp4",
-                    @"http://139.199.74.115:8080/app/video/Performance%20Testing/WISDOM%20Cordless%20Lamp%20-%20Chilean%20customer%20TUBOLED.mp4",
-                    @"http://139.199.74.115:8080/app/video//WISDOM%20Company%20Introduction/WISDOM-Video-Company-Introduction-EN-2017.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/21/mp4/190321153853126488.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319222227698228.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319212559089721.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/18/mp4/190318214226685784.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319104618910544.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319125415785691.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/17/mp4/190317150237409904.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/14/mp4/190314223540373995.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/14/mp4/190314102306987969.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/13/mp4/190313094901111138.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/12/mp4/190312143927981075.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/12/mp4/190312083533415853.mp4",
-                    @"http://vfx.mtime.cn/Video/2019/03/09/mp4/190309153658147087.mp4",
-                    
-                    nil];
+        
+        _dataArr = [NSMutableArray array];
+//        _dataArr = [NSMutableArray arrayWithObjects:
+//                    @"http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/21/mp4/190321153853126488.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319222227698228.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319212559089721.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/18/mp4/190318214226685784.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319104618910544.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319125415785691.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/17/mp4/190317150237409904.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/14/mp4/190314223540373995.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/14/mp4/190314102306987969.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/13/mp4/190313094901111138.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/12/mp4/190312143927981075.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/12/mp4/190312083533415853.mp4",
+//                    @"http://vfx.mtime.cn/Video/2019/03/09/mp4/190309153658147087.mp4",
+//
+//                    nil];
     }
     return _dataArr;
 }
+
+- (void)requestVideo{
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:@"latest" forKey:@"order"];
+    [param setObject:@(1) forKey:@"page"];
+//    if ([_tag isEqualToString:@"Latest"]) {
+//        [param setObject:@"latest" forKey:@"order"];
+//    }else{
+//        [param setObject:_tag forKey:@"q"];
+//    }
+//    [param setObject:@(_page) forKey:@"page"];
+    [PixabayService requestVideoParams:param completion:^(NSArray * _Nonnull Pixabaypapers, BOOL success) {
+        self.dataArr = [PixabayVideoModel mj_objectArrayWithKeyValuesArray:Pixabaypapers];
+        //在主线程更新UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.mainTableView reloadData];
+        });
+    }];
+}
+
 #pragma mark - tableView delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -94,7 +118,10 @@
         
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Video-%ld",indexPath.row];//self.dataArr[indexPath.row];
+    PixabayVideoModel *model = self.dataArr[indexPath.row];
+    
+    cell.textLabel.text = model.tags;//self.dataArr[indexPath.row];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.userImageURL]];
     
     return cell;
     

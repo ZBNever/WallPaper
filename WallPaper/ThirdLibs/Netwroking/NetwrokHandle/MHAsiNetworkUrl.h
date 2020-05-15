@@ -23,6 +23,7 @@
  */
 #define API_HOST @"https://pixabay.com/api/"
 
+#define API_Video_HOST @"https://pixabay.com/api/videos/"
 // 接口路径全拼
 #define PATH(_path) [NSString stringWithFormat:_path, API_HOST]
 

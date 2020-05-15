@@ -15,6 +15,8 @@ typedef void(^PixabayCompletion)(NSArray *Pixabaypapers,BOOL success);
 
 + (void)requestWallpapersParams:(NSMutableDictionary *)params completion:(PixabayCompletion)completion;
 
++ (void)requestVideoParams:(NSMutableDictionary *)params completion:(PixabayCompletion)completion;
+
 @end
 
 NS_ASSUME_NONNULL_END
