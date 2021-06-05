@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WallPaper.h"
 
 @class ImageCategory;
 
@@ -24,6 +25,8 @@
 @interface CategoryCell : UITableViewCell
 
 @property (nonatomic,assign) id<HXCellTagsViewDelegate> delegate;
+
+@property (nonatomic, strong) WallPaperListModel *wallPaperListModel;
 
 - (void)setImageModel:(PixabayModel *)imageModel;
 

@@ -9,71 +9,49 @@
 #import "WallPaperService.h"
 #import "WallPaper.h"
 #import <AFNetworking.h>
+#import "MHNetwork.h"
+#import <MJExtension.h>
 
 @implementation WallPaperService
 
-+(void)requestWallpapersFromURL:(NSURL *)url completion:(WallpapersCompletion)completion{
++(void)requestWallpapersFromURL:(NSString *)url completion:(WallpapersCompletion)completion{
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    if (params == nil) {
+//        params = [NSMutableDictionary dictionary];
+//    }
+//    [params setObject:API_Key forKey:@"key"];
+//    [params setObject:@"zh" forKey:@"lang"];
+//    [params setObject:@"photo" forKey:@"image_type"];
+//    [params setObject:@"vertical" forKey:@"orientation"];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        
-        if (data.length && !connectionError) {
-            
-            NSArray *wallpapers = [self parse:data];
-            
-            completion(wallpapers,YES);
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"获取缩略图失败" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-
-            completion(nil,NO);
-        }
-    }];
+    [MHNetworkManager getRequstWithURL:url params:nil successBlock:^(id returnData, int code, NSString *msg) {
+//        NSLog(@"returnData:%@",returnData);
+        NSMutableArray *ModelArr = [WallPaperListModel mj_objectArrayWithKeyValuesArray:returnData[@"data"]];
+        completion(ModelArr,YES);
+    } failureBlock:^(NSError *error) {
+//        NSLog(@"%@",error);
+    } showHUD:NO];
 }
 
-+ (NSArray *)parse:(NSData *)data{
-
-    NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *thumbSection = [self stringByExtractingFrom:@"<section class=\"thumb-listing-page\">" to:@"</section>" in:html];
-    NSArray *thumbStrings = [thumbSection componentsSeparatedByString:@"<li><figure"];
-    NSMutableArray *wallpapers = [NSMutableArray array];
++(void)requestSearchWallPapers:(NSMutableDictionary *)params completion:(WallpapersCompletion)completion{
     
-    for (NSString *thumbString in thumbStrings) {
-        NSString *thumbnail = [self stringByExtractingFrom:@"data-src=\"" to:@"\"" in:thumbString];
-        NSString *detail = [self stringByExtractingFrom:@"href=\"" to:@"\"" in:thumbString];
-        if (thumbnail && detail) {
-            //https://alpha.wallhaven.cc/wallpaper/69739
-            //
-            NSString *fullUrl = nil;
-            if ([detail hasPrefix:@"https://alpha.wallhaven.cc/wallpaper/"]) {
-                fullUrl = [NSString stringWithFormat:@"https://alpha.wallhaven.cc/wallpapers/full/wallhaven-%@.jpg",[detail substringFromIndex:37]];
-            }
-            WallPaper *wallpaper = [[WallPaper alloc] init];
-            wallpaper.thumbnail = [NSURL URLWithString:thumbnail];
-            wallpaper.detail = [NSURL URLWithString:detail];
-            wallpaper.fullSize = [NSURL URLWithString:fullUrl];
-            [wallpapers addObject:wallpaper];
-        }
+    if (params == nil) {
+        params = [NSMutableDictionary dictionary];
     }
-    return [wallpapers copy];
+//    [params setObject:WallHavenAPIkey forKey:@"apikey"];
+    [params setObject:@"111" forKey:@"categories"];
+    [params setObject:@"" forKey:@"q"];
+//    [params setObject:@"vertical" forKey:@"orientation"];
+    
+    [MHNetworkManager getRequstWithURL:WallPaperSearchURL params:params successBlock:^(id returnData, int code, NSString *msg) {
+//        NSLog(@"returnData:%@",returnData);
+        NSMutableArray *ModelArr = [WallPaperListModel mj_objectArrayWithKeyValuesArray:returnData[@"data"]];
+        completion(ModelArr,YES);
+    } failureBlock:^(NSError *error) {
+//        NSLog(@"%@",error);
+    } showHUD:NO];
 }
-
-+ (NSString *)stringByExtractingFrom:(NSString *)startString to:(NSString *)endString in:(NSString *)source{
-    NSRange startRange = [source rangeOfString:startString];
-    if (startRange.length) {
-        NSUInteger location = startRange.length + startRange.location;
-        NSRange endRange = [source rangeOfString:endString
-                                         options:0
-                                           range:NSMakeRange(location, source.length-location)];
-        if (endRange.length) {
-            return [source substringWithRange:NSMakeRange(location,endRange.location-location)];
-        }
-    }
-    return nil;
-}
-
-
 
 
 @end

@@ -422,6 +422,28 @@
 			path = PrintBeautifulLog;
 			sourceTree = "<group>";
 		};
+		044C437F266BCAAB00BC612F /* Systerm */ = {
+			isa = PBXGroup;
+			children = (
+				CA5670011E4C6FB900ADE9EA /* AppDelegate.h */,
+				CA5670021E4C6FB900ADE9EA /* AppDelegate.m */,
+				585323031F5FE87100EF2496 /* AppDelegate+XMShare.h */,
+				585323041F5FE87100EF2496 /* AppDelegate+XMShare.m */,
+				C747F6A22457D68400B979D6 /* ZBTabBarController.h */,
+				C747F6A32457D68400B979D6 /* ZBTabBarController.m */,
+				C747F6A82457D71F00B979D6 /* ZBVideoViewController.h */,
+				C747F6A92457D71F00B979D6 /* ZBVideoViewController.m */,
+				C747F6A52457D6D800B979D6 /* ZBNavigationController.h */,
+				C747F6A62457D6D800B979D6 /* ZBNavigationController.m */,
+				CA56700A1E4C6FB900ADE9EA /* Assets.xcassets */,
+				CA27D69D1E514BF400FB07EF /* image.xcassets */,
+				CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */,
+				CAC30AAC1FF4943600C6270D /* LaunchScreen.storyboard */,
+				CA566FFE1E4C6FB900ADE9EA /* Supporting Files */,
+			);
+			path = Systerm;
+			sourceTree = "<group>";
+		};
 		585322A91F5E9C4100EF2496 /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -701,6 +723,8 @@
 		CA566FFD1E4C6FB900ADE9EA /* WallPaper */ = {
 			isa = PBXGroup;
 			children = (
+				CA56700F1E4C6FB900ADE9EA /* Info.plist */,
+				044C437F266BCAAB00BC612F /* Systerm */,
 				585322A91F5E9C4100EF2496 /* Share */,
 				CAD5015A1E98661A00795CDA /* ThirdLibs */,
 				CA8870011E53ED34009E9333 /* Tools */,
@@ -708,26 +732,10 @@
 				CA5670251E4D658A00ADE9EA /* Services */,
 				CA5670211E4D533400ADE9EA /* CategoryCell */,
 				CA56701D1E4C774300ADE9EA /* Models */,
-				CA5670191E4C724000ADE9EA /* Managers */,
+				CA5670191E4C724000ADE9EA /* Managers_unuse */,
 				CA5670151E4C701400ADE9EA /* Controllers */,
 				C747F6C32457DB0E00B979D6 /* PDFReader */,
 				C747F6AB2457D97400B979D6 /* VideoPlayer */,
-				CA5670011E4C6FB900ADE9EA /* AppDelegate.h */,
-				CA5670021E4C6FB900ADE9EA /* AppDelegate.m */,
-				585323031F5FE87100EF2496 /* AppDelegate+XMShare.h */,
-				585323041F5FE87100EF2496 /* AppDelegate+XMShare.m */,
-				C747F6A22457D68400B979D6 /* ZBTabBarController.h */,
-				C747F6A32457D68400B979D6 /* ZBTabBarController.m */,
-				C747F6A82457D71F00B979D6 /* ZBVideoViewController.h */,
-				C747F6A92457D71F00B979D6 /* ZBVideoViewController.m */,
-				C747F6A52457D6D800B979D6 /* ZBNavigationController.h */,
-				C747F6A62457D6D800B979D6 /* ZBNavigationController.m */,
-				CA56700A1E4C6FB900ADE9EA /* Assets.xcassets */,
-				CA27D69D1E514BF400FB07EF /* image.xcassets */,
-				CA59A5371E500D6D0072FCB9 /* LaunchScreen.jpg */,
-				CAC30AAC1FF4943600C6270D /* LaunchScreen.storyboard */,
-				CA56700F1E4C6FB900ADE9EA /* Info.plist */,
-				CA566FFE1E4C6FB900ADE9EA /* Supporting Files */,
 			);
 			path = WallPaper;
 			sourceTree = "<group>";
@@ -738,6 +746,7 @@
 				CA566FFF1E4C6FB900ADE9EA /* main.m */,
 			);
 			name = "Supporting Files";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		CA5670151E4C701400ADE9EA /* Controllers */ = {
@@ -751,13 +760,13 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		CA5670191E4C724000ADE9EA /* Managers */ = {
+		CA5670191E4C724000ADE9EA /* Managers_unuse */ = {
 			isa = PBXGroup;
 			children = (
 				CA56701A1E4C727800ADE9EA /* CategoriesManager.h */,
 				CA56701B1E4C727800ADE9EA /* CategoriesManager.m */,
 			);
-			path = Managers;
+			path = Managers_unuse;
 			sourceTree = "<group>";
 		};
 		CA56701D1E4C774300ADE9EA /* Models */ = {
@@ -807,19 +816,19 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
-		CAA9E7F122ED242000365A46 /* 标签 */ = {
+		CAA9E7F122ED242000365A46 /* Tags */ = {
 			isa = PBXGroup;
 			children = (
 				CAA9E7F322ED242000365A46 /* HXTagsView.h */,
 				CAA9E7F222ED242000365A46 /* HXTagsView.m */,
 			);
-			path = "标签";
+			path = Tags;
 			sourceTree = "<group>";
 		};
 		CAD5015A1E98661A00795CDA /* ThirdLibs */ = {
 			isa = PBXGroup;
 			children = (
-				CAA9E7F122ED242000365A46 /* 标签 */,
+				CAA9E7F122ED242000365A46 /* Tags */,
 				C7106B4F22E01A0500FA904A /* Netwroking */,
 				CAD5015B1E98661A00795CDA /* CorePhotoBroswerVC */,
 				CAD5017E1E98661A00795CDA /* FrameWorks */,
@@ -1522,7 +1531,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WallPaper/Global/PrefixHeader.pch";
 				INFOPLIST_FILE = WallPaper/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1547,7 +1556,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WallPaper/Global/PrefixHeader.pch";
 				INFOPLIST_FILE = WallPaper/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

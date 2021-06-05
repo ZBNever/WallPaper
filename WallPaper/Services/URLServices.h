@@ -8,13 +8,16 @@
 
 #ifndef URLServices_h
 #define URLServices_h
+//WallHavenAPIkey
+#define WallHavenAPIkey @"0J9DwVA8esU7c0b2yD1XE2cUz5Hq4o3A"
+
 //服务器地址
 #define WallHavenURL @"https://alpha.wallhaven.cc/"
 //@"https://w.wallhaven.cc/full/6k/wallhaven-6kwpol.png"
 //最新
 #define WallLatesURL WallHavenURL@"latest?page=%d"
 //搜索
-#define WallPaperSearchURL WallHavenURL@"search?q=%@&categories=101&purity=110&sorting=random&order=desc"
+#define WallPaperSearchURL @"https://wallhaven.cc/api/v1/search"
 //缩略图
 #define ThumbURL @"https://th.wallhaven.cc/small/kw/%@.jpg"
 
