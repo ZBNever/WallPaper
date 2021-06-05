@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044C437E266BAD3900BC612F /* PrintBeautifulLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 044C437D266BAD3900BC612F /* PrintBeautifulLog.m */; };
 		07B34A3EE540FEFC7D0B75ED /* libPods-WallPaper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09282C86C9C9F8BD781870BF /* libPods-WallPaper.a */; };
 		585322D61F5E9C4100EF2496 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 585322AC1F5E9C4100EF2496 /* libWeiboSDK.a */; };
 		585322D71F5E9C4100EF2496 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 585322B51F5E9C4100EF2496 /* WeiboSDK.bundle */; };
@@ -138,6 +139,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		044C437C266BAD3900BC612F /* PrintBeautifulLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintBeautifulLog.h; sourceTree = "<group>"; };
+		044C437D266BAD3900BC612F /* PrintBeautifulLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintBeautifulLog.m; sourceTree = "<group>"; };
 		09282C86C9C9F8BD781870BF /* libPods-WallPaper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WallPaper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17F55D343638055391F528A0 /* Pods-WallPaper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallPaper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WallPaper/Pods-WallPaper.debug.xcconfig"; sourceTree = "<group>"; };
 		585322AC1F5E9C4100EF2496 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
@@ -410,6 +413,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		044C437B266BAD3900BC612F /* PrintBeautifulLog */ = {
+			isa = PBXGroup;
+			children = (
+				044C437C266BAD3900BC612F /* PrintBeautifulLog.h */,
+				044C437D266BAD3900BC612F /* PrintBeautifulLog.m */,
+			);
+			path = PrintBeautifulLog;
+			sourceTree = "<group>";
+		};
 		585322A91F5E9C4100EF2496 /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -787,6 +799,7 @@
 		CA8870011E53ED34009E9333 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				044C437B266BAD3900BC612F /* PrintBeautifulLog */,
 				CA28A595237679C200C9A5DC /* XcodeUnicode */,
 				CA8870021E53ED51009E9333 /* Tools.h */,
 				CA8870031E53ED51009E9333 /* Tools.m */,
@@ -1336,6 +1349,7 @@
 				CAD5020E1E98661A00795CDA /* UIImage+Cut.m in Sources */,
 				C747F6A42457D68400B979D6 /* ZBTabBarController.m in Sources */,
 				CAD5022B1E98661A00795CDA /* SVIndefiniteAnimatedView.m in Sources */,
+				044C437E266BAD3900BC612F /* PrintBeautifulLog.m in Sources */,
 				CAD502141E98661A00795CDA /* UIWindow+Launch.m in Sources */,
 				CAD502111E98661A00795CDA /* UIImage+Water.m in Sources */,
 				CAD5020C1E98661A00795CDA /* UIFont+Extend.m in Sources */,

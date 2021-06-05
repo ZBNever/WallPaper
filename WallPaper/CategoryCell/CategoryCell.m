@@ -57,10 +57,10 @@
 
 
 - (void)setImageModel:(PixabayModel *)imageModel{
-    WeakSelf
+//    WeakSelf
 
     [_thumbnail setImageWithURL:imageModel.webformatURL placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
-        if (stage == YYWebImageStageFinished) {
+        /**   if (stage == YYWebImageStageFinished) {
             CATransform3D rotation;//3D旋转
             rotation = CATransform3DMakeTranslation(0 ,50 ,20);
             rotation = CATransform3DMakeRotation(M_PI_4 , 0.0, 0.7, 0.4);
@@ -80,6 +80,7 @@
             weakSelf.layer.shadowOffset = CGSizeMake(0, 0);
             [UIView commitAnimations];
         }
+         */
 
     }];
     NSArray *arr = [imageModel.tags componentsSeparatedByString:@","];
