@@ -38,7 +38,7 @@ static NSString *kCellID = @"cell";
         
 //        self.title = @"WallPaper";
         UIButton *titleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [titleBtn setTitle:@"WallPaper" forState:UIControlStateNormal];
+        [titleBtn setTitle:@"Pixabay" forState:UIControlStateNormal];
         [titleBtn addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.titleView = titleBtn;
         // 搜索
@@ -83,11 +83,13 @@ static NSString *kCellID = @"cell";
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"WallPaper" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         self.isWallHavenService = YES;
         [titleBtn setTitle:@"WallPaper" forState:UIControlStateNormal];
+        [titleBtn sizeToFit];
         [self requestPreviousPage];
     }];
     UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"Pixabay" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         self.isWallHavenService = NO;
         [titleBtn setTitle:@"Pixabay" forState:UIControlStateNormal];
+        [titleBtn sizeToFit];
         [self requestPreviousPage];
     }];
     [alertVC addAction:action1];
@@ -225,11 +227,15 @@ static NSString *kCellID = @"cell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.isWallHavenService) {
+        
+    }else{
+        PixabayModel *model = self.modelArr[indexPath.row];
+        NSString *tag = [[model.tags componentsSeparatedByString:@","] firstObject];
+        WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageTag:tag];
+        [self.navigationController pushViewController:wallpapers animated:YES];
+    }
 
-//    PixabayModel *model = self.modelArr[indexPath.row];
-//    NSString *tag = [[model.tags componentsSeparatedByString:@","] firstObject];
-//    WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageTag:tag];
-//    [self.navigationController pushViewController:wallpapers animated:YES];
 
 }
 
