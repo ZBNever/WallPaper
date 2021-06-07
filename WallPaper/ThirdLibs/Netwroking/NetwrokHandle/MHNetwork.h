@@ -17,7 +17,7 @@
 
 #ifdef DEBUG
 
-#define NSLog(FORMAT, ...) fprintf(stderr, "%s:%zd\t%s\n", [[[NSString stringWithUTF8String: __FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat: FORMAT, ## __VA_ARGS__] UTF8String]);
+#define NSLog(...)      printf("%s %s %s [Line %d] %s\n",__DATE__,__TIME__,__PRETTY_FUNCTION__,__LINE__,[[NSString stringWithFormat:__VA_ARGS__] UTF8String]);
 
 #else
 

@@ -39,7 +39,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     ImageCategory *_category;
 //    NSMutableArray *_wallpapers;
-    MBProgressHUD *_HUD;
+//    MBProgressHUD *_HUD;
     NSString *_tag;
     int index;
     int _page;
@@ -101,15 +101,22 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.backgroundColor = [UIColor blackColor];
     [self.collectionView registerClass:[WallpaperCell class] forCellWithReuseIdentifier:reuseIdentifier];
     index = 1;
-    _HUD = [Tools MBProgressHUD:@"正在加载"];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(requestData) object:nil];
-    [queue addOperation:op];
+//    _HUD = [Tools MBProgressHUD:@"正在加载"];
+    if (self.isWallhaven) {
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(requestWallhavenData) object:nil];
+        [queue addOperation:op];
+    }else{
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(requestPixabayData) object:nil];
+        [queue addOperation:op];
+    }
+
     [self mj_pullRefresh];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [_HUD removeFromSuperview];
+//    [_HUD removeFromSuperview];
 
 }
 #pragma mark - **********  添加MJ_Refresh  **********
@@ -132,27 +139,28 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)reloadData{
     _page = 1;
     [self.wallpapers removeAllObjects];
-    [self requestData];
+    if (self.isWallhaven) {
+        [self requestWallhavenData];
+    }else{
+        [self requestPixabayData];
+    }
 }
-#pragma mark  **********  上一页数据  **********
+#pragma mark  **********  第一页数据  **********
 - (void)requestPreviousPage{
     [self reloadData];
-//    if (_page>1) {
-//        _page--;
-//    }else{
-//        _page = 1;
-//    }
-//
-//    [self requestData];
 }
 #pragma mark  **********  下一页数据  **********
 - (void)requestNextPage{
     _page++;
-    [self requestData];
+    if (self.isWallhaven) {
+        [self requestWallhavenData];
+    }else{
+        [self requestPixabayData];
+    }
 }
 
 #pragma mark  **********  请求数据  **********
--(void)requestData{
+-(void)requestPixabayData{
 
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     if ([_tag isEqualToString:@"Latest"]) {
@@ -161,10 +169,10 @@ static NSString * const reuseIdentifier = @"Cell";
         [param setObject:_tag forKey:@"q"];
     }
     [param setObject:@(_page) forKey:@"page"];
-    [PixabayService requestWallpapersParams:param completion:^(NSArray *Pixabaypapers, BOOL success) {
+    
+    [PixabayService requestPixabayImageParams:param completion:^(NSArray *Pixabaypapers, BOOL success) {
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
-        [self->_HUD hideAnimated:YES];
         if (success && Pixabaypapers.count != 0) {
             self->index++;
             [self.wallpapers addObjectsFromArray:Pixabaypapers];
@@ -173,19 +181,53 @@ static NSString * const reuseIdentifier = @"Cell";
         }else if (success && Pixabaypapers.count == 0){
             [self.collectionView.mj_header endRefreshing];
             [self.collectionView.mj_footer endRefreshingWithNoMoreData];
-            self->_HUD = [Tools MBProgressHUDOnlyText:@"已加载全部"];
-            [self->_HUD hideAnimated:YES afterDelay:2.0f];
+            [Tools MBProgressHUDOnlyText:@"已加载全部"];
+
         }else{
             [self.collectionView.mj_header endRefreshing];
             [self.collectionView.mj_footer endRefreshing];
-            self->_HUD = [Tools MBProgressHUDOnlyText:@"加载失败"];
-            [self->_HUD hideAnimated:YES afterDelay:2.0f];
+            [Tools MBProgressHUDOnlyText:@"加载失败"];
+
         }
     }];
 
 
 }
 
+-(void)requestWallhavenData{
+
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+//    if ([_tag isEqualToString:@"Latest"]) {
+//        [param setObject:@"latest" forKey:@"order"];
+//    }else{
+        [param setObject:_tag forKey:@"q"];
+//    }
+    [param setObject:@(_page) forKey:@"page"];
+    
+    [WallPaperService requestSearchWallPapers:param completion:^(NSArray *wallpapers, BOOL success) {
+        
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+        if (success && wallpapers.count != 0) {
+            self->index++;
+            [self.wallpapers addObjectsFromArray:wallpapers];
+            [self.collectionView reloadData];
+            
+        }else if (success && wallpapers.count == 0){
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+            [Tools MBProgressHUDOnlyText:@"已加载全部"];
+
+        }else{
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshing];
+            [Tools MBProgressHUDOnlyText:@"加载失败"];
+
+        }
+    }];
+
+
+}
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -194,49 +236,76 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    PixabayModel *model = self.wallpapers[indexPath.item];
-    [cell setPixabayModel:model];
+    if (self.isWallhaven) {
+        WallPaperListModel *model = self.wallpapers[indexPath.item];
+        [cell setWallpaper:model];
+    }else{
+        PixabayModel *model = self.wallpapers[indexPath.item];
+        [cell setPixabayModel:model];
+    }
+
     return cell;
 }
-
 
 #pragma mark <UICollectionViewDelegate>
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+
     [PhotoBroswerVC show:self type:PhotoBroswerVCTypeZoom index:indexPath.item photoModelBlock:^NSArray *{
         
         NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:self.wallpapers.count];
         
         for (NSUInteger i = 0; i < self.wallpapers.count; i++) {
-            PixabayModel *model = self.wallpapers[i];
-//            WallPaper *wallpaper = _wallpapers[i];
-            PhotoModel *pbModel=[[PhotoModel alloc] init];
-            //此处的展示视图为XIB，已经隐藏
-//            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
-//            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
-            pbModel.image_HD_U = [NSString stringWithFormat:@"%@", model.largeImageURL];
             
-            pbModel.image_thumbnail_U = [NSString stringWithFormat:@"%@", model.webformatURL];
-            //从图片地址中截取唯一标识id,作为保存id,不会有重复
-//            NSArray *strArr = [pbModel.image_HD_U componentsSeparatedByString:@"-"];
-//            NSString *idStr = [strArr[1] componentsSeparatedByString:@"."][0];
-            /** mid，保存图片缓存唯一标识，必须传 */
-            pbModel.mid = [model.Id integerValue];
+            if (self.isWallhaven) {
+                WallPaperListModel *model = self.wallpapers[i];
+    //            WallPaper *wallpaper = _wallpapers[i];
+                PhotoModel *pbModel=[[PhotoModel alloc] init];
+                //此处的展示视图为XIB，已经隐藏
+    //            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
+    //            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
+                //高清图地址
+                pbModel.image_HD_U = [NSString stringWithFormat:@"%@", model.path];
+                //缩略图地址
+                pbModel.image_thumbnail_U = [NSString stringWithFormat:@"%@", model.thumbs.small];
+                /** mid，保存图片缓存唯一标识，必须传 */
+                pbModel.mid = model.Id;
+                //源frame
+                WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+                UIImageView *imageV =(UIImageView *)cell;
+                pbModel.sourceImageView = imageV;
+                
+                [modelsM addObject:pbModel];
+            }else{
+                PixabayModel *model = self.wallpapers[i];
+    //            WallPaper *wallpaper = _wallpapers[i];
+                PhotoModel *pbModel=[[PhotoModel alloc] init];
+                //此处的展示视图为XIB，已经隐藏
+    //            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
+    //            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
+                pbModel.image_HD_U = [NSString stringWithFormat:@"%@", model.largeImageURL];
+                
+                pbModel.image_thumbnail_U = [NSString stringWithFormat:@"%@", model.webformatURL];
+
+                /** mid，保存图片缓存唯一标识，必须传 */
+                pbModel.mid = model.Id;
+                
+                WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+                //源frame
+                UIImageView *imageV =(UIImageView *)cell;
+                pbModel.sourceImageView = imageV;
+                
+                [modelsM addObject:pbModel];
+            }
             
-            WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-            //源frame
-            UIImageView *imageV =(UIImageView *)cell;
-            pbModel.sourceImageView = imageV;
-            
-            [modelsM addObject:pbModel];
+
         }
         
         return modelsM;
     }];
-    
-    
+
 }
 
 

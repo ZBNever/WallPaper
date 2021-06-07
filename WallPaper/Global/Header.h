@@ -16,4 +16,5 @@
 
 #define WeakSelf __weak typeof(self) weakSelf = self;
 
+#define KEYWindow [UIApplication sharedApplication].keyWindow
 #endif /* Header_h */

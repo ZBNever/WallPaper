@@ -17,6 +17,8 @@
 #import "PixabayModel.h"
 #import <PYSearch.h>
 #import <MJRefresh/MJRefresh.h>
+#import "PhotoBroswerVC.h"
+#import "PhotoModel.h"
 
 static NSString *kCellID = @"cell";
 
@@ -66,6 +68,7 @@ static NSString *kCellID = @"cell";
     self.tableView.rowHeight = 180;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.showsVerticalScrollIndicator = YES;
     _page = 1;
     [self mj_pullRefresh];
     if (self.isWallHavenService) {
@@ -92,8 +95,11 @@ static NSString *kCellID = @"cell";
         [titleBtn sizeToFit];
         [self requestPreviousPage];
     }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
+    
     [alertVC addAction:action1];
     [alertVC addAction:action2];
+    [alertVC addAction:cancelAction];
     
     [self.navigationController presentViewController:alertVC animated:YES completion:^{
             
@@ -119,12 +125,6 @@ static NSString *kCellID = @"cell";
 
 #pragma mark  **********  第一页数据  **********
 - (void)requestPreviousPage{
-//    if (_page>1) {
-//        _page--;
-//    }else{
-//        _page = 1;
-//        [self.modelArr removeAllObjects];
-//    }
     
     _page = 1;
     [self.modelArr removeAllObjects];
@@ -155,12 +155,12 @@ static NSString *kCellID = @"cell";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@(_page) forKey:@"page"];
     [params setObject:@"" forKey:@"q"];
-    [PixabayService requestWallpapersParams:params completion:^(NSArray * _Nonnull Pixabaypapers, BOOL success) {
-        [self.header endRefreshing];
-        [self.footer endRefreshing];
-        [self.modelArr addObjectsFromArray:Pixabaypapers];
+    [PixabayService requestPixabayImageParams:params completion:^(NSArray * _Nonnull Pixabaypapers, BOOL success) {
         //在主线程更新UI
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self.header endRefreshing];
+            [self.footer endRefreshing];
+            [self.modelArr addObjectsFromArray:Pixabaypapers];
             [self.tableView reloadData];
         });
         
@@ -179,25 +179,31 @@ static NSString *kCellID = @"cell";
             [self.modelArr addObjectsFromArray:wallpapers];
             [self.tableView reloadData];
         });
-            
+        
     }];
 }
 
 - (void)searchBtn{
     // 1. Create an Array of popular search , , , , , , , , , , ,
-    NSArray *hotSeaches = @[@"科技", @"星空", @"运动", @"风景", @"商务", @"天空", @"学习", @"森林", @"美女", @"城市", @"背景", @"美食"];
+    NSArray *hotSeaches;
+    if (self.isWallHavenService) {
+        hotSeaches =@[@"winter",@"fall",@"anime girls",@"minimalism",@"anime",@"mountains",@"tilt shift",@"Sakimichan",@"artwork",@"Asian",@"WLOP",@"pixel art",@"landscape",@"League of Legends",@"nature",@"digital art",@"cosplay",@"abstract",@"fantasy art",@"leaves",@"cityscape",@"Genshin Impact"];
+    }else{
+        hotSeaches = @[@"科技", @"星空", @"运动", @"风景", @"商务", @"天空", @"学习", @"森林", @"美女", @"城市", @"背景", @"美食"];
+    }
     // 2. Create a search view controller
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-
-        [searchViewController.navigationController pushViewController:[[WallpapersViewController alloc] initWithImageTag:searchText] animated:YES];
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:self.isWallHavenService?@"仅限英文搜索":@"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        WallpapersViewController *VC = [[WallpapersViewController alloc] initWithImageTag:searchText];
+        VC.isWallhaven = self.isWallHavenService;
+        [searchViewController.navigationController pushViewController:VC animated:YES];
     }];
     // 3. Set style for popular search and search history
-        searchViewController.hotSearchStyle = PYHotSearchStyleColorfulTag;
-        searchViewController.searchHistoryStyle = PYSearchHistoryStyleNormalTag;
+    searchViewController.hotSearchStyle = PYHotSearchStyleColorfulTag;
+    searchViewController.searchHistoryStyle = PYSearchHistoryStyleNormalTag;
     
     // 4. Set delegate
     searchViewController.delegate = self;
-
+    
     searchViewController.searchViewControllerShowMode = PYSearchViewControllerShowModePush;
     // Push search view controller
     [self.navigationController pushViewController:searchViewController animated:YES];
@@ -229,11 +235,73 @@ static NSString *kCellID = @"cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.isWallHavenService) {
         
+        [PhotoBroswerVC show:self type:PhotoBroswerVCTypePush index:indexPath.row photoModelBlock:^NSArray *{
+            
+            NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:self.modelArr.count];
+            
+            for (NSUInteger i = 0; i < self.modelArr.count; i++) {
+                WallPaperListModel *model = self.modelArr[i];
+    //            WallPaper *wallpaper = _wallpapers[i];
+                PhotoModel *pbModel=[[PhotoModel alloc] init];
+                //此处的展示视图为XIB，已经隐藏
+    //            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
+    //            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
+                pbModel.image_HD_U = [NSString stringWithFormat:@"%@", model.path];
+                
+                pbModel.image_thumbnail_U = [NSString stringWithFormat:@"%@", model.thumbs.small];
+                //从图片地址中截取唯一标识id,作为保存id,不会有重复
+    //            NSArray *strArr = [pbModel.image_HD_U componentsSeparatedByString:@"-"];
+    //            NSString *idStr = [strArr[1] componentsSeparatedByString:@"."][0];
+                /** mid，保存图片缓存唯一标识，必须传 */
+                pbModel.mid = model.Id;
+//                WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+                CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
+                //源frame
+                UIImageView *imageV = cell.thumbnail; //(UIImageView *)cell;
+                pbModel.sourceImageView = imageV;
+                
+                [modelsM addObject:pbModel];
+            }
+            
+            return modelsM;
+        }];
+        
     }else{
-        PixabayModel *model = self.modelArr[indexPath.row];
-        NSString *tag = [[model.tags componentsSeparatedByString:@","] firstObject];
-        WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageTag:tag];
-        [self.navigationController pushViewController:wallpapers animated:YES];
+        
+        [PhotoBroswerVC show:self type:PhotoBroswerVCTypePush index:indexPath.row photoModelBlock:^NSArray *{
+            
+            NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:self.modelArr.count];
+            
+            for (NSUInteger i = 0; i < self.modelArr.count; i++) {
+                PixabayModel *model = self.modelArr[i];
+    //            WallPaper *wallpaper = _wallpapers[i];
+                PhotoModel *pbModel=[[PhotoModel alloc] init];
+                //此处的展示视图为XIB，已经隐藏
+    //            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
+    //            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
+                pbModel.image_HD_U = [NSString stringWithFormat:@"%@", model.largeImageURL];
+                
+                pbModel.image_thumbnail_U = [NSString stringWithFormat:@"%@", model.webformatURL];
+                //从图片地址中截取唯一标识id,作为保存id,不会有重复
+    //            NSArray *strArr = [pbModel.image_HD_U componentsSeparatedByString:@"-"];
+    //            NSString *idStr = [strArr[1] componentsSeparatedByString:@"."][0];
+                /** mid，保存图片缓存唯一标识，必须传 */
+                pbModel.mid = model.Id;
+                
+                
+                
+//                WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+                CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
+                //源frame
+                UIImageView *imageV =cell.thumbnail; //(UIImageView *)cell;
+                pbModel.sourceImageView = imageV;
+                
+                [modelsM addObject:pbModel];
+            }
+            
+            return modelsM;
+        }];
+
     }
 
 

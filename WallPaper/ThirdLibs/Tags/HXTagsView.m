@@ -27,14 +27,15 @@
         _tagOriginY = 10.0;
         _tagHorizontalSpace = 10.0;
         _tagVerticalSpace = 10.0;
-        _borderColor = [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0];
+        _borderColor = [UIColor clearColor];
         _borderWidth = 0.5f;
         _masksToBounds = YES;
         _cornerRadius = 2.0;
         _titleSize = 14;
         _titleColor = [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0];;
-        _normalBackgroundImage = [self imageWithColor:[UIColor whiteColor] size:CGSizeMake(1.0, 1.0)];
+        _normalBackgroundImage = [self imageWithColor:[UIColor clearColor] size:CGSizeMake(1.0, 1.0)];
         _highlightedBackgroundImage = [self imageWithColor:[UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1.0] size:CGSizeMake(1.0, 1.0)];
+        _normalBackgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -68,6 +69,7 @@
             [button setTitleColor:_titleColor forState:UIControlStateNormal];
             [button setBackgroundImage:_normalBackgroundImage forState:UIControlStateNormal];
             [button setBackgroundImage:_highlightedBackgroundImage forState:UIControlStateHighlighted];
+            
             button.tag = i*iTags.count+j;
             [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:button];

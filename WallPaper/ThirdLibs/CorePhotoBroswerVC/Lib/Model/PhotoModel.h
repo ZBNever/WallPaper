@@ -16,7 +16,7 @@
 /*
  * mid，保存图片缓存唯一标识，必须传
  */
-@property (nonatomic,assign) NSUInteger mid;
+@property (nonatomic,copy) NSString *mid;
 /*
  * 缩略图地址
  */

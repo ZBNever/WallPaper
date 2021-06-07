@@ -30,6 +30,7 @@
 + (MBProgressHUD *)MBProgressHUDOnlyText:(NSString *)text{
     
     MBProgressHUD *HUD = [self creatHUDwith:text andMod:MBProgressHUDModeText];
+    [HUD hideAnimated:YES afterDelay:1.f];
     return HUD;
 }
 //自定义view

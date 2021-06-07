@@ -7,8 +7,7 @@
 //  collectionCell
 
 #import <UIKit/UIKit.h>
-
-@class WallPaper;
+#import "WallPaper.h"
 
 @class PixabayModel;
 
@@ -16,6 +15,6 @@
 
 - (void)setPixabayModel:(PixabayModel *)model;
 
-//-(void)setWallpaper:(WallPaper *)wallpaper;
+-(void)setWallpaper:(WallPaperListModel *)wallpaper;
 
 @end

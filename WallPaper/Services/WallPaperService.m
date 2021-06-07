@@ -31,7 +31,7 @@
         completion(ModelArr,YES);
     } failureBlock:^(NSError *error) {
 //        NSLog(@"%@",error);
-    } showHUD:NO];
+    } showHUD:YES];
 }
 
 +(void)requestSearchWallPapers:(NSMutableDictionary *)params completion:(WallpapersCompletion)completion{
@@ -39,10 +39,10 @@
     if (params == nil) {
         params = [NSMutableDictionary dictionary];
     }
-//    [params setObject:WallHavenAPIkey forKey:@"apikey"];
-    [params setObject:@"111" forKey:@"categories"];
-    [params setObject:@"" forKey:@"q"];
-//    [params setObject:@"vertical" forKey:@"orientation"];
+    [params setObject:WallHavenAPIkey forKey:@"apikey"];
+//    [params setObject:@"100" forKey:@"categories"];
+//    [params setObject:@"" forKey:@"q"];
+    [params setObject:@"toplist" forKey:@"sorting"];//排序 默认date_added , relevance, random, views, favorites, toplist
     
     [MHNetworkManager getRequstWithURL:WallPaperSearchURL params:params successBlock:^(id returnData, int code, NSString *msg) {
 //        NSLog(@"returnData:%@",returnData);
@@ -50,7 +50,7 @@
         completion(ModelArr,YES);
     } failureBlock:^(NSError *error) {
 //        NSLog(@"%@",error);
-    } showHUD:NO];
+    } showHUD:YES];
 }
 
 

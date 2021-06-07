@@ -14,7 +14,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface CategoryCell ()<HXTagsViewDelegate>
-@property (nonatomic, strong) UIImageView *thumbnail;
+
 @property (nonatomic, strong) UILabel *name;
 @property (nonatomic, strong) HXTagsView *tagsView;
 @end
@@ -38,8 +38,10 @@
         self.tagsView = [[HXTagsView alloc] initWithFrame:CGRectMake(0, 140, KScreenWidth, 0)];
         self.tagsView.tagOriginY = 4.f;
         self.tagsView.tagVerticalSpace = 4.f;
-        self.tagsView.titleColor = [UIColor blackColor];
-        self.tagsView.borderColor = [UIColor clearColor];
+        self.tagsView.tagHeight = 30;
+        self.tagsView.cornerRadius = 5;
+        self.tagsView.titleColor = [UIColor whiteColor];
+        self.tagsView.borderColor = [UIColor whiteColor];
         self.tagsView.type = 1;
         self.tagsView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
         [self.contentView addSubview:self.tagsView];

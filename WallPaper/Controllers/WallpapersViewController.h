@@ -12,6 +12,8 @@
 
 @interface WallpapersViewController : UICollectionViewController
 
+@property (nonatomic, assign) BOOL isWallhaven;
+
 - (instancetype)initWithImageTag:(NSString *)tag;
 
 - (instancetype)initWithImageCategory:(ImageCategory *)category;

@@ -26,6 +26,8 @@
 
 @property (nonatomic,assign) id<HXCellTagsViewDelegate> delegate;
 
+@property (nonatomic, strong) UIImageView *thumbnail;
+
 @property (nonatomic, strong) WallPaperListModel *wallPaperListModel;
 
 - (void)setImageModel:(PixabayModel *)imageModel;

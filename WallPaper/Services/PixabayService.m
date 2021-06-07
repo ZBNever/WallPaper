@@ -13,14 +13,14 @@
 
 @implementation PixabayService
 
-+(void)requestWallpapersParams:(NSMutableDictionary *)params completion:(PixabayCompletion)completion{
++(void)requestPixabayImageParams:(NSMutableDictionary *)params completion:(PixabayCompletion)completion{
     if (params == nil) {
         params = [NSMutableDictionary dictionary];
     }
     [params setObject:API_Key forKey:@"key"];
     [params setObject:@"zh" forKey:@"lang"];
     [params setObject:@"photo" forKey:@"image_type"];
-    [params setObject:@"vertical" forKey:@"orientation"];
+//    [params setObject:@"vertical" forKey:@"orientation"];
     
     [MHNetworkManager getRequstWithURL:API_HOST params:params successBlock:^(id returnData, int code, NSString *msg) {
 //        NSLog(@"returnData:%@",returnData);
@@ -28,7 +28,7 @@
         completion(ModelArr,YES);
     } failureBlock:^(NSError *error) {
 //        NSLog(@"%@",error);
-    } showHUD:NO];
+    } showHUD:YES];
     
 }
 
@@ -45,7 +45,7 @@
             completion(ModelArr,YES);
         } failureBlock:^(NSError *error) {
     //        NSLog(@"%@",error);
-        } showHUD:NO];
+        } showHUD:YES];
     
 }
 
