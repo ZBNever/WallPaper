@@ -53,11 +53,8 @@ static const char MJReferenceReplacedKeyWhenCreatingKeyValuesKey = '\0';
 }
 
 #pragma mark - --常用的对象--
-static NSNumberFormatter *numberFormatter_;
 + (void)load
 {
-    numberFormatter_ = [[NSNumberFormatter alloc] init];
-    
     // 默认设置
     [self mj_referenceReplacedKeyWhenCreatingKeyValues:YES];
 }
@@ -162,7 +159,8 @@ static NSNumberFormatter *numberFormatter_;
                         if (type.typeClass == [NSDecimalNumber class]) {
                             value = [NSDecimalNumber decimalNumberWithString:oldValue];
                         } else {
-                            value = [numberFormatter_ numberFromString:oldValue];
+                            NSDecimalNumber *decimalValue = [NSDecimalNumber decimalNumberWithString:oldValue];
+                            value = decimalValue == [NSDecimalNumber notANumber] ? @(0) : @(decimalValue.doubleValue);
                         }
                         
                         // 如果是BOOL
@@ -199,12 +197,18 @@ static NSNumberFormatter *numberFormatter_;
     }];
     
     // 转换完毕
+    if ([self respondsToSelector:@selector(mj_didConvertToObjectWithKeyValues:)]) {
+        [self mj_didConvertToObjectWithKeyValues:keyValues];
+    }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
     if ([self respondsToSelector:@selector(mj_keyValuesDidFinishConvertingToObject)]) {
         [self mj_keyValuesDidFinishConvertingToObject];
     }
     if ([self respondsToSelector:@selector(mj_keyValuesDidFinishConvertingToObject:)]) {
         [self mj_keyValuesDidFinishConvertingToObject:keyValues];
     }
+#pragma clang diagnostic pop
     return self;
 }
 
@@ -400,9 +404,15 @@ static NSNumberFormatter *numberFormatter_;
     }];
     
     // 转换完毕
+    if ([self respondsToSelector:@selector(mj_objectDidConvertToKeyValues:)]) {
+        [self mj_objectDidConvertToKeyValues:keyValues];
+    }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
     if ([self respondsToSelector:@selector(mj_objectDidFinishConvertingToKeyValues)]) {
         [self mj_objectDidFinishConvertingToKeyValues];
     }
+#pragma clang diagnostic pop
     
     return keyValues;
 }

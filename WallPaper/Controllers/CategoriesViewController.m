@@ -28,6 +28,7 @@ static NSString *kCellID = @"cell";
 
 @property (nonatomic, strong) MJRefreshBackNormalFooter *footer;
 @property (nonatomic, assign) int page;
+@property (nonatomic, assign) BOOL isWallHavenService;
 @end
 
 @implementation CategoriesViewController
@@ -35,8 +36,11 @@ static NSString *kCellID = @"cell";
 - (instancetype)init{
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         
-        self.title = @"WallPaper";
-
+//        self.title = @"WallPaper";
+        UIButton *titleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [titleBtn setTitle:@"Pixabay" forState:UIControlStateNormal];
+        [titleBtn addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.titleView = titleBtn;
         // 搜索
         UIButton *refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [refreshBtn setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
@@ -53,9 +57,7 @@ static NSString *kCellID = @"cell";
         
     }
     return self;
-    
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
@@ -66,7 +68,37 @@ static NSString *kCellID = @"cell";
     self.tableView.dataSource = self;
     _page = 1;
     [self mj_pullRefresh];
-    [self requestDate];
+    if (self.isWallHavenService) {
+        //请求WallHaven数据
+        [self requestWallHavenData];
+    }else{
+        //请求Pixabay数据
+        [self requestPixabayData];
+    }
+
+
+}
+- (void)chooseType:(UIButton *)titleBtn{
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择" message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"WallPaper" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        self.isWallHavenService = YES;
+        [titleBtn setTitle:@"WallPaper" forState:UIControlStateNormal];
+        [titleBtn sizeToFit];
+        [self requestPreviousPage];
+    }];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"Pixabay" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        self.isWallHavenService = NO;
+        [titleBtn setTitle:@"Pixabay" forState:UIControlStateNormal];
+        [titleBtn sizeToFit];
+        [self requestPreviousPage];
+    }];
+    [alertVC addAction:action1];
+    [alertVC addAction:action2];
+    
+    [self.navigationController presentViewController:alertVC animated:YES completion:^{
+            
+    }];
+    
 }
 #pragma mark - **********  添加MJ_Refresh  **********
 - (void)mj_pullRefresh{
@@ -85,7 +117,7 @@ static NSString *kCellID = @"cell";
     self.tableView.mj_footer = self.footer;
 }
 
-#pragma mark  **********  上一页数据  **********
+#pragma mark  **********  第一页数据  **********
 - (void)requestPreviousPage{
 //    if (_page>1) {
 //        _page--;
@@ -96,15 +128,30 @@ static NSString *kCellID = @"cell";
     
     _page = 1;
     [self.modelArr removeAllObjects];
-    [self requestDate];
+    
+    if (self.isWallHavenService) {
+        //请求WallHaven数据
+        [self requestWallHavenData];
+    }else{
+        //请求Pixabay数据
+        [self requestPixabayData];
+    }
+    
+
 }
 #pragma mark  **********  下一页数据  **********
 - (void)requestNextPage{
     _page++;
-    [self requestDate];
+    if (self.isWallHavenService) {
+        //请求WallHaven数据
+        [self requestWallHavenData];
+    }else{
+        //请求Pixabay数据
+        [self requestPixabayData];
+    }
 }
-
-- (void)requestDate{
+#pragma mark - **********  请求Pixabay数据  **********
+- (void)requestPixabayData{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@(_page) forKey:@"page"];
     [params setObject:@"" forKey:@"q"];
@@ -117,6 +164,22 @@ static NSString *kCellID = @"cell";
             [self.tableView reloadData];
         });
         
+    }];
+}
+
+- (void)requestWallHavenData{
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@(_page) forKey:@"page"];
+    [WallPaperService requestSearchWallPapers:params completion:^(NSArray *wallpapers, BOOL success) {
+        //在主线程更新UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.header endRefreshing];
+            [self.footer endRefreshing];
+            [self.modelArr addObjectsFromArray:wallpapers];
+            [self.tableView reloadData];
+        });
+            
     }];
 }
 
@@ -150,18 +213,29 @@ static NSString *kCellID = @"cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
-    PixabayModel *model = self.modelArr[indexPath.row];
-    [cell setImageModel:model];
+    if (self.isWallHavenService) {
+        //请求WallHaven数据
+        WallPaperListModel *wallPaperModel = self.modelArr[indexPath.row];
+        cell.wallPaperListModel = wallPaperModel;
+    }else{
+        //请求Pixabay数据
+        PixabayModel *pixabayModel = self.modelArr[indexPath.row];
+        [cell setImageModel:pixabayModel];
+    }
     cell.delegate = self;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.isWallHavenService) {
+        
+    }else{
+        PixabayModel *model = self.modelArr[indexPath.row];
+        NSString *tag = [[model.tags componentsSeparatedByString:@","] firstObject];
+        WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageTag:tag];
+        [self.navigationController pushViewController:wallpapers animated:YES];
+    }
 
-    PixabayModel *model = self.modelArr[indexPath.row];
-    NSString *tag = [[model.tags componentsSeparatedByString:@","] firstObject];
-    WallpapersViewController *wallpapers = [[WallpapersViewController alloc] initWithImageTag:tag];
-    [self.navigationController pushViewController:wallpapers animated:YES];
 
 }
 

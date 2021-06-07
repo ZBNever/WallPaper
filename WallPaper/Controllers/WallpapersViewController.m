@@ -72,7 +72,6 @@ static NSString * const reuseIdentifier = @"Cell";
     if (self = [super initWithCollectionViewLayout:layout]) {
         _category = category;
         self.title = category.name;
-        
     }
     _page = 1;
 
