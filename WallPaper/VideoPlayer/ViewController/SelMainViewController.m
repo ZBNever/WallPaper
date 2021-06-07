@@ -10,6 +10,9 @@
 #import "SelVideoViewController.h"
 #import "PixabayService.h"
 #import "PixabayVideoModel.h"
+#import "CategoryCell.h"
+
+static NSString *KCellID = @"CategoryCell";
 
 @interface SelMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
@@ -43,11 +46,12 @@
     if(!_mainTableView) {
         
         _mainTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        
+        [_mainTableView registerClass:[CategoryCell class] forCellReuseIdentifier:KCellID];
         _mainTableView.delegate =self;
         
         _mainTableView.dataSource =self;
         
+        _mainTableView.rowHeight = 180;
     }
     return _mainTableView;
 }
@@ -108,20 +112,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *identify =@"cellIdentify";
+//    static NSString *identify =@"cellIdentify";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    
-    if(!cell) {
-        
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
-        
-    }
+    CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:KCellID];
     
     PixabayVideoModel *model = self.dataArr[indexPath.row];
-    
-    cell.textLabel.text = model.tags;//self.dataArr[indexPath.row];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.userImageURL]];
+    cell.videoModel = model;
+//    cell.textLabel.text = model.tags;//self.dataArr[indexPath.row];
+//    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.userImageURL]];
     
     return cell;
     

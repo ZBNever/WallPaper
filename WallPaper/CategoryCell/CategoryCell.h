@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WallPaper.h"
+#import "PixabayVideoModel.h"
 
 @class ImageCategory;
 
@@ -29,6 +30,8 @@
 @property (nonatomic, strong) UIImageView *thumbnail;
 
 @property (nonatomic, strong) WallPaperListModel *wallPaperListModel;
+/** 视频的Model */
+@property (nonatomic, strong) PixabayVideoModel *videoModel;
 
 - (void)setImageModel:(PixabayModel *)imageModel;
 
