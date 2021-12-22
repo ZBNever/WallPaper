@@ -27,13 +27,6 @@
         self.thumbnail.contentMode = UIViewContentModeScaleAspectFill;
         self.thumbnail.clipsToBounds = YES;
         [self.contentView addSubview:self.thumbnail];
-        
-        self.name = [[UILabel alloc] init];
-        self.name.backgroundColor = [UIColor clearColor];
-        self.name.textColor = [UIColor whiteColor];
-        self.name.font = [UIFont preferredFontForTextStyle:UIFontTextStyleTitle1];
-        self.name.textAlignment = NSTextAlignmentCenter;
-//        [self.contentView addSubview:self.name];
 
         self.tagsView = [[HXTagsView alloc] initWithFrame:CGRectMake(0, 140, KScreenWidth, 0)];
         self.tagsView.tagOriginY = 4.f;
@@ -84,10 +77,8 @@
     self.tagsView.hidden = NO;
     [self.thumbnail setImageWithURL:imageModel.webformatURL placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
     }];
-    NSArray *arr = [imageModel.tags componentsSeparatedByString:@","];
+    NSArray *arr = [imageModel.tags componentsSeparatedByString:@", "];
     [self configTag:arr];
-    NSString *tag = [[imageModel.tags componentsSeparatedByString:@","] firstObject];
-    self.name.text = tag;
     /**   if (stage == YYWebImageStageFinished) {
         CATransform3D rotation;//3D旋转
         rotation = CATransform3DMakeTranslation(0 ,50 ,20);
@@ -122,9 +113,8 @@
     [self.thumbnail setImageWithURL:[NSURL URLWithString:videoModel.userImageURL] placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
 
     }];
-    NSArray *arr = [videoModel.tags componentsSeparatedByString:@","];
+    NSArray *arr = [videoModel.tags componentsSeparatedByString:@", "];
     [self configTag:arr];
-    NSString *tag = [[videoModel.tags componentsSeparatedByString:@","] firstObject];
-    self.name.text = tag;
+
 }
 @end

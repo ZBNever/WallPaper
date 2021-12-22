@@ -19,6 +19,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "PhotoBroswerVC.h"
 #import "PhotoModel.h"
+#import "UnsplashService.h"
 
 static NSString *kCellID = @"cell";
 
@@ -95,10 +96,19 @@ static NSString *kCellID = @"cell";
         [titleBtn sizeToFit];
         [self requestPreviousPage];
     }];
+    
+    UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"Unsplash" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        self.isWallHavenService = NO;
+        [titleBtn setTitle:@"Unsplash" forState:UIControlStateNormal];
+        [titleBtn sizeToFit];
+        [self requestUnsplashData];
+    }];
+    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
     
     [alertVC addAction:action1];
     [alertVC addAction:action2];
+    [alertVC addAction:action3];
     [alertVC addAction:cancelAction];
     
     [self.navigationController presentViewController:alertVC animated:YES completion:^{
@@ -136,8 +146,6 @@ static NSString *kCellID = @"cell";
         //请求Pixabay数据
         [self requestPixabayData];
     }
-    
-
 }
 #pragma mark  **********  下一页数据  **********
 - (void)requestNextPage{
@@ -148,6 +156,8 @@ static NSString *kCellID = @"cell";
     }else{
         //请求Pixabay数据
         [self requestPixabayData];
+        //请求Unsplash数据
+//        [self requestUnsplashData];
     }
 }
 #pragma mark - **********  请求Pixabay数据  **********
@@ -179,6 +189,23 @@ static NSString *kCellID = @"cell";
             [self.modelArr addObjectsFromArray:wallpapers];
             [self.tableView reloadData];
         });
+        
+    }];
+}
+
+- (void)requestUnsplashData{
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:@(_page) forKey:@"page"];
+//    [params setObject:@"" forKey:@"q"];
+    [UnsplashService requestUnsplashImageParams:params completion:^(NSArray * _Nullable unsplashArr, BOOL success) {
+//        //在主线程更新UI
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.header endRefreshing];
+//            [self.footer endRefreshing];
+//            [self.modelArr addObjectsFromArray:Pixabaypapers];
+//            [self.tableView reloadData];
+//        });
         
     }];
 }

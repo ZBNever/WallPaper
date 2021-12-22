@@ -21,14 +21,16 @@
     [params setObject:@"zh" forKey:@"lang"];
     [params setObject:@"photo" forKey:@"image_type"];
 //    [params setObject:@"vertical" forKey:@"orientation"];
-    
+    NSInteger page = [[params objectForKey:@"page"] integerValue];
+    BOOL showHUD = page==1?YES:NO;
     [MHNetworkManager getRequstWithURL:API_HOST params:params successBlock:^(id returnData, int code, NSString *msg) {
 //        NSLog(@"returnData:%@",returnData);
         NSMutableArray *ModelArr = [PixabayModel mj_objectArrayWithKeyValuesArray:returnData[@"hits"]];
         completion(ModelArr,YES);
     } failureBlock:^(NSError *error) {
 //        NSLog(@"%@",error);
-    } showHUD:YES];
+        completion(nil,NO);
+    } showHUD:showHUD];
     
 }
 
@@ -45,6 +47,8 @@
             completion(ModelArr,YES);
         } failureBlock:^(NSError *error) {
     //        NSLog(@"%@",error);
+            completion(nil,NO);
+            
         } showHUD:YES];
     
 }

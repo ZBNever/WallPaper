@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^PixabayCompletion)(NSArray *Pixabaypapers,BOOL success);
+typedef void(^PixabayCompletion)(NSArray * _Nullable Pixabaypapers,BOOL success);
 
 @interface PixabayService : NSObject
 

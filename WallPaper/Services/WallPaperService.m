@@ -42,15 +42,16 @@
     [params setObject:WallHavenAPIkey forKey:@"apikey"];
 //    [params setObject:@"100" forKey:@"categories"];
 //    [params setObject:@"" forKey:@"q"];
-    [params setObject:@"toplist" forKey:@"sorting"];//排序 默认date_added , relevance, random, views, favorites, toplist
-    
+//    [params setObject:@"toplist" forKey:@"sorting"];//排序 默认date_added , relevance, random, views, favorites, toplist
+    NSInteger page = [[params objectForKey:@"page"] integerValue];
+    BOOL showHUD = page==1?YES:NO;
     [MHNetworkManager getRequstWithURL:WallPaperSearchURL params:params successBlock:^(id returnData, int code, NSString *msg) {
 //        NSLog(@"returnData:%@",returnData);
         NSMutableArray *ModelArr = [WallPaperListModel mj_objectArrayWithKeyValuesArray:returnData[@"data"]];
         completion(ModelArr,YES);
     } failureBlock:^(NSError *error) {
 //        NSLog(@"%@",error);
-    } showHUD:YES];
+    } showHUD:showHUD];
 }
 
 

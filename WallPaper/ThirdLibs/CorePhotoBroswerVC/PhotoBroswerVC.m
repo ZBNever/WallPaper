@@ -258,7 +258,9 @@
 -(void)vcPrepare{
     
     //去除自动处理
-    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    
     
     //每页准备
     [self pagesPrepare];

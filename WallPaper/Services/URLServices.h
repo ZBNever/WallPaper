@@ -21,4 +21,9 @@
 //缩略图
 #define ThumbURL @"https://th.wallhaven.cc/small/kw/%@.jpg"
 
+
+#define UnsplashKey @"ThoI8YNICWcvzG1TtDuqfQbcbY-f5ffV4-l2Bq8TlLE"
+
+#define UnsplasgSearchPhoto @"https://api.unsplash.com/photos/?client_id=ThoI8YNICWcvzG1TtDuqfQbcbY-f5ffV4-l2Bq8TlLE"
+
 #endif /* URLServices_h */
