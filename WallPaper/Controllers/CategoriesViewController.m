@@ -20,6 +20,7 @@
 #import "PhotoBroswerVC.h"
 #import "PhotoModel.h"
 #import "UnsplashService.h"
+#import "UnsplashModel.h"
 
 static NSString *kCellID = @"cell";
 
@@ -32,6 +33,8 @@ static NSString *kCellID = @"cell";
 @property (nonatomic, strong) MJRefreshBackNormalFooter *footer;
 @property (nonatomic, assign) int page;
 @property (nonatomic, assign) BOOL isWallHavenService;
+/// 0：WallPaper ; 1: Pixabay; 2:Unsplash
+@property (nonatomic, assign) int type;
 @end
 
 @implementation CategoriesViewController
@@ -41,7 +44,7 @@ static NSString *kCellID = @"cell";
         
 //        self.title = @"WallPaper";
         UIButton *titleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [titleBtn setTitle:@"Pixabay" forState:UIControlStateNormal];
+        [titleBtn setTitle:@"WallPaper" forState:UIControlStateNormal];
         [titleBtn addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.titleView = titleBtn;
         // 搜索
@@ -71,27 +74,32 @@ static NSString *kCellID = @"cell";
     self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = YES;
     _page = 1;
+    self.type = 0;
     [self mj_pullRefresh];
-    if (self.isWallHavenService) {
+    if (self.type == 0) {
         //请求WallHaven数据
         [self requestWallHavenData];
-    }else{
+    } else if(self.type == 1) {
         //请求Pixabay数据
         [self requestPixabayData];
+    }else{
+        [self requestUnsplashData];
     }
 
 
 }
 - (void)chooseType:(UIButton *)titleBtn{
-    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择" message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择图片源" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"WallPaper" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         self.isWallHavenService = YES;
         [titleBtn setTitle:@"WallPaper" forState:UIControlStateNormal];
         [titleBtn sizeToFit];
+        self.type = 0;
         [self requestPreviousPage];
     }];
     UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"Pixabay" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         self.isWallHavenService = NO;
+        self.type = 1;
         [titleBtn setTitle:@"Pixabay" forState:UIControlStateNormal];
         [titleBtn sizeToFit];
         [self requestPreviousPage];
@@ -99,9 +107,10 @@ static NSString *kCellID = @"cell";
     
     UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"Unsplash" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         self.isWallHavenService = NO;
+        self.type = 2;
         [titleBtn setTitle:@"Unsplash" forState:UIControlStateNormal];
         [titleBtn sizeToFit];
-        [self requestUnsplashData];
+        [self requestPreviousPage];
     }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
@@ -139,25 +148,29 @@ static NSString *kCellID = @"cell";
     _page = 1;
     [self.modelArr removeAllObjects];
     
-    if (self.isWallHavenService) {
+    if (self.type == 0) {
         //请求WallHaven数据
         [self requestWallHavenData];
-    }else{
+    }else if (self.type == 1){
         //请求Pixabay数据
         [self requestPixabayData];
+    } else{
+        
+        [self requestUnsplashData];
     }
 }
 #pragma mark  **********  下一页数据  **********
 - (void)requestNextPage{
     _page++;
-    if (self.isWallHavenService) {
+    if (self.type == 0) {
         //请求WallHaven数据
         [self requestWallHavenData];
-    }else{
+    }else if (self.type == 1){
         //请求Pixabay数据
         [self requestPixabayData];
+    } else{
         //请求Unsplash数据
-//        [self requestUnsplashData];
+        [self requestUnsplashData];
     }
 }
 #pragma mark - **********  请求Pixabay数据  **********
@@ -196,16 +209,16 @@ static NSString *kCellID = @"cell";
 - (void)requestUnsplashData{
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@(_page) forKey:@"page"];
 //    [params setObject:@"" forKey:@"q"];
     [UnsplashService requestUnsplashImageParams:params completion:^(NSArray * _Nullable unsplashArr, BOOL success) {
 //        //在主线程更新UI
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.header endRefreshing];
-//            [self.footer endRefreshing];
-//            [self.modelArr addObjectsFromArray:Pixabaypapers];
-//            [self.tableView reloadData];
-//        });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.header endRefreshing];
+            [self.footer endRefreshing];
+            [self.modelArr addObjectsFromArray:unsplashArr];
+            [self.tableView reloadData];
+        });
         
     }];
 }
@@ -213,13 +226,18 @@ static NSString *kCellID = @"cell";
 - (void)searchBtn{
     // 1. Create an Array of popular search , , , , , , , , , , ,
     NSArray *hotSeaches;
-    if (self.isWallHavenService) {
+    if (self.type == 0) {
         hotSeaches =@[@"winter",@"fall",@"anime girls",@"minimalism",@"anime",@"mountains",@"tilt shift",@"Sakimichan",@"artwork",@"Asian",@"WLOP",@"pixel art",@"landscape",@"League of Legends",@"nature",@"digital art",@"cosplay",@"abstract",@"fantasy art",@"leaves",@"cityscape",@"Genshin Impact"];
-    }else{
+    }else if (self.type == 1) {
+        hotSeaches = @[@"科技", @"星空", @"运动", @"风景", @"商务", @"天空", @"学习", @"森林", @"美女", @"城市", @"背景", @"美食"];
+    }else {
+        // 暂未实现
+        
+        return;
         hotSeaches = @[@"科技", @"星空", @"运动", @"风景", @"商务", @"天空", @"学习", @"森林", @"美女", @"城市", @"背景", @"美食"];
     }
     // 2. Create a search view controller
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:self.isWallHavenService?@"仅限英文搜索":@"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:(self.type == 0) ?@"仅限英文搜索": @"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         WallpapersViewController *VC = [[WallpapersViewController alloc] initWithImageTag:searchText];
         VC.isWallhaven = self.isWallHavenService;
         [searchViewController.navigationController pushViewController:VC animated:YES];
@@ -246,21 +264,24 @@ static NSString *kCellID = @"cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
-    if (self.isWallHavenService) {
+    if (self.type == 0) {
         //请求WallHaven数据
         WallPaperListModel *wallPaperModel = self.modelArr[indexPath.row];
         cell.wallPaperListModel = wallPaperModel;
-    }else{
+    }else if (self.type == 1){
         //请求Pixabay数据
         PixabayModel *pixabayModel = self.modelArr[indexPath.row];
         [cell setImageModel:pixabayModel];
+    } else{
+        UnsplashModel *unsplashModel = self.modelArr[indexPath.row];
+        [cell setUnsplashUrl:unsplashModel.urls.full];
     }
     cell.delegate = self;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.isWallHavenService) {
+    if (self.type == 0) {
         
         [PhotoBroswerVC show:self type:PhotoBroswerVCTypePush index:indexPath.row photoModelBlock:^NSArray *{
             
@@ -293,7 +314,7 @@ static NSString *kCellID = @"cell";
             return modelsM;
         }];
         
-    }else{
+    }else if(self.type == 1){
         
         [PhotoBroswerVC show:self type:PhotoBroswerVCTypePush index:indexPath.row photoModelBlock:^NSArray *{
             
@@ -321,6 +342,42 @@ static NSString *kCellID = @"cell";
                 CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
                 //源frame
                 UIImageView *imageV =cell.thumbnail; //(UIImageView *)cell;
+                pbModel.sourceImageView = imageV;
+                
+                [modelsM addObject:pbModel];
+            }
+            
+            return modelsM;
+        }];
+
+    }else{
+        
+        [PhotoBroswerVC show:self type:PhotoBroswerVCTypePush index:indexPath.row photoModelBlock:^NSArray *{
+            
+            NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:self.modelArr.count];
+            
+            for (NSUInteger i = 0; i < self.modelArr.count; i++) {
+                UnsplashModel *model = self.modelArr[i];
+    //            WallPaper *wallpaper = _wallpapers[i];
+                PhotoModel *pbModel=[[PhotoModel alloc] init];
+                //此处的展示视图为XIB，已经隐藏
+    //            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
+    //            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
+                pbModel.image_HD_U = [NSString stringWithFormat:@"%@", model.urls.full];
+                
+                pbModel.image_thumbnail_U = [NSString stringWithFormat:@"%@", model.urls.small];
+                //从图片地址中截取唯一标识id,作为保存id,不会有重复
+    //            NSArray *strArr = [pbModel.image_HD_U componentsSeparatedByString:@"-"];
+    //            NSString *idStr = [strArr[1] componentsSeparatedByString:@"."][0];
+                /** mid，保存图片缓存唯一标识，必须传 */
+                pbModel.mid = model.Id;
+                
+                
+                
+//                WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+                CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
+                //源frame
+                UIImageView *imageV = cell.thumbnail; //(UIImageView *)cell;
                 pbModel.sourceImageView = imageV;
                 
                 [modelsM addObject:pbModel];

@@ -117,4 +117,13 @@
     [self configTag:arr];
 
 }
+
+
+- (void)setUnsplashUrl:(NSString *)UnsplashUrl{
+    self.tagsView.hidden = YES;
+    [self.thumbnail setImageWithURL:[NSURL URLWithString:UnsplashUrl] placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+
+    }];
+}
+
 @end

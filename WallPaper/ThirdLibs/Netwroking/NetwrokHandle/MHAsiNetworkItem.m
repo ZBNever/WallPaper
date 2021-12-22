@@ -65,6 +65,7 @@
         manager.requestSerializer.timeoutInterval = 15.f;
 //        manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObject:@"text/html"];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", nil];
+        
 //        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         if (networkType==MHAsiNetWorkGET)
         {

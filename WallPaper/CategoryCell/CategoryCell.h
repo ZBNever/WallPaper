@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WallPaper.h"
 #import "PixabayVideoModel.h"
+#import "UnsplashModel.h"
 
 @class ImageCategory;
 
@@ -34,7 +35,8 @@
 @property (nonatomic, strong) PixabayVideoModel *videoModel;
 
 - (void)setImageModel:(PixabayModel *)imageModel;
-
+// 设置图片
+- (void)setUnsplashUrl:(NSString *)UnsplashUrl;
 
 
 @end

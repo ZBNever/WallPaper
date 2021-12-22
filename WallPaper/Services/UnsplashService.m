@@ -17,9 +17,12 @@
         params = [NSMutableDictionary dictionary];
     }
 //    [params setObject:API_Key forKey:@"key"];
-//    [params setObject:@"zh" forKey:@"lang"];
-//    [params setObject:@"photo" forKey:@"image_type"];
+    [params setObject:@"zh" forKey:@"lang"];
+//    [params setObject:@"popular" forKey:@"order_by"];
 //    [params setObject:@"vertical" forKey:@"orientation"];
+    [params setObject:@"20" forKey:@"per_page"];
+    //  (Valid values: latest, oldest, popular; default: latest)
+    [params setObject:@"popular" forKey:@"order_by"];
     
     [MHNetworkManager getRequstWithURL:UnsplasgSearchPhoto params:params successBlock:^(id returnData, int code, NSString *msg) {
 //        NSLog(@"returnData:%@",returnData);

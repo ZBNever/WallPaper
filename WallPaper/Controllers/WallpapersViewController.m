@@ -139,10 +139,12 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)reloadData{
     _page = 1;
     [self.wallpapers removeAllObjects];
-    if (self.isWallhaven) {
+    if (self.type == 0) {
         [self requestWallhavenData];
-    }else{
+    }else if ( self.type == 1){
         [self requestPixabayData];
+    }else{
+        
     }
 }
 #pragma mark  **********  第一页数据  **********
@@ -152,10 +154,12 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark  **********  下一页数据  **********
 - (void)requestNextPage{
     _page++;
-    if (self.isWallhaven) {
+    if (self.type == 0) {
         [self requestWallhavenData];
-    }else{
+    }else if(self.type == 1){
         [self requestPixabayData];
+    }else{
+        
     }
 }
 
