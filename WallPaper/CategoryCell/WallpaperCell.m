@@ -71,6 +71,31 @@
 
 }
 
+- (void)setWallpaper:(WallPaperListModel *)wallpaper{
+    [_imageView setImageWithURL:[NSURL URLWithString:wallpaper.path]
+                       placeholder:nil
+                           options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                        completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+/**
+        if (stage == YYWebImageStageFinished) {
+
+                self->_webImageView.alpha = 0;
+                //旋转
+                self->_webImageView.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(.5, .5), drand48()-0.5);
+                //缩放
+                self->_webImageView.transform = CGAffineTransformMakeScale(0.6, 0.6);
+
+                [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:0 animations:^{
+
+                    self->_webImageView.transform = CGAffineTransformIdentity;
+                    self->_webImageView.alpha = 1;
+
+                } completion:nil];
+            }
+ */
+    }
+        ];
+}
 
 - (void)layoutSubviews{
     [super layoutSubviews];

@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WallPaper.h"
+#import "PixabayVideoModel.h"
+#import "UnsplashModel.h"
 
 @class ImageCategory;
 
@@ -25,8 +28,15 @@
 
 @property (nonatomic,assign) id<HXCellTagsViewDelegate> delegate;
 
-- (void)setImageModel:(PixabayModel *)imageModel;
+@property (nonatomic, strong) UIImageView *thumbnail;
 
+@property (nonatomic, strong) WallPaperListModel *wallPaperListModel;
+/** 视频的Model */
+@property (nonatomic, strong) PixabayVideoModel *videoModel;
+
+- (void)setImageModel:(PixabayModel *)imageModel;
+// 设置图片
+- (void)setUnsplashUrl:(NSString *)UnsplashUrl;
 
 
 @end

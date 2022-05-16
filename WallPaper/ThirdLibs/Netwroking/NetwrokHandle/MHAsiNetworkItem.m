@@ -53,24 +53,39 @@
         self.showHUD        = showHUD;
         self.tagrget        = target;
         self.select         = action;
-        if (showHUD==YES) {
-//            [MBProgressHUD showHUD];
+        if (showHUD) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD showHUDAddedTo:KEYWindow animated:YES];
+            });
         }
         __weak typeof(self)weakSelf = self;
         NSLog(@"--请求url地址--%@\n",url);
         NSLog(@"----请求参数%@\n",params);
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer.timeoutInterval = 15.f;
 //        manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObject:@"text/html"];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", nil];
+        
 //        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         if (networkType==MHAsiNetWorkGET)
         {
             [manager GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if (showHUD) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:KEYWindow animated:YES];
+                    });
+                }
                 int code = 0;
                 NSString *msg = nil;
-                if (responseObject) {
+                if ([responseObject isKindOfClass:[NSArray class]]) {
+//                    NSString *success   = @"YES";
+                    code                = 0;
+                    msg                 = @"请求成功";
+                }
+                if (responseObject && ![responseObject isKindOfClass:[NSArray class]]) {
                     NSString *success   = responseObject[@"success"];
                     code                = success.intValue;
                     msg                 = responseObject[@"msg"];
@@ -87,6 +102,13 @@
                 [weakSelf removewItem];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"---error==%@\n",error.localizedDescription);
+                if (self.showHUD) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:KEYWindow animated:YES];
+                        
+                    });
+                    
+                }
                 if (failureBlock) {
                     failureBlock(error);
                 }
@@ -103,6 +125,11 @@
             [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if (showHUD) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:KEYWindow animated:YES];
+                    });
+                }
                 int code = 0;
                 NSString *msg = nil;
                 if (responseObject) {
@@ -120,6 +147,11 @@
                 [weakSelf performSelector:@selector(finishedRequest: didFaild:) withObject:responseObject withObject:nil];
                 [weakSelf removewItem];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                if (showHUD) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:KEYWindow animated:YES];
+                    });
+                }
                 NSLog(@"---error==%@\n",error.localizedDescription);
                 if (failureBlock) {
                     failureBlock(error);

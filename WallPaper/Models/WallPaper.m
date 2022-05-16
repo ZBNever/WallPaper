@@ -11,3 +11,8 @@
 @implementation WallPaper
 
 @end
+@implementation WallPaperListModel
++(NSDictionary *)mj_replacedKeyFromPropertyName{
+    return @{@"Id":@"id"};
+}
+@end

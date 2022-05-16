@@ -61,7 +61,8 @@
                failureBlock:(MHAsiFailureBlock)failureBlock
 {
     if (self.networkError == YES) {
-        SHOW_ALERT(@"网络连接断开,请检查网络!");
+//        SHOW_ALERT(@"网络连接断开,请检查网络!");
+        NSLog(@"网络连接断开,请检查网络!");
         return nil;
     }
     /// 如果有一些公共处理，可以写在这里

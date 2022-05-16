@@ -12,5 +12,8 @@ typedef void(^WallpapersCompletion)(NSArray *wallpapers,BOOL success);
 
 @interface WallPaperService : NSObject
 
-+ (void)requestWallpapersFromURL:(NSURL *)url completion:(WallpapersCompletion)completion;
++ (void)requestWallpapersFromURL:(NSString *)url completion:(WallpapersCompletion)completion;
+
++ (void)requestSearchWallPapers:(NSMutableDictionary *)params completion:(WallpapersCompletion)completion;
+
 @end

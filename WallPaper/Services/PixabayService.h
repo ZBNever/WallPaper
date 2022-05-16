@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^PixabayCompletion)(NSArray *Pixabaypapers,BOOL success);
+typedef void(^PixabayCompletion)(NSArray * _Nullable Pixabaypapers,BOOL success);
 
 @interface PixabayService : NSObject
 
-+ (void)requestWallpapersParams:(NSMutableDictionary *)params completion:(PixabayCompletion)completion;
++ (void)requestPixabayImageParams:(NSMutableDictionary *)params completion:(PixabayCompletion)completion;
+
++ (void)requestVideoParams:(NSMutableDictionary *)params completion:(PixabayCompletion)completion;
 
 @end
 
