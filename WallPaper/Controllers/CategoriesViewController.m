@@ -73,6 +73,11 @@ static NSString *kCellID = @"cell";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = YES;
+    if (@available(iOS 13.0, *)) {
+        self.tableView.automaticallyAdjustsScrollIndicatorInsets = NO;
+    } else {
+        // Fallback on earlier versions
+    }
     _page = 1;
     self.type = 0;
     [self mj_pullRefresh];

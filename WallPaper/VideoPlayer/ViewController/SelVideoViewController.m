@@ -24,11 +24,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = self.titleStr;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
     
-    if ([[UIDevice currentDevice].systemVersion floatValue] > 7.0) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
+//    if ([[UIDevice currentDevice].systemVersion floatValue] > 7.0) {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//    }
     SelPlayerConfiguration *configuration = [[SelPlayerConfiguration alloc]init];
     configuration.shouldAutoPlay = YES;
     configuration.supportedDoubleTap = YES;

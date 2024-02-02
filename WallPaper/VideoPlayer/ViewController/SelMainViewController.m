@@ -25,6 +25,7 @@ static NSString *KCellID = @"CategoryCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"视频";
+    self.view.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.mainTableView];
     [self requestVideo];
 }
@@ -45,9 +46,10 @@ static NSString *KCellID = @"CategoryCell";
     
     if(!_mainTableView) {
         
-        _mainTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _mainTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHight) style:UITableViewStylePlain];
         [_mainTableView registerClass:[CategoryCell class] forCellReuseIdentifier:KCellID];
-        _mainTableView.delegate =self;
+        _mainTableView.backgroundColor = [UIColor clearColor];
+        _mainTableView.delegate = self;
         
         _mainTableView.dataSource =self;
         

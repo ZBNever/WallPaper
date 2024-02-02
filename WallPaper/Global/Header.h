@@ -9,10 +9,13 @@
 #ifndef Header_h
 #define Header_h
 
+#define iPhoneXSeries (([[UIApplication sharedApplication] statusBarFrame].size.height >= 44.0f) ? (YES):(NO))
+
+#define KNavbarHight iPhoneXSeries?88:64
+#define KTabbarHight iPhoneXSeries?83:49
+
 #define KScreenWidth [[UIScreen mainScreen] bounds].size.width
 #define KScreenHight [[UIScreen mainScreen] bounds].size.height
-
-#define iPhoneXSeries (([[UIApplication sharedApplication] statusBarFrame].size.height >= 44.0f) ? (YES):(NO))
 
 #define WeakSelf __weak typeof(self) weakSelf = self;
 
