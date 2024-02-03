@@ -18,6 +18,11 @@
 		0415AE4A2674C2F500A9E884 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415AE432674C2F500A9E884 /* UIView+Frame.m */; };
 		0415AE4B2674C2F500A9E884 /* UIView+convenienceMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415AE442674C2F500A9E884 /* UIView+convenienceMethod.m */; };
 		0415AE4C2674C2F500A9E884 /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415AE452674C2F500A9E884 /* UIView+HUD.m */; };
+		04329F3A2B6E727600AF63D4 /* music.json in Resources */ = {isa = PBXBuildFile; fileRef = 04329F322B6E727600AF63D4 /* music.json */; };
+		04329F3B2B6E727600AF63D4 /* HeeeMusicAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04329F332B6E727600AF63D4 /* HeeeMusicAnimateView.m */; };
+		04329F3C2B6E727600AF63D4 /* ZMusicPlayerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04329F352B6E727600AF63D4 /* ZMusicPlayerVC.xib */; };
+		04329F3D2B6E727600AF63D4 /* MusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04329F382B6E727600AF63D4 /* MusicModel.m */; };
+		04329F3E2B6E727600AF63D4 /* ZMusicPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04329F392B6E727600AF63D4 /* ZMusicPlayerVC.m */; };
 		044C437E266BAD3900BC612F /* PrintBeautifulLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 044C437D266BAD3900BC612F /* PrintBeautifulLog.m */; };
 		044DC1FE2673BADB007F1F10 /* UnsplashService.m in Sources */ = {isa = PBXBuildFile; fileRef = 044DC1FD2673BADB007F1F10 /* UnsplashService.m */; };
 		044DC2022673BCE9007F1F10 /* UnsplashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 044DC2012673BCE9007F1F10 /* UnsplashModel.m */; };
@@ -171,6 +176,14 @@
 		0415AE462674C2F500A9E884 /* UIView+AddInspectableProterty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AddInspectableProterty.h"; sourceTree = "<group>"; };
 		0415AE472674C2F500A9E884 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		0415AE482674C2F500A9E884 /* UIView+convenienceMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+convenienceMethod.h"; sourceTree = "<group>"; };
+		04329F322B6E727600AF63D4 /* music.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = music.json; sourceTree = "<group>"; };
+		04329F332B6E727600AF63D4 /* HeeeMusicAnimateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeeeMusicAnimateView.m; sourceTree = "<group>"; };
+		04329F342B6E727600AF63D4 /* MusicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicModel.h; sourceTree = "<group>"; };
+		04329F352B6E727600AF63D4 /* ZMusicPlayerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZMusicPlayerVC.xib; sourceTree = "<group>"; };
+		04329F362B6E727600AF63D4 /* ZMusicPlayerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMusicPlayerVC.h; sourceTree = "<group>"; };
+		04329F372B6E727600AF63D4 /* HeeeMusicAnimateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeeeMusicAnimateView.h; sourceTree = "<group>"; };
+		04329F382B6E727600AF63D4 /* MusicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicModel.m; sourceTree = "<group>"; };
+		04329F392B6E727600AF63D4 /* ZMusicPlayerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMusicPlayerVC.m; sourceTree = "<group>"; };
 		044C437C266BAD3900BC612F /* PrintBeautifulLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintBeautifulLog.h; sourceTree = "<group>"; };
 		044C437D266BAD3900BC612F /* PrintBeautifulLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintBeautifulLog.m; sourceTree = "<group>"; };
 		044DC1FC2673BADB007F1F10 /* UnsplashService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnsplashService.h; sourceTree = "<group>"; };
@@ -480,6 +493,21 @@
 				0415AE452674C2F500A9E884 /* UIView+HUD.m */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		04329F312B6E727600AF63D4 /* MusicPlay */ = {
+			isa = PBXGroup;
+			children = (
+				04329F372B6E727600AF63D4 /* HeeeMusicAnimateView.h */,
+				04329F332B6E727600AF63D4 /* HeeeMusicAnimateView.m */,
+				04329F322B6E727600AF63D4 /* music.json */,
+				04329F342B6E727600AF63D4 /* MusicModel.h */,
+				04329F382B6E727600AF63D4 /* MusicModel.m */,
+				04329F362B6E727600AF63D4 /* ZMusicPlayerVC.h */,
+				04329F392B6E727600AF63D4 /* ZMusicPlayerVC.m */,
+				04329F352B6E727600AF63D4 /* ZMusicPlayerVC.xib */,
+			);
+			path = MusicPlay;
 			sourceTree = "<group>";
 		};
 		044C437B266BAD3900BC612F /* PrintBeautifulLog */ = {
@@ -792,6 +820,7 @@
 		CA566FFD1E4C6FB900ADE9EA /* WallPaper */ = {
 			isa = PBXGroup;
 			children = (
+				04329F312B6E727600AF63D4 /* MusicPlay */,
 				CA56700F1E4C6FB900ADE9EA /* Info.plist */,
 				044C437F266BCAAB00BC612F /* Systerm */,
 				585322A91F5E9C4100EF2496 /* Share */,
@@ -1337,11 +1366,13 @@
 				CA56700B1E4C6FB900ADE9EA /* Assets.xcassets in Resources */,
 				585322DF1F5E9C4100EF2496 /* icon_share_webo@2x.png in Resources */,
 				CA28A5A1237679C200C9A5DC /* README.md in Resources */,
+				04329F3C2B6E727600AF63D4 /* ZMusicPlayerVC.xib in Resources */,
 				C747F6D22457DB3200B979D6 /* Objective-C.pdf in Resources */,
 				CAD502161E98661A00795CDA /* CoreSDWebImage.bundle in Resources */,
 				585322D71F5E9C4100EF2496 /* WeiboSDK.bundle in Resources */,
 				585322DE1F5E9C4100EF2496 /* icon_share_qzone@2x.png in Resources */,
 				C747F6E9245AB04F00B979D6 /* Presentation.pdf in Resources */,
+				04329F3A2B6E727600AF63D4 /* music.json in Resources */,
 				0415AE372674C21100A9E884 /* EYFiltrateView.xib in Resources */,
 				CAD502291E98661A00795CDA /* CoreSVP.bundle in Resources */,
 				CA59A5381E500D6D0072FCB9 /* LaunchScreen.jpg in Resources */,
@@ -1413,6 +1444,7 @@
 				C7106B4E22E0191F00FA904A /* PixabayService.m in Sources */,
 				CAD501FD1E98661A00795CDA /* PhotoItemView.m in Sources */,
 				CAD502091E98661A00795CDA /* NSString+Password.m in Sources */,
+				04329F3E2B6E727600AF63D4 /* ZMusicPlayerVC.m in Sources */,
 				585322E41F5E9C4100EF2496 /* XMShareWechatUtil.m in Sources */,
 				C747F6E52457F8C000B979D6 /* HWPDFBrowseScrollView.m in Sources */,
 				C747F6D02457DB3200B979D6 /* PDFPageModel.m in Sources */,
@@ -1430,6 +1462,7 @@
 				CA1AFF311E4D66C1006B8CA7 /* WallPaper.m in Sources */,
 				C7106BAF22E01B3500FA904A /* MHAsiNetworkItem.m in Sources */,
 				044DC2022673BCE9007F1F10 /* UnsplashModel.m in Sources */,
+				04329F3B2B6E727600AF63D4 /* HeeeMusicAnimateView.m in Sources */,
 				CA8870041E53ED51009E9333 /* Tools.m in Sources */,
 				C747F6D42457DB3200B979D6 /* PDFView.m in Sources */,
 				CAD5022D1E98661A00795CDA /* SVProgressHUD.m in Sources */,
@@ -1448,6 +1481,7 @@
 				CAD502111E98661A00795CDA /* UIImage+Water.m in Sources */,
 				CAD5020C1E98661A00795CDA /* UIFont+Extend.m in Sources */,
 				0415AE4A2674C2F500A9E884 /* UIView+Frame.m in Sources */,
+				04329F3D2B6E727600AF63D4 /* MusicModel.m in Sources */,
 				0415AE362674C21100A9E884 /* EYFiltrateItemModel.m in Sources */,
 				C7106BB922E0564B00FA904A /* PixabayModel.m in Sources */,
 				CAD502021E98661A00795CDA /* CoreArchive.m in Sources */,
@@ -1670,7 +1704,6 @@
 					"\"UIKit\"",
 					"-framework",
 					"\"WebP\"",
-					"-ld64",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.never.WallPaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1742,7 +1775,6 @@
 					"\"UIKit\"",
 					"-framework",
 					"\"WebP\"",
-					"-ld64",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.never.WallPaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";

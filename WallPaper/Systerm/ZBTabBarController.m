@@ -12,6 +12,7 @@
 #import "ZBVideoViewController.h"
 #import "SelMainViewController.h"
 #import "PDFViewController.h"
+#import "ZMusicPlayerVC.h"
 //#import "HSClassViewController.h"
 //#import "HSCartViewController.h"
 //#import "HSMineViewController.h"
@@ -39,9 +40,9 @@
 
     ZBNavigationController *three = [[ZBNavigationController alloc] initWithRootViewController:[[PDFViewController alloc] init]];
 //
-//    ZBNavigationController *four = [[ZBNavigationController alloc] initWithRootViewController:[[HSMineViewController alloc] init]];
+    ZBNavigationController *four = [[ZBNavigationController alloc] initWithRootViewController:[[ZMusicPlayerVC alloc] init]];
 
-    self.viewControllers = @[one, two, three];
+    self.viewControllers = @[one, two, three,four];
     
 }
 
@@ -64,17 +65,17 @@
                                                  @"TabBarItemImage" : @"cart-0",
                                                  @"TabBarItemSelectedImage" : @"cart-1",
                                                  };
-//    NSDictionary *fourthTabBarItemsAttributes = @{
-//                                                  @"TabBarItemTitle" : @"我的",
-//                                                  @"TabBarItemImage" : @"user-0",
-//                                                  @"TabBarItemSelectedImage" : @"user-1"
-//                                                  };
+    NSDictionary *fourthTabBarItemsAttributes = @{
+                                                  @"TabBarItemTitle" : @"音乐",
+                                                  @"TabBarItemImage" : @"user-0",
+                                                  @"TabBarItemSelectedImage" : @"user-1"
+                                                  };
 
     NSArray<NSDictionary *>  *tabBarItemsAttributes = @[
                                        firstTabBarItemsAttributes,
                                        secondTabBarItemsAttributes,
                                        thirdTabBarItemsAttributes,
-//                                       fourthTabBarItemsAttributes
+                                       fourthTabBarItemsAttributes
                                        ];
     
     [self.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
