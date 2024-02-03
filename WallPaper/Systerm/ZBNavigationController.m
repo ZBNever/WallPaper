@@ -18,6 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationBar.translucent = NO;
 }
 
 // 重写自定义的UINavigationController中的push方法 处理tabbar的显示隐藏

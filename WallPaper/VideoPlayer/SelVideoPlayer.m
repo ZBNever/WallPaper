@@ -444,7 +444,7 @@ typedef NS_ENUM(NSInteger, SelVideoPlayerState) {
     
     [self.playerLayer removeFromSuperlayer];
     [self removeFromSuperview];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 /** 释放Self */

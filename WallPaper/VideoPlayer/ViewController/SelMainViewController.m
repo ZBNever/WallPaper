@@ -31,6 +31,7 @@ static NSString *KCellID = @"CategoryCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"视频";
+    self.view.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.mainTableView];
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.page = 1;
@@ -67,6 +68,7 @@ static NSString *KCellID = @"CategoryCell";
         
         _mainTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
         [_mainTableView registerClass:[CategoryCell class] forCellReuseIdentifier:KCellID];
+        _mainTableView.backgroundColor = [UIColor clearColor];
         _mainTableView.delegate =self;
         
         _mainTableView.dataSource =self;
@@ -116,7 +118,7 @@ static NSString *KCellID = @"CategoryCell";
     [PixabayService requestVideoParams:param completion:^(NSArray * _Nonnull Pixabaypapers, BOOL success) {
         [self.mj_header endRefreshing];
         [self.mj_footer endRefreshing];
-        [self.dataArr addObjectsFromArray:Pixabaypapers]; //[PixabayVideoModel mj_objectArrayWithKeyValuesArray:Pixabaypapers];
+        [self.dataArr addObjectsFromArray:[PixabayVideoModel mj_objectArrayWithKeyValuesArray:Pixabaypapers]];
         //在主线程更新UI
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.mainTableView reloadData];
