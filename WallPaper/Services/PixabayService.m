@@ -10,6 +10,7 @@
 #import "MHNetwork.h"
 #import <MJExtension.h>
 #import "PixabayModel.h"
+#import "PixabayVideoModel.h"
 
 @implementation PixabayService
 
@@ -43,7 +44,7 @@
         [params setObject:@"all" forKey:@"video_type"];
         [MHNetworkManager getRequstWithURL:API_Video_HOST params:params successBlock:^(id returnData, int code, NSString *msg) {
     //        NSLog(@"returnData:%@",returnData);
-            NSMutableArray *ModelArr = [PixabayModel mj_objectArrayWithKeyValuesArray:returnData[@"hits"]];
+            NSMutableArray *ModelArr = [PixabayVideoModel mj_objectArrayWithKeyValuesArray:returnData[@"hits"]];
             completion(ModelArr,YES);
         } failureBlock:^(NSError *error) {
     //        NSLog(@"%@",error);

@@ -27,13 +27,13 @@ PODS:
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.2.1)
-  - Masonry (~> 1.1.0)
-  - MBProgressHUD (~> 1.1.0)
-  - MJExtension (~> 3.1.0)
-  - MJRefresh (~> 3.2.0)
-  - PYSearch (~> 0.9.1)
-  - SDWebImage (~> 5.0.6)
+  - AFNetworking
+  - Masonry
+  - MBProgressHUD
+  - MJExtension
+  - MJRefresh
+  - PYSearch
+  - SDWebImage
   - YYKit (~> 1.0.9)
 
 SPEC REPOS:
@@ -57,6 +57,6 @@ SPEC CHECKSUMS:
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 26f35e8d19dbe74f1b2b48536c6aff9e7bac61bf
+PODFILE CHECKSUM: b2e8a6d27bf63c623d48e9f2e3d28df5a9af4e1d
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3

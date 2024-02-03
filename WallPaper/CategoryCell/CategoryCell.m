@@ -110,7 +110,8 @@
 }
 - (void)setVideoModel:(PixabayVideoModel *)videoModel{
     self.tagsView.hidden = NO;
-    [self.thumbnail setImageWithURL:[NSURL URLWithString:videoModel.userImageURL] placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+    NSString *imgUrl = [NSString stringWithFormat:@"https://i.vimeocdn.com/video/%@_960x540",videoModel.picture_id];
+    [self.thumbnail setImageWithURL:[NSURL URLWithString:imgUrl] placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
 
     }];
     NSArray *arr = [videoModel.tags componentsSeparatedByString:@", "];

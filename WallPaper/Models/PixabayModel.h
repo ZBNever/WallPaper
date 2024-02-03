@@ -35,7 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) NSURL *webformatURL; //"https://pixabay.com/get/52e3d64a4d52ad14f6da8c7dda79337f1638dce6544c704c732c7fd7934bc45a_640.jpg";
 @property(nonatomic,strong) NSString *webformatWidth; //640;
 
-
 @end
+
+
 
 NS_ASSUME_NONNULL_END

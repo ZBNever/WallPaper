@@ -11,13 +11,19 @@
 #import "PixabayService.h"
 #import "PixabayVideoModel.h"
 #import "CategoryCell.h"
+#import "MJRefresh.h"
 
 static NSString *KCellID = @"CategoryCell";
 
 @interface SelMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 @property (nonatomic, strong) NSMutableArray *dataArr;
-
+/// 下拉刷新
+@property (nonatomic, strong) MJRefreshNormalHeader *mj_header;
+/// 上拉加载更多
+@property (nonatomic, strong) MJRefreshAutoNormalFooter *mj_footer;
+/// 页数
+@property (nonatomic, assign) NSInteger page;
 @end
 
 @implementation SelMainViewController
@@ -26,7 +32,21 @@ static NSString *KCellID = @"CategoryCell";
     [super viewDidLoad];
     self.title = @"视频";
     [self.view addSubview:self.mainTableView];
-    [self requestVideo];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.page = 1;
+        [self.dataArr removeAllObjects];
+        [self requestVideo];
+    }];
+    self.mj_header = header;
+    self.mainTableView.mj_header = header;
+    
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        self.page += 1;
+        [self requestVideo];
+    }];
+    self.mj_footer = footer;
+    self.mainTableView.mj_footer = footer;
+    [header beginRefreshing];
 }
 
 - (void)playAction:(NSInteger)index titleStr:(NSString *)titleStr{
@@ -86,7 +106,7 @@ static NSString *KCellID = @"CategoryCell";
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:@"latest" forKey:@"order"];
-    [param setObject:@(1) forKey:@"page"];
+    [param setObject:@(self.page) forKey:@"page"];
 //    if ([_tag isEqualToString:@"Latest"]) {
 //        [param setObject:@"latest" forKey:@"order"];
 //    }else{
@@ -94,7 +114,9 @@ static NSString *KCellID = @"CategoryCell";
 //    }
 //    [param setObject:@(_page) forKey:@"page"];
     [PixabayService requestVideoParams:param completion:^(NSArray * _Nonnull Pixabaypapers, BOOL success) {
-        self.dataArr = [PixabayVideoModel mj_objectArrayWithKeyValuesArray:Pixabaypapers];
+        [self.mj_header endRefreshing];
+        [self.mj_footer endRefreshing];
+        [self.dataArr addObjectsFromArray:Pixabaypapers]; //[PixabayVideoModel mj_objectArrayWithKeyValuesArray:Pixabaypapers];
         //在主线程更新UI
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.mainTableView reloadData];
