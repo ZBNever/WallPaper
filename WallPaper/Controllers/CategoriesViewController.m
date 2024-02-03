@@ -44,7 +44,7 @@ static NSString *kCellID = @"cell";
         
 //        self.title = @"WallPaper";
         UIButton *titleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [titleBtn setTitle:@"WallPaper" forState:UIControlStateNormal];
+        [titleBtn setTitle:@"Pixabay" forState:UIControlStateNormal];
         [titleBtn addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.titleView = titleBtn;
         // 搜索
@@ -82,30 +82,29 @@ static NSString *kCellID = @"cell";
     self.type = 0;
     [self mj_pullRefresh];
     if (self.type == 0) {
-        //请求WallHaven数据
-        [self requestWallHavenData];
-    } else if(self.type == 1) {
         //请求Pixabay数据
         [self requestPixabayData];
+    } else if(self.type == 1) {
+        //请求WallHaven数据
+        [self requestWallHavenData];
     }else{
         [self requestUnsplashData];
     }
 
-
 }
 - (void)chooseType:(UIButton *)titleBtn{
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择图片源" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"WallPaper" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"Pixabay" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         self.isWallHavenService = YES;
-        [titleBtn setTitle:@"WallPaper" forState:UIControlStateNormal];
+        [titleBtn setTitle:@"Pixabay" forState:UIControlStateNormal];
         [titleBtn sizeToFit];
         self.type = 0;
         [self requestPreviousPage];
     }];
-    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"Pixabay" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"WallPaper"  style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         self.isWallHavenService = NO;
         self.type = 1;
-        [titleBtn setTitle:@"Pixabay" forState:UIControlStateNormal];
+        [titleBtn setTitle:@"WallPaper" forState:UIControlStateNormal];
         [titleBtn sizeToFit];
         [self requestPreviousPage];
     }];
@@ -154,11 +153,12 @@ static NSString *kCellID = @"cell";
     [self.modelArr removeAllObjects];
     
     if (self.type == 0) {
-        //请求WallHaven数据
-        [self requestWallHavenData];
-    }else if (self.type == 1){
         //请求Pixabay数据
         [self requestPixabayData];
+
+    }else if (self.type == 1){
+        //请求WallHaven数据
+        [self requestWallHavenData];
     } else{
         
         [self requestUnsplashData];
@@ -168,11 +168,12 @@ static NSString *kCellID = @"cell";
 - (void)requestNextPage{
     _page++;
     if (self.type == 0) {
-        //请求WallHaven数据
-        [self requestWallHavenData];
-    }else if (self.type == 1){
         //请求Pixabay数据
         [self requestPixabayData];
+    }else if (self.type == 1){
+        //请求WallHaven数据
+        [self requestWallHavenData];
+
     } else{
         //请求Unsplash数据
         [self requestUnsplashData];
@@ -270,13 +271,14 @@ static NSString *kCellID = @"cell";
     CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
     if (self.type == 0) {
-        //请求WallHaven数据
-        WallPaperListModel *wallPaperModel = self.modelArr[indexPath.row];
-        cell.wallPaperListModel = wallPaperModel;
-    }else if (self.type == 1){
         //请求Pixabay数据
         PixabayModel *pixabayModel = self.modelArr[indexPath.row];
         [cell setImageModel:pixabayModel];
+
+    }else if (self.type == 1){
+        //请求WallHaven数据
+        WallPaperListModel *wallPaperModel = self.modelArr[indexPath.row];
+        cell.wallPaperListModel = wallPaperModel;
     } else{
         UnsplashModel *unsplashModel = self.modelArr[indexPath.row];
         [cell setUnsplashUrl:unsplashModel.urls.full];
@@ -287,39 +289,6 @@ static NSString *kCellID = @"cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.type == 0) {
-        
-        [PhotoBroswerVC show:self type:PhotoBroswerVCTypePush index:indexPath.row photoModelBlock:^NSArray *{
-            
-            NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:self.modelArr.count];
-            
-            for (NSUInteger i = 0; i < self.modelArr.count; i++) {
-                WallPaperListModel *model = self.modelArr[i];
-    //            WallPaper *wallpaper = _wallpapers[i];
-                PhotoModel *pbModel=[[PhotoModel alloc] init];
-                //此处的展示视图为XIB，已经隐藏
-    //            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
-    //            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
-                pbModel.image_HD_U = [NSString stringWithFormat:@"%@", model.path];
-                
-                pbModel.image_thumbnail_U = [NSString stringWithFormat:@"%@", model.thumbs.small];
-                //从图片地址中截取唯一标识id,作为保存id,不会有重复
-    //            NSArray *strArr = [pbModel.image_HD_U componentsSeparatedByString:@"-"];
-    //            NSString *idStr = [strArr[1] componentsSeparatedByString:@"."][0];
-                /** mid，保存图片缓存唯一标识，必须传 */
-                pbModel.mid = model.Id;
-//                WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-                CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
-                //源frame
-                UIImageView *imageV = cell.thumbnail; //(UIImageView *)cell;
-                pbModel.sourceImageView = imageV;
-                
-                [modelsM addObject:pbModel];
-            }
-            
-            return modelsM;
-        }];
-        
-    }else if(self.type == 1){
         
         [PhotoBroswerVC show:self type:PhotoBroswerVCTypePush index:indexPath.row photoModelBlock:^NSArray *{
             
@@ -354,7 +323,40 @@ static NSString *kCellID = @"cell";
             
             return modelsM;
         }];
-
+        
+    }else if(self.type == 1){
+        
+        
+        [PhotoBroswerVC show:self type:PhotoBroswerVCTypePush index:indexPath.row photoModelBlock:^NSArray *{
+            
+            NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:self.modelArr.count];
+            
+            for (NSUInteger i = 0; i < self.modelArr.count; i++) {
+                WallPaperListModel *model = self.modelArr[i];
+    //            WallPaper *wallpaper = _wallpapers[i];
+                PhotoModel *pbModel=[[PhotoModel alloc] init];
+                //此处的展示视图为XIB，已经隐藏
+    //            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
+    //            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
+                pbModel.image_HD_U = [NSString stringWithFormat:@"%@", model.path];
+                
+                pbModel.image_thumbnail_U = [NSString stringWithFormat:@"%@", model.thumbs.small];
+                //从图片地址中截取唯一标识id,作为保存id,不会有重复
+    //            NSArray *strArr = [pbModel.image_HD_U componentsSeparatedByString:@"-"];
+    //            NSString *idStr = [strArr[1] componentsSeparatedByString:@"."][0];
+                /** mid，保存图片缓存唯一标识，必须传 */
+                pbModel.mid = model.Id;
+//                WallpaperCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+                CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
+                //源frame
+                UIImageView *imageV = cell.thumbnail; //(UIImageView *)cell;
+                pbModel.sourceImageView = imageV;
+                
+                [modelsM addObject:pbModel];
+            }
+            
+            return modelsM;
+        }];
     }else{
         
         [PhotoBroswerVC show:self type:PhotoBroswerVCTypePush index:indexPath.row photoModelBlock:^NSArray *{

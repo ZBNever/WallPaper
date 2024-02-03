@@ -251,7 +251,7 @@ static const CGFloat PlaybackControlsAutoHideTimeInterval = 0.3f;
     
     [_bottomControlsBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self);
-        make.height.equalTo(@30);
+        make.height.mas_equalTo(30);
     }];
     
     [_activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -270,20 +270,20 @@ static const CGFloat PlaybackControlsAutoHideTimeInterval = 0.3f;
     
     [_playTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_bottomControlsBar).offset(5);
-        make.width.equalTo(@45);
+        make.width.mas_equalTo(45);
         make.centerY.equalTo(_bottomControlsBar.mas_centerY);
     }];
     
     [_totalTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(_fullScreenButton.mas_left).offset(-5);
-        make.width.equalTo(@45);
+        make.width.mas_equalTo(45);
         make.centerY.equalTo(_bottomControlsBar.mas_centerY);
     }];
     
     [_progress mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_playTimeLabel.mas_right).offset(5);
         make.right.equalTo(_totalTimeLabel.mas_left).offset(-5);
-        make.height.equalTo(@2);
+        make.height.mas_equalTo(2);
         make.centerY.equalTo(_bottomControlsBar.mas_centerY);
     }];
 
