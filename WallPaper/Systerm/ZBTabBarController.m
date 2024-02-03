@@ -27,7 +27,8 @@
     [self addChildViewControllers];
     [self addTabarItems];
     self.delegate = self;
-    self.tabBar.barStyle = UIBarStyleBlackOpaque;
+    self.tabBar.barStyle = UIBarStyleBlack;
+    self.tabBar.translucent = NO;
 }
 
 - (void)addChildViewControllers

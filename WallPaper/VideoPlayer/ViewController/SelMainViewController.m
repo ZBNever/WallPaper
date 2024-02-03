@@ -11,13 +11,15 @@
 #import "PixabayService.h"
 #import "PixabayVideoModel.h"
 #import "CategoryCell.h"
-
+#import <MJRefresh.h>
 static NSString *KCellID = @"CategoryCell";
 
 @interface SelMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 @property (nonatomic, strong) NSMutableArray *dataArr;
-
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, strong) MJRefreshNormalHeader *header;
+@property (nonatomic, strong) MJRefreshBackNormalFooter *footer;
 @end
 
 @implementation SelMainViewController
@@ -25,7 +27,16 @@ static NSString *KCellID = @"CategoryCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"视频";
+    
+    self.view.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.mainTableView];
+    [self mj_pullRefresh];
+    if (@available(iOS 13.0, *)) {
+        self.mainTableView.automaticallyAdjustsScrollIndicatorInsets = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        // Fallback on earlier versions
+    }
+    self.page = 1;
     [self requestVideo];
 }
 
@@ -41,13 +52,35 @@ static NSString *KCellID = @"CategoryCell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (void)mj_pullRefresh{
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.page = 1;
+        [self.dataArr removeAllObjects];
+        [self requestVideo];
+    }];
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        self.page += 1;
+        [self requestVideo];
+    }];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    [header setTitle:@"上一页" forState:MJRefreshStatePulling];
+    [footer setTitle:@"下一页" forState:MJRefreshStatePulling];
+    self.header = header;
+    self.footer = footer;
+    self.mainTableView.mj_header = self.header;
+    self.mainTableView.mj_footer = self.footer;
+}
+
 - (UITableView *)mainTableView {
     
     if(!_mainTableView) {
         
         _mainTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
         [_mainTableView registerClass:[CategoryCell class] forCellReuseIdentifier:KCellID];
-        _mainTableView.delegate =self;
+        _mainTableView.backgroundColor = [UIColor clearColor];
+        _mainTableView.delegate = self;
         
         _mainTableView.dataSource =self;
         
@@ -86,7 +119,7 @@ static NSString *KCellID = @"CategoryCell";
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:@"latest" forKey:@"order"];
-    [param setObject:@(1) forKey:@"page"];
+    [param setObject:@(self.page) forKey:@"page"];
 //    if ([_tag isEqualToString:@"Latest"]) {
 //        [param setObject:@"latest" forKey:@"order"];
 //    }else{
@@ -94,7 +127,10 @@ static NSString *KCellID = @"CategoryCell";
 //    }
 //    [param setObject:@(_page) forKey:@"page"];
     [PixabayService requestVideoParams:param completion:^(NSArray * _Nonnull Pixabaypapers, BOOL success) {
-        self.dataArr = [PixabayVideoModel mj_objectArrayWithKeyValuesArray:Pixabaypapers];
+        [self.header endRefreshing];
+        [self.footer endRefreshing];
+    
+        [self.dataArr addObjectsFromArray:[PixabayVideoModel mj_objectArrayWithKeyValuesArray:Pixabaypapers]];
         //在主线程更新UI
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.mainTableView reloadData];
@@ -112,14 +148,12 @@ static NSString *KCellID = @"CategoryCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    static NSString *identify =@"cellIdentify";
     
     CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:KCellID];
     
     PixabayVideoModel *model = self.dataArr[indexPath.row];
     cell.videoModel = model;
-//    cell.textLabel.text = model.tags;//self.dataArr[indexPath.row];
-//    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.userImageURL]];
+
     
     return cell;
     
