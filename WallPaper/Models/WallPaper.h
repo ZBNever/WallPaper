@@ -41,5 +41,5 @@
 @property (nonatomic, strong) NSArray  *colors;
 @property (nonatomic, strong) NSString *path; //"https://w.wallhaven.cc/full/1k/wallhaven-1k1wvv.jpg",
 @property (nonatomic, strong) WallPaper *thumbs;
-
+@property (nonatomic, strong) NSString *userImageURL;
 @end

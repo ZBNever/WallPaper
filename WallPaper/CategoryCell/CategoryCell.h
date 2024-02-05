@@ -27,8 +27,10 @@
 @interface CategoryCell : UITableViewCell
 
 @property (nonatomic,assign) id<HXCellTagsViewDelegate> delegate;
-
+/// 预览图
 @property (nonatomic, strong) UIImageView *thumbnail;
+/// 用户头像
+@property (nonatomic, strong) UIImageView *usericon;
 
 @property (nonatomic, strong) WallPaperListModel *wallPaperListModel;
 /** 视频的Model */

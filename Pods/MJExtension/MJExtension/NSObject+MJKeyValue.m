@@ -16,6 +16,26 @@
 #import "NSString+MJExtension.h"
 #import "NSObject+MJClass.h"
 
+@implementation NSDecimalNumber(MJKeyValue)
+
+- (id)mj_standardValueWithTypeCode:(NSString *)typeCode {
+    // 由于这里涉及到编译器问题, 暂时保留 Long, 实际上在 64 位系统上, 这 2 个精度范围相同,
+    // 32 位略有不同, 其余都可使用 Double 进行强转不丢失精度
+    if ([typeCode isEqualToString:MJPropertyTypeLongLong]) {
+        return @(self.longLongValue);
+    } else if ([typeCode isEqualToString:MJPropertyTypeLongLong.uppercaseString]) {
+        return @(self.unsignedLongLongValue);
+    } else if ([typeCode isEqualToString:MJPropertyTypeLong]) {
+        return @(self.longValue);
+    } else if ([typeCode isEqualToString:MJPropertyTypeLong.uppercaseString]) {
+        return @(self.unsignedLongValue);
+    } else {
+        return @(self.doubleValue);
+    }
+}
+
+@end
+
 @implementation NSObject (MJKeyValue)
 
 #pragma mark - 错误
@@ -80,6 +100,11 @@ static const char MJReferenceReplacedKeyWhenCreatingKeyValuesKey = '\0';
     NSArray *allowedPropertyNames = [clazz mj_totalAllowedPropertyNames];
     NSArray *ignoredPropertyNames = [clazz mj_totalIgnoredPropertyNames];
     
+    NSLocale *numberLocale = nil;
+    if ([self.class respondsToSelector:@selector(mj_numberLocale)]) {
+        numberLocale = self.class.mj_numberLocale;
+    }
+    
     //通过封装的方法回调一个通过运行时编写的，用于返回属性列表的方法。
     [clazz mj_enumerateProperties:^(MJProperty *property, BOOL *stop) {
         @try {
@@ -138,54 +163,57 @@ static const char MJReferenceReplacedKeyWhenCreatingKeyValuesKey = '\0';
                 } else { // 字典数组-->模型数组
                     value = [objectClass mj_objectArrayWithKeyValuesArray:value context:context];
                 }
-            } else {
-                if (propertyClass == [NSString class]) {
-                    if ([value isKindOfClass:[NSNumber class]]) {
-                        // NSNumber -> NSString
-                        value = [value description];
-                    } else if ([value isKindOfClass:[NSURL class]]) {
-                        // NSURL -> NSString
-                        value = [value absoluteString];
+            } else if (propertyClass == [NSString class]) {
+                if ([value isKindOfClass:[NSNumber class]]) {
+                    // NSNumber -> NSString
+                    value = [value description];
+                } else if ([value isKindOfClass:[NSURL class]]) {
+                    // NSURL -> NSString
+                    value = [value absoluteString];
+                }
+            } else if ([value isKindOfClass:[NSString class]]) {
+                if (propertyClass == [NSURL class]) {
+                    // NSString -> NSURL
+                    // 字符串转码
+                    value = [value mj_url];
+                } else if (type.isNumberType) {
+                    NSString *oldValue = value;
+                    
+                    // NSString -> NSDecimalNumber, 使用 DecimalNumber 来转换数字, 避免丢失精度以及溢出
+                    NSDecimalNumber *decimalValue = [NSDecimalNumber decimalNumberWithString:oldValue
+                                                                                      locale:numberLocale];
+                    
+                    // 检查特殊情况
+                    if (decimalValue == NSDecimalNumber.notANumber) {
+                        value = @(0);
+                    }else if (propertyClass != [NSDecimalNumber class]) {
+                        value = [decimalValue mj_standardValueWithTypeCode:type.code];
+                    } else {
+                        value = decimalValue;
                     }
-                } else if ([value isKindOfClass:[NSString class]]) {
-                    if (propertyClass == [NSURL class]) {
-                        // NSString -> NSURL
-                        // 字符串转码
-                        value = [value mj_url];
-                    } else if (type.isNumberType) {
-                        NSString *oldValue = value;
-                        
-                        // NSString -> NSNumber
-                        if (type.typeClass == [NSDecimalNumber class]) {
-                            value = [NSDecimalNumber decimalNumberWithString:oldValue];
-                        } else {
-                            NSDecimalNumber *decimalValue = [NSDecimalNumber decimalNumberWithString:oldValue];
-                            value = decimalValue == [NSDecimalNumber notANumber] ? @(0) : @(decimalValue.doubleValue);
+                    
+                    // 如果是BOOL
+                    if (type.isBoolType) {
+                        // 字符串转BOOL（字符串没有charValue方法）
+                        // 系统会调用字符串的charValue转为BOOL类型
+                        NSString *lower = [oldValue lowercaseString];
+                        if ([lower isEqualToString:@"yes"] || [lower isEqualToString:@"true"]) {
+                            value = @YES;
+                        } else if ([lower isEqualToString:@"no"] || [lower isEqualToString:@"false"]) {
+                            value = @NO;
                         }
-                        
-                        // 如果是BOOL
-                        if (type.isBoolType) {
-                            // 字符串转BOOL（字符串没有charValue方法）
-                            // 系统会调用字符串的charValue转为BOOL类型
-                            NSString *lower = [oldValue lowercaseString];
-                            if ([lower isEqualToString:@"yes"] || [lower isEqualToString:@"true"]) {
-                                value = @YES;
-                            } else if ([lower isEqualToString:@"no"] || [lower isEqualToString:@"false"]) {
-                                value = @NO;
-                            }
-                        }
-                    }
-                } else if ([value isKindOfClass:[NSNumber class]] && propertyClass == [NSDecimalNumber class]){
-                    // 过滤 NSDecimalNumber类型
-                    if (![value isKindOfClass:[NSDecimalNumber class]]) {
-                        value = [NSDecimalNumber decimalNumberWithDecimal:[((NSNumber *)value) decimalValue]];
                     }
                 }
-                
-                // value和property类型不匹配
-                if (propertyClass && ![value isKindOfClass:propertyClass]) {
-                    value = nil;
+            } else if ([value isKindOfClass:[NSNumber class]] && propertyClass == [NSDecimalNumber class]){
+                // 过滤 NSDecimalNumber类型
+                if (![value isKindOfClass:[NSDecimalNumber class]]) {
+                    value = [NSDecimalNumber decimalNumberWithDecimal:[((NSNumber *)value) decimalValue]];
                 }
+            }
+            
+            // 经过转换后, 最终检查 value 与 property 是否匹配
+            if (propertyClass && ![value isKindOfClass:propertyClass]) {
+                value = nil;
             }
             
             // 3.赋值
@@ -193,6 +221,9 @@ static const char MJReferenceReplacedKeyWhenCreatingKeyValuesKey = '\0';
         } @catch (NSException *exception) {
             MJExtensionBuildError([self class], exception.reason);
             MJExtensionLog(@"%@", exception);
+#ifdef DEBUG
+            [exception raise];
+#endif
         }
     }];
     
@@ -224,7 +255,7 @@ static const char MJReferenceReplacedKeyWhenCreatingKeyValuesKey = '\0';
     MJExtensionAssertError([keyValues isKindOfClass:[NSDictionary class]], nil, [self class], @"keyValues参数不是一个字典");
     
     if ([self isSubclassOfClass:[NSManagedObject class]] && context) {
-        NSString *entityName = [NSStringFromClass(self) componentsSeparatedByString:@"."].lastObject;
+        NSString *entityName = [(NSManagedObject *)self entity].name;
         return [[NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context] mj_setKeyValues:keyValues context:context];
     }
     return [[[self alloc] init] mj_setKeyValues:keyValues];
@@ -400,6 +431,9 @@ static const char MJReferenceReplacedKeyWhenCreatingKeyValuesKey = '\0';
         } @catch (NSException *exception) {
             MJExtensionBuildError([self class], exception.reason);
             MJExtensionLog(@"%@", exception);
+#ifdef DEBUG
+            [exception raise];
+#endif
         }
     }];
     

@@ -1,33 +1,50 @@
 PODS:
-  - AFNetworking (3.2.1):
-    - AFNetworking/NSURLSession (= 3.2.1)
-    - AFNetworking/Reachability (= 3.2.1)
-    - AFNetworking/Security (= 3.2.1)
-    - AFNetworking/Serialization (= 3.2.1)
-    - AFNetworking/UIKit (= 3.2.1)
-  - AFNetworking/NSURLSession (3.2.1):
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
-  - AFNetworking/UIKit (3.2.1):
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - GKPhotoBrowser (2.7.3):
+    - GKPhotoBrowser/Default (= 2.7.3)
+  - GKPhotoBrowser/AVPlayer (2.7.3):
+    - GKPhotoBrowser/Core
+  - GKPhotoBrowser/Core (2.7.3)
+  - GKPhotoBrowser/Default (2.7.3):
+    - GKPhotoBrowser/AVPlayer
+    - GKPhotoBrowser/Progress
+    - GKPhotoBrowser/SD
+  - GKPhotoBrowser/Progress (2.7.3):
+    - GKPhotoBrowser/Core
+    - GKSliderView
+  - GKPhotoBrowser/SD (2.7.3):
+    - GKPhotoBrowser/Core
+    - SDWebImage (~> 5.0)
+  - GKSliderView (1.2.0)
   - Masonry (1.1.0)
-  - MBProgressHUD (1.1.0)
-  - MJExtension (3.1.2)
-  - MJRefresh (3.2.3)
+  - MBProgressHUD (1.2.0)
+  - MJExtension (3.4.1)
+  - MJRefresh (3.7.6)
   - PYSearch (0.9.1)
-  - SDWebImage (5.0.6):
-    - SDWebImage/Core (= 5.0.6)
-  - SDWebImage/Core (5.0.6)
+  - SDWebImage (5.18.10):
+    - SDWebImage/Core (= 5.18.10)
+  - SDWebImage/Core (5.18.10)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
   - AFNetworking
+  - GKPhotoBrowser
   - Masonry
   - MBProgressHUD
   - MJExtension
@@ -39,6 +56,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - GKPhotoBrowser
+    - GKSliderView
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -48,15 +67,17 @@ SPEC REPOS:
     - YYKit
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  GKPhotoBrowser: a874c971102da83377d2296d2f45539bf6cdb9ca
+  GKSliderView: 49480065d2155bbc219bde5f9136f785757ed8d4
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  MJExtension: 81e8e411ced318561dd09334b0c83d8227cef79c
-  MJRefresh: 2b1214a2dc8f4df4c5dcb028ea2ad4e245425fb7
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
+  MJRefresh: 2fe7fb43a5167ceda20bb7e63f130c04fd1814a5
   PYSearch: 76dee18eea3309b60921a5d6a69390a63a5dda15
-  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: b2e8a6d27bf63c623d48e9f2e3d28df5a9af4e1d
+PODFILE CHECKSUM: 73d504c36233b93ec14d37ac029e0846e920b879
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.11.2

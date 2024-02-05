@@ -28,7 +28,7 @@
         self.thumbnail.clipsToBounds = YES;
         [self.contentView addSubview:self.thumbnail];
 
-        self.tagsView = [[HXTagsView alloc] initWithFrame:CGRectMake(0, 140, KScreenWidth, 0)];
+        self.tagsView = [[HXTagsView alloc] initWithFrame:CGRectMake(0, 140, KScreenWidth, 40)];
         self.tagsView.tagOriginY = 4.f;
         self.tagsView.tagVerticalSpace = 4.f;
         self.tagsView.tagHeight = 30;
@@ -38,6 +38,12 @@
         self.tagsView.type = 1;
         self.tagsView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
         [self.contentView addSubview:self.tagsView];
+        
+        self.usericon = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth-50, 145, 30, 30)];
+        self.usericon.contentMode = UIViewContentModeScaleAspectFill;
+        self.usericon.clipsToBounds = YES;
+        self.usericon.layer.cornerRadius = 15.f;
+        [self.contentView addSubview:self.usericon];
     }
     return self;
 }
@@ -75,7 +81,11 @@
 - (void)setImageModel:(PixabayModel *)imageModel{
 //    WeakSelf
     self.tagsView.hidden = NO;
+    self.usericon.hidden = NO;
     [self.thumbnail setImageWithURL:imageModel.webformatURL placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+    }];
+    [self.usericon setImageWithURL:[NSURL URLWithString:imageModel.userImageURL] placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+
     }];
     NSArray *arr = [imageModel.tags componentsSeparatedByString:@", "];
     [self configTag:arr];
@@ -104,14 +114,20 @@
 
 - (void)setWallPaperListModel:(WallPaperListModel *)wallPaperListModel{
     self.tagsView.hidden = YES;
+    self.usericon.hidden = YES;
     [self.thumbnail setImageWithURL:[NSURL URLWithString:wallPaperListModel.path] placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
 
     }];
+
 }
 - (void)setVideoModel:(PixabayVideoModel *)videoModel{
     self.tagsView.hidden = NO;
+    self.usericon.hidden = NO;
     NSString *imgUrl = [NSString stringWithFormat:@"https://i.vimeocdn.com/video/%@_960x540",videoModel.picture_id];
     [self.thumbnail setImageWithURL:[NSURL URLWithString:imgUrl] placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+
+    }];
+    [self.usericon setImageWithURL:[NSURL URLWithString:videoModel.userImageURL] placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
 
     }];
     NSArray *arr = [videoModel.tags componentsSeparatedByString:@", "];
@@ -122,6 +138,7 @@
 
 - (void)setUnsplashUrl:(NSString *)UnsplashUrl{
     self.tagsView.hidden = YES;
+    self.usericon.hidden = YES;
     [self.thumbnail setImageWithURL:[NSURL URLWithString:UnsplashUrl] placeholder:nil options:YYWebImageOptionProgressiveBlur completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
 
     }];

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SelMainViewController : UIViewController
+@interface SelMainViewController : UITableViewController
 
 @end

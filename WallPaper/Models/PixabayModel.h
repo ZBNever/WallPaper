@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) NSString *tags; //"sunflower, flowers, plant";
 @property(nonatomic,strong) NSString *type; //photo;
 @property(nonatomic,strong) NSString *user; //Peggychoucair;
-@property(nonatomic,strong) NSURL *userImageURL; //"https://cdn.pixabay.com/user/2018/12/28/22-17-08-435_250x250.jpg";
+@property(nonatomic,strong) NSString *userImageURL; //"https://cdn.pixabay.com/user/2018/12/28/22-17-08-435_250x250.jpg";
 @property(nonatomic,strong) NSString *user_id; //1130890;
 @property(nonatomic,strong) NSString *views; //1618;
 @property(nonatomic,strong) NSString *webformatHeight; //426;

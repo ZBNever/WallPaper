@@ -69,7 +69,7 @@
 //        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         if (networkType==MHAsiNetWorkGET)
         {
-            [manager GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+            [manager GET:url parameters:params headers:@{} progress:^(NSProgress * _Nonnull downloadProgress) {
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 if (showHUD) {
@@ -122,7 +122,7 @@
 
         }else if (networkType==MHAsiNetWorkPOST){
             
-            [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+            [manager POST:url parameters:params headers:@{} progress:^(NSProgress * _Nonnull uploadProgress) {
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 if (showHUD) {
